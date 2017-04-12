@@ -11,3 +11,17 @@ class HomePageTest(TestCase):
     def test_home_page_returns_correct_html(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'public-officials/home.html')
+
+class LegislatorModelTest(TestCase):
+    def test_a_legislators_attributes(self):
+        legislator = Legislator()
+        legislator.cid = "1234"
+        legislator.state = "AZ"
+        legislator.name = "Razz Fluff"
+        legislator.save()
+
+        saved_legislator = Legislator.objects.last()
+        self.assertEqual(saved_legislator, legislator)
+        self.assertEqual(saved_legislator.cid, "1234")
+        self.assertEqual(saved_legislator.state, "AZ")
+        self.assertEqual(saved_legislator.name, "Razz Fluff")

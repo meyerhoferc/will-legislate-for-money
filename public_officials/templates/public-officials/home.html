@@ -6,5 +6,12 @@
   </head>
   <body>
     <h1>Your One Stop Corruption Watch</h1>
+    <div id="politicians">
+      {% for legislator in legislator_list %}
+        <ul>
+          <p>{{ legislator.name }}</p>
+        </ul>
+      {% endfor %}
+    </div>
   </body>
 </html>
