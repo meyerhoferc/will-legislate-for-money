@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-import pdb #pdb.set_trace()
+from public_officials.services import *
+from public_officials.models import *
+import pdb
 
 def home_page(request):
-    return render(request, 'public-officials/home.html')
+    legislator_service = LegislatorService()
+    legislator_list = legislator_service.get_legislators_by_state()
+    return render(request, 'public-officials/home.html', {'legislator_list': legislator_list})
