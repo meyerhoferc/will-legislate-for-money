@@ -1,23 +1,28 @@
 from django.http import HttpRequest, HttpResponse
 import requests
 import pdb
+from public_officials.models import Legislator
+from will_legislate_for_money.secrets import *
 
 class LegislatorService:
-    def __init__(self, id='CO'):
-        self.open_secrets_key = "dbb983c8877ccb8a95710d7bc4abc5a2"
-        self.id = id
+    def __init__(self):
+        self.open_secrets_key = OPEN_SECRETS_KEY
 
-    def get_legislators(self):
+    def get_legislators_by_state(self, state):
         url = "https://www.opensecrets.org/api/"
         payload = {
             'apikey': self.open_secrets_key,
             'output': 'json',
             'method': 'getLegislators',
-            'id': self.id
+            'id': state
             }
         legislators = requests.get(url, params=payload)
         legislators_json = legislators.json()['response']['legislator']
         all_legislators = []
         for legislator in legislators_json:
-            Legislator.objects.create()
+            legislator_data = legislator["@attributes"]
+            legislator = Legislator.objects.create(name=legislator_data["firstlast"],
+                                                   state=state,
+                                                   cid=legislator_data["cid"])
+            all_legislators.append(legislator)
         return all_legislators
