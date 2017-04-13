@@ -8,7 +8,7 @@ class LegislatorService:
     def __init__(self):
         self.open_secrets_key = OPEN_SECRETS_KEY
 
-    def get_legislators_by_state(self, state):
+    def get_legislators_by_state(self, state='CO'):
         url = "https://www.opensecrets.org/api/"
         payload = {
             'apikey': self.open_secrets_key,
