@@ -10,7 +10,7 @@
       {% for legislator in legislator_list %}
         <ul>
           <p>
-            <a href="{% url 'public_officials:detail' legislator.id %}">{{ legislator.name }}</a>
+            <a href="{% url 'public_officials:detail' legislator.id %}" id="{{ forloop.counter }}">{{ legislator.name }}</a>
           </p>
         </ul>
       {% endfor %}

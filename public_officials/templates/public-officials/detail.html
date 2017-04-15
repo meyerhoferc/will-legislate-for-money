@@ -8,7 +8,20 @@
     {% load format_legislator_json %}
     <div class="profile">
       <h1>{{ legislator_profile|get_value:'cand_name' }}</h1>
-      <h6>{{ legislator_profile|get_value:'state' }}: {{ legislator_profile|get_value:'chamber' }}</h6>
+      {% if legislator_profile|get_value:'chamber' == 'H' %}
+        <h6>{{ legislator_profile|get_value:'state' }} Representative</h6>
+      {% else %}
+        <h6>{{ legislator_profile|get_value:'state' }} Congressperson</h6>
+      {% endif %}
+      <p>First Elected: {{ legislator_profile|get_value:'first_elected' }}</p>
+      <p>Next Election: {{ legislator_profile|get_value:'next_election' }}</p>
+      <p>Party: {{ legislator_profile|get_value:'party' }}</p>
+      <p>State: {{ legislator_profile|get_value:'state' }}</p>
+      <p>Last Updated: {{ legislator_profile|get_value:'last_updated'}}</p>
+    </div>
+
+    <div class="organization-contributors">
+      
     </div>
   </body>
 </html>

@@ -3,7 +3,9 @@ import time
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
+from public_officials.models import *
 import vcr
+import pdb
 
 class GuestUserTest(LiveServerTestCase):
 
@@ -26,15 +28,14 @@ class GuestUserTest(LiveServerTestCase):
 
     def test_checks_for_content_on_official_show(self):
         with vcr.use_cassette('cassettes/get_legislator_profile'):
-            self.browser.get(self.live_server_url)
-            politician_text = self.browser.find_element_by_css_selector("#politicians")
-            diana_link = self.browser.find_element_by_css_selector("#politicians #1")
-            ActionChains(driver).move_to_element(politician_text).click(diana_link).perform()
-            self.browser.wait_for_page_to_load("30000")
+            legislator = Legislator.objects.create(name="D",
+                                                   state="CO",
+                                                   cid="N00006134")
+            self.browser.get(self.live_server_url + '/legislators/%d/' % legislator.id)
             name_text = self.browser.find_element_by_tag_name('h1').text
             status_text = self.browser.find_element_by_tag_name('h6').text
-            bio_text = self.browser.find_lement_by_css_selector('.bio').text
-            self.assertIn("Diana DeGette", name_text)
+            bio_text = self.browser.find_element_by_css_selector('.profile').text
+            self.assertIn("DeGette, Diana", name_text)
             self.assertIn("CO Representative", status_text)
             self.assertIn("First Elected: 1996", bio_text)
             self.assertIn("Next Election: 2016", bio_text)
