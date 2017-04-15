@@ -23,7 +23,7 @@ class LegislatorDataTest(TestCase):
         legislator_profile = legislator_service.get_legislator_profile("N00006134")
         self.assertEqual(Legislator.objects.count(), 1)
         saved_legislator = Legislator.objects.first()
-        self.assertEqual("Diana DeGette", saved_legislator.name)
+        self.assertEqual("DeGette, Diana", saved_legislator.name)
         self.assertEqual("N00006134", saved_legislator.cid)
         self.assertEqual("CO", saved_legislator.state)
         self.assertEqual("H", legislator_profile["chamber"])

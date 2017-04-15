@@ -26,3 +26,18 @@ class LegislatorService:
                                                    cid=legislator_data["cid"])
             all_legislators.append(legislator)
         return all_legislators
+
+    def get_legislator_profile(self, cid):
+        url = "https://www.opensecrets.org/api/"
+        payload = {
+            'apikey': self.open_secrets_key,
+            'output': 'json',
+            'method': 'candSummary',
+            'cid': cid
+            }
+        legislator = requests.get(url, params=payload)
+        legislator_json = legislator.json()['response']['summary']['@attributes']
+        Legislator.objects.create(name=legislator_json['cand_name'],
+                                  state=legislator_json['state'],
+                                  cid=cid)
+        return legislator_json
