@@ -19,5 +19,6 @@ from public_officials import views as public_official_views
 
 urlpatterns = [
     url(r'^$', public_official_views.home_page, name="home"),
+    url(r'^legislators/(?P<legislator_id>[0-9]+)/$', public_official_views.legislator_detail, name="detail"),
     url(r'^admin/', admin.site.urls),
 ]

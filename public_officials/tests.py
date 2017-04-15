@@ -17,11 +17,11 @@ class HomePageTest(TestCase):
 
 class DetailPageTest(TestCase):
     def test_detail_url_resolves_to_legislator_detail_view(self):
-        found = resolve('/legislators/1')
+        found = resolve('/legislators/1/')
         self.assertEqual(found.func, legislator_detail)
 
     def test_legislator_detail_page_returns_correct_template(self):
-        response = self.client.get('/legislators/1')
+        response = self.client.get('/legislators/1/')
         self.assertTemplateUsed(response, 'public-officials/detail.html')
 
 class LegislatorModelTest(TestCase):
