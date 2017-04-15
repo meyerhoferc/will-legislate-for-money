@@ -36,9 +36,21 @@ class LegislatorService:
             'method': 'candSummary',
             'cid': cid
             }
-        legislator = requests.get(url, params=payload)
-        legislator_json = json.loads(legislator.content)['response']['summary']['@attributes']
-        Legislator.objects.create(name=legislator_json['cand_name'],
-                                  state=legislator_json['state'],
+        legislator_json = requests.get(url, params=payload)
+        legislator = json.loads(legislator_json.content)['response']['summary']['@attributes']
+        Legislator.objects.create(name=legislator['cand_name'],
+                                  state=legislator['state'],
                                   cid=cid)
-        return legislator_json
+        return legislator
+
+    def get_legislator_org_contributions(self, cid):
+        url = "https://www.opensecrets.org/api/"
+        payload = {
+            'apikey': self.open_secrets_key,
+            'output': 'json',
+            'method': 'candContrib',
+            'cid': cid
+            }
+        organizations_json = requests.get(url, params=payload)
+        organizations = json.loads(organizations_json.content)['response']['contributors']['contributor']
+        return organizations

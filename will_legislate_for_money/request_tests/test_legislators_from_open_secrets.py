@@ -32,7 +32,8 @@ class LegislatorDataTest(TestCase):
             self.assertEqual("1996", legislator_profile["first_elected"])
 
     def test_service_gets_organizational_contributions_for_one_legislator(self):
-        legislator_service = LegislatorService()
-        legislator_contributions = legislator_service.get_legislator_contributions("N00006134")
-        self.assertTrue(legislator_contributions)
-        self.assertEqual("Democracy Engine", legislator_contributions.first()['@attributes']['org_name'])
+        with vcr.use_cassette('cassettes/get_legislator_organizations'):
+            legislator_service = LegislatorService()
+            legislator_contributions = legislator_service.get_legislator_org_contributions("N00006134")
+            self.assertTrue(legislator_contributions)
+            self.assertEqual("Democracy Engine", legislator_contributions[0]['@attributes']['org_name'])
