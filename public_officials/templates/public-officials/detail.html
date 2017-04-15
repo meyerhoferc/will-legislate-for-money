@@ -21,7 +21,15 @@
     </div>
 
     <div class="organization-contributors">
-      
+      <h5>Cycle: {{ organizations|get_value:'cycle' }}</h5>
+      {% for organization in organizations %}
+        <div class="organization">
+          <h6>{{ organization|get_value:'org_name' }}</h6>
+          <p>Total: %{{ organization|get_value:'total' }}</p>
+          <p>PACS: %{{ organization|get_value:'pacs' }}</p>
+          <p>Individual Donations: {{ organization|get_value:'indivs'}}</p>
+        </div>
+      {% endfor %}
     </div>
   </body>
 </html>

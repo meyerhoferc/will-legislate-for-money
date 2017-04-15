@@ -35,6 +35,7 @@ class GuestUserTest(LiveServerTestCase):
             name_text = self.browser.find_element_by_tag_name('h1').text
             status_text = self.browser.find_element_by_tag_name('h6').text
             bio_text = self.browser.find_element_by_css_selector('.profile').text
+            organization_text = self.browser.find_element_by_css_selector('.organization-contributors').text
             self.assertIn("DeGette, Diana", name_text)
             self.assertIn("CO Representative", status_text)
             self.assertIn("First Elected: 1996", bio_text)
@@ -42,9 +43,6 @@ class GuestUserTest(LiveServerTestCase):
             self.assertIn("Party: D", bio_text)
             self.assertIn("State: CO", bio_text)
             self.assertIn("Last Updated: 12/31/2016", bio_text)
-            organization_text = self.browser.find_element_by_css_selector('.organization-contributors').text
-            notice = "The organizations themselves did not donate, rather the money came from the organization's PAC, its individual members or employees or owners, and those individuals' immediate families."
-            self.assertIn(notice, organization_text)
             self.assertIn("Cycle: 2016", organization_text)
             self.assertIn("Democracy Engine", organization_text)
             self.assertIn("Total: $136825", organization_text)

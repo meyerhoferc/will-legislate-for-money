@@ -14,4 +14,5 @@ def legislator_detail(request, legislator_id):
     legislator_service = LegislatorService()
     cid = Legislator.objects.filter(pk=legislator_id).first().cid
     legislator_profile = legislator_service.get_legislator_profile(cid)
-    return render(request, 'public-officials/detail.html', {'legislator_profile': legislator_profile})
+    organization_contributors = {'key': 'value'}
+    return render(request, 'public-officials/detail.html', {'legislator_profile': legislator_profile, 'organizations': organization_contributors})

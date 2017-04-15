@@ -5,5 +5,5 @@ register = template.Library()
 
 @register.filter
 def get_value(dictionary, key):
-    if key:
+    if key and type(dictionary) is dict:
         return dictionary.get(key)
