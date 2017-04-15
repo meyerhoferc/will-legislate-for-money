@@ -30,3 +30,9 @@ class LegislatorDataTest(TestCase):
             self.assertEqual("H", legislator_profile["chamber"])
             self.assertEqual("2016", legislator_profile["cycle"])
             self.assertEqual("1996", legislator_profile["first_elected"])
+
+    def test_service_gets_organizational_contributions_for_one_legislator(self):
+        legislator_service = LegislatorService()
+        legislator_contributions = legislator_service.get_legislator_contributions("N00006134")
+        self.assertTrue(legislator_contributions)
+        self.assertEqual("Democracy Engine", legislator_contributions.first()['@attributes']['org_name'])
