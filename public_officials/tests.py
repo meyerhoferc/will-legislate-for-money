@@ -21,7 +21,7 @@ class DetailPageTest(TestCase):
         self.assertEqual(found.func, legislator_detail)
 
     def test_legislator_detail_page_returns_correct_template(self):
-        with vcr.use_cassette('cassettes/get_legislator_profile'):
+        with vcr.use_cassette('cassettes/get_complete_legislator_profile'):
             legislator = Legislator.objects.create(name="D",
                                                    state="CO",
                                                    cid="N00006134")
