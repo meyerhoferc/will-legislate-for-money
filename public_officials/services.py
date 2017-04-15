@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 import requests
+import json
 import pdb
 from public_officials.models import Legislator
 from will_legislate_for_money.secrets import *
@@ -36,7 +37,7 @@ class LegislatorService:
             'cid': cid
             }
         legislator = requests.get(url, params=payload)
-        legislator_json = legislator.json()['response']['summary']['@attributes']
+        legislator_json = json.loads(legislator.content)['response']['summary']['@attributes']
         Legislator.objects.create(name=legislator_json['cand_name'],
                                   state=legislator_json['state'],
                                   cid=cid)

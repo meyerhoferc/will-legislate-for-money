@@ -21,8 +21,12 @@ class DetailPageTest(TestCase):
         self.assertEqual(found.func, legislator_detail)
 
     def test_legislator_detail_page_returns_correct_template(self):
-        response = self.client.get('/legislators/1/')
-        self.assertTemplateUsed(response, 'public-officials/detail.html')
+        with vcr.use_cassette('cassettes/get_legislator_profile'):
+            legislator = Legislator.objects.create(name="D",
+                                                   state="CO",
+                                                   cid="N00006134")
+            response = self.client.get('/legislators/%d/' % legislator.id)
+            self.assertTemplateUsed(response, 'public-officials/detail.html')
 
 class LegislatorModelTest(TestCase):
     def test_a_legislators_attributes(self):

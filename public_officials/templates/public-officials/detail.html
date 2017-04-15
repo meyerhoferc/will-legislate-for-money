@@ -1,0 +1,5 @@
+{% load format_legislator_json %}
+<div class="profile">
+  <h1>{{ legislator_profile|get_value:'cand_name' }}</h1>
+  <h6>{{ legislator_profile|get_value:'state' }}: {{ legislator_profile|get_value:'chamber' }}</h6>
+</div>
