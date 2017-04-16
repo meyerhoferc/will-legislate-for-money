@@ -16,5 +16,4 @@ def legislator_detail(request, legislator_id):
     legislator_profile = legislator_service.get_legislator_profile(cid)
     organization_contributors = legislator_service.get_legislator_org_contributions(cid)
     industry_contributors = legislator_service.get_legislator_ind_contributions(cid)
-    # pdb.set_trace()
     return render(request, 'public-officials/detail.html', {'legislator_profile': legislator_profile, 'organizations': organization_contributors, 'industries': industry_contributors})
