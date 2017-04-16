@@ -32,7 +32,7 @@ class GuestUserTest(StaticLiveServerTestCase):
                                                    cid="N00006134")
             self.browser.get(self.live_server_url + '/legislators/%d/' % legislator.id)
             name_text = self.browser.find_element_by_tag_name('h1').text
-            status_text = self.browser.find_element_by_tag_name('h6').text
+            status_text = self.browser.find_element_by_tag_name('h5').text
             bio_text = self.browser.find_element_by_css_selector('.profile').text
             organization_text = self.browser.find_element_by_css_selector('.organization-contributors').text
             industry_text = self.browser.find_element_by_css_selector('.industry-contributors').text
@@ -44,9 +44,9 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.assertIn("State: CO", bio_text)
             self.assertIn("Last Updated: 12/31/2016", bio_text)
             self.assertIn("Democracy Engine", organization_text)
-            self.assertIn("Total: $136825", organization_text)
-            self.assertIn("PACS: $0", organization_text)
-            self.assertIn("Individual Donations: $136825", organization_text)
+            self.assertIn("$136825", organization_text)
+            self.assertIn("$0", organization_text)
+            self.assertIn("$136825", organization_text)
             self.assertIn("Pharmaceuticals/Health Products", industry_text)
             self.assertIn("Individual Donations: $0", industry_text)
             self.assertIn("PACS: $144254", industry_text)
