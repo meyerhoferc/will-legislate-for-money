@@ -1,4 +1,4 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import time
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
@@ -7,7 +7,7 @@ from public_officials.models import *
 import vcr
 import pdb
 
-class GuestUserTest(LiveServerTestCase):
+class GuestUserTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
 
