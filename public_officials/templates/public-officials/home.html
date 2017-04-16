@@ -2,18 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link href="/static/public_officials/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/public_officials/stylesheets/main.css" rel="stylesheet">
     <title>Will Legislate For Money</title>
   </head>
   <body>
-    <h1>Your One Stop Corruption Watch</h1>
-    <div id="politicians">
-      {% for legislator in legislator_list %}
-        <ul>
-          <p>
-            <a href="{% url 'public_officials:detail' legislator.id %}" id="{{ forloop.counter }}">{{ legislator.name }}</a>
-          </p>
-        </ul>
-      {% endfor %}
+    <div class="container-fluid">
+      <div class="row col-md-10">
+        <h1 class="text-center">Your One Stop Corruption Watch</h1>
+        <div id="politicians">
+          {% for legislator in legislator_list %}
+            <ul>
+              <h4 id="legislator-link">
+                <a href="{% url 'public_officials:detail' legislator.id %}" id="{{ forloop.counter }}">{{ legislator.name }}</a>
+              </h4>
+            </ul>
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </body>
 </html>
