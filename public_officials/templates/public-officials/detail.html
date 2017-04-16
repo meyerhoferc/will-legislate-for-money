@@ -26,8 +26,8 @@
     </div>
 
     <div class="contianer-fluid">
-      <div class="row-well organization-contributors">
-        <div class="col-md-6">
+      <div class="row-well">
+        <div class="col-md-6 organization-contributors">
           <div class="text-center">
             <h3>Contributions by Organization (Cycle: {{ organizations|get_value:'cycle' }})</h3>
           </div>
@@ -43,8 +43,32 @@
               <tr class="organization">
                 <td><h6>{{ organization|get_nested_value:'org_name' }}</h6></td>
                 <td><p>${{ organization|get_nested_value:'total' }}</p></td>
-                <td><p>${{ organization|get_nested_value:'pacs' }}</p></td>
                 <td><p>${{ organization|get_nested_value:'indivs'}}</p></td>
+                <td><p>${{ organization|get_nested_value:'pacs' }}</p></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-md-6 industry-contributors">
+          <div class="text-center">
+            <h3>Contributions by Industry (Cycle: {{ industries|get_value:'cycle' }}) Last Updated: {{ industries|get_value:'last_updated' }}</h3>
+          </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <th>Industry</th>
+              <th>Total</th>
+              <th>Individual Donations</th>
+              <th>PACs</th>
+            </thead>
+            <tbody>
+              {% for industry in industries %}
+              <tr>
+                <td><h6>{{ industry|get_nested_value:'industry_name'}}</h6></td>
+                <td><p>${{ industry|get_nested_value:'total' }}</p></td>
+                <td><p>${{ industry|get_nested_value:'indivs'}}</p></td>
+                <td><p>${{ industry|get_nested_value:'pacs' }}</p></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -53,16 +77,6 @@
       </div>
     </div>
 
-    <div class="industry-contributors">
-      <h4>Contributions by Industry</h4>
-      <h5>Cycle: {{ industries|get_value:'cycle' }}</h5>
-      <h5>Last Updated: {{ industries|get_value:'last_updated' }}</h5>
-      {% for industry in industries %}
-      <h6>{{ industry|get_nested_value:'industry_name'}}</h6>
-      <p>Individual Donations: ${{ industry|get_nested_value:'indivs'}}</p>
-      <p>PACS: ${{ industry|get_nested_value:'pacs' }}</p>
-      <p>Total: ${{ industry|get_nested_value:'total' }}</p>
-      {% endfor %}
-    </div>
+
   </body>
 </html>
