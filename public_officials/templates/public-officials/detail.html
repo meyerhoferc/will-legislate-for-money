@@ -21,6 +21,7 @@
     </div>
 
     <div class="organization-contributors">
+      <h4>Contributions by Organization</h4>
       <h5>Cycle: {{ organizations|get_value:'cycle' }}</h5>
       {% for organization in organizations %}
         <div class="organization">
@@ -29,6 +30,18 @@
           <p>PACS: ${{ organization|get_nested_value:'pacs' }}</p>
           <p>Individual Donations: ${{ organization|get_nested_value:'indivs'}}</p>
         </div>
+      {% endfor %}
+    </div>
+
+    <div class="industry-contributors">
+      <h4>Contributions by Industry</h4>
+      <h5>Cycle: {{ industries|get_value:'cycle' }}</h5>
+      <h5>Last Updated: {{ industries|get_value:'last_updated' }}</h5>
+      {% for industry in industries %}
+      <h6>{{ industry|get_nested_value:'industry_name'}}</h6>
+      <p>Individual Donations: ${{ industry|get_nested_value:'indivs'}}</p>
+      <p>PACS: ${{ industry|get_nested_value:'pacs' }}</p>
+      <p>Total: ${{ industry|get_nested_value:'total' }}</p>
       {% endfor %}
     </div>
   </body>

@@ -54,3 +54,15 @@ class LegislatorService:
         organizations_json = requests.get(url, params=payload)
         organizations = json.loads(organizations_json.content)['response']['contributors']['contributor']
         return organizations
+
+    def get_legislator_ind_contributions(self, cid):
+        url = "https://www.opensecrets.org/api/"
+        payload = {
+            'apikey': self.open_secrets_key,
+            'output': 'json',
+            'method': 'candIndustry',
+            'cid': cid
+            }
+        industries_json = requests.get(url, params=payload)
+        industries = json.loads(industries_json.content)['response']['industries']['industry']
+        return industries
