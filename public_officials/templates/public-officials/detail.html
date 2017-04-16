@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% load format_legislator_json %}
+    <div class="profile">
+      <h1>{{ legislator_profile|get_value:'cand_name' }}</h1>
+      {% if legislator_profile|get_value:'chamber' == 'H' %}
+        <h6>{{ legislator_profile|get_value:'state' }} Representative</h6>
+      {% else %}
+        <h6>{{ legislator_profile|get_value:'state' }} Congressperson</h6>
+      {% endif %}
+      <p>First Elected: {{ legislator_profile|get_value:'first_elected' }}</p>
+      <p>Next Election: {{ legislator_profile|get_value:'next_election' }}</p>
+      <p>Party: {{ legislator_profile|get_value:'party' }}</p>
+      <p>State: {{ legislator_profile|get_value:'state' }}</p>
+      <p>Last Updated: {{ legislator_profile|get_value:'last_updated'}}</p>
+    </div>
+
+    <div class="organization-contributors">
+      <h4>Contributions by Organization</h4>
+      <h5>Cycle: {{ organizations|get_value:'cycle' }}</h5>
+      {% for organization in organizations %}
+        <div class="organization">
+          <h6>{{ organization|get_nested_value:'org_name' }}</h6>
+          <p>Total: ${{ organization|get_nested_value:'total' }}</p>
+          <p>PACS: ${{ organization|get_nested_value:'pacs' }}</p>
+          <p>Individual Donations: ${{ organization|get_nested_value:'indivs'}}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="industry-contributors">
+      <h4>Contributions by Industry</h4>
+      <h5>Cycle: {{ industries|get_value:'cycle' }}</h5>
+      <h5>Last Updated: {{ industries|get_value:'last_updated' }}</h5>
+      {% for industry in industries %}
+      <h6>{{ industry|get_nested_value:'industry_name'}}</h6>
+      <p>Individual Donations: ${{ industry|get_nested_value:'indivs'}}</p>
+      <p>PACS: ${{ industry|get_nested_value:'pacs' }}</p>
+      <p>Total: ${{ industry|get_nested_value:'total' }}</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>

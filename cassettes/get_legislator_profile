@@ -1,0 +1,33 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.13.0]
+    method: GET
+    uri: https://www.opensecrets.org/api/?apikey=dbb983c8877ccb8a95710d7bc4abc5a2&output=json&method=candSummary&cid=N00006134
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA0WQwWrDMBBEfyXsoSdjy46V1obQQgLtqS09G4wib2KBLQlp3TQE/3vZxLQ37Wh2
+        hn1XCBi9sxGhvkKcxlGFCz9fFFEwh4kw8qiV7VqrRoQa9viKRJis9kZZBQlo00EN70IIscnXJSsX
+        PbC1EPkGEoikiMfdByTgVaALx7CvV+MBA9TwBgkcTYjU4oCakBPzquJtiz+Lapz9DyVHamBXIWX5
+        JNOq4CaPlljMH6WsnlK55hYV+9bZtlf2FiuEKMtUSkigwwPbBSTggjkZzt+hJQyrowurrzsc842r
+        TzcYMjpyiZuC5nt6Il83WZOdz+fUebQRdUCKqQunJvP3DaNsbLIFbep7/6xNt/2j9XBjtV1IDSpS
+        O/lOLQSKJlvnTXb7ned5/gXE/K6dsAEAAA==
+    headers:
+      CF-RAY: [3502879d7b185005-DEN]
+      Connection: [keep-alive]
+      Content-Encoding: [gzip]
+      Content-Type: [text/html; charset=UTF-8]
+      Date: ['Sat, 15 Apr 2017 23:02:00 GMT']
+      Server: [cloudflare-nginx]
+      Set-Cookie: ['__cfduid=d064b5c6108728a1d89f7d06e858d4ea71492297318; expires=Sun,
+          15-Apr-18 23:01:58 GMT; path=/; domain=.opensecrets.org; HttpOnly']
+      X-Backend-Server: [ip-10-33-1-240]
+      X-Cache-Status: [EXPIRED]
+      X-Powered-By: [PHP/5.6.19]
+    status: {code: 200, message: OK}
+version: 1
