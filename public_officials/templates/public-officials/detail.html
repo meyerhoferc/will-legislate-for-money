@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link href="/static/public_officials/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/public_officials/stylesheets/main.css" rel="stylesheet">
     <title>Will Legislate For Money</title>
   </head>
   <body>
@@ -25,13 +26,13 @@
       </div>
     </div>
 
-    <div class="contianer-fluid">
+    <div class="contianer-fluid contribution-info">
       <div class="row-well">
         <div class="col-md-6 organization-contributors">
-          <div class="text-center">
-            <h3>Contributions by Organization (Cycle: {{ organizations|get_value:'cycle' }})</h3>
-          </div>
           <table class="table table-bordered table-striped">
+            <div class="text-center">
+              <h3>Contributions by Organization (Cycle: {{ organizations|get_value:'cycle' }})</h3>
+            </div>
             <thead>
               <th>Organization</th>
               <th>Total</th>
@@ -52,10 +53,10 @@
         </div>
 
         <div class="col-md-6 industry-contributors">
-          <div class="text-center">
-            <h3>Contributions by Industry (Cycle: {{ industries|get_value:'cycle' }}) Last Updated: {{ industries|get_value:'last_updated' }}</h3>
-          </div>
           <table class="table table-bordered table-striped">
+            <div class="text-center">
+              <h3>Contributions by Industry (Cycle: {{ industries|get_value:'cycle' }}) Last Updated: {{ industries|get_value:'last_updated' }}</h3>
+            </div>
             <thead>
               <th>Industry</th>
               <th>Total</th>
@@ -76,7 +77,5 @@
         </div>
       </div>
     </div>
-
-
   </body>
 </html>

@@ -1,0 +1,26 @@
+/*COLOR PALETTE
+DARK BROWN #363636;
+NAVY #242F40;
+MUSTARD #CCA43B;
+LIGHT GREY #E5E5E5;
+LIGHT GREY-GREEN #DEE737;
+WHITE #FFFFFF;*/
+body {
+  background-color: #DEE7E7;
+}
+
+h1 {
+  color: #242F40;
+}
+
+h4 a {
+  color: #535657;
+}
+
+h4 a:hover{
+  color: #CCA43B;
+}
+
+table {
+  background-color: white;
+}
