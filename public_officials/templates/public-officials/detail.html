@@ -15,7 +15,7 @@
           {% if legislator_profile|get_value:'chamber' == 'H' %}
             <h5>{{ legislator_profile|get_value:'state' }} Representative</h5>
           {% else %}
-            <h5>{{ legislator_profile|get_value:'state' }} Congressperson</h5>
+            <h5>{{ legislator_profile|get_value:'state' }} Senator</h5>
           {% endif %}
           <p>First Elected: {{ legislator_profile|get_value:'first_elected' }}</p>
           <p>Next Election: {{ legislator_profile|get_value:'next_election' }}</p>
