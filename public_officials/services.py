@@ -66,3 +66,13 @@ class LegislatorService:
         industries_json = requests.get(url, params=payload)
         industries = json.loads(industries_json.content)['response']['industries']['industry']
         return industries
+
+    def get_all_legislators(self):
+
+        url = "https://congress.api.sunlightfoundation.com/legislators"
+        payload = {
+            'per_page': 'all'
+        }
+        legislators_json = requests.get(url, params=payload)
+        legislators = json.loads(legislators_json.content)['results']
+        return legislators

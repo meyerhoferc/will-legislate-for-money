@@ -44,3 +44,10 @@ class LegislatorDataTest(TestCase):
             legislator_contributions = legislator_service.get_legislator_ind_contributions("N00006134")
             self.assertTrue(legislator_contributions)
             self.assertEqual("Pharmaceuticals/Health Products", legislator_contributions[0]['@attributes']['industry_name'])
+
+    def test_get_all_legislators_returns_all_legislators(self):
+        with vcr.use_cassette('cassettes/get_all_legislators'):
+            legislator_service = LegislatorService()
+            legislators = legislator_service.get_all_legislators()
+            self.assertTrue(legislators)
+            self.assertEqual("Luther", legislators[0]["first_name"])
