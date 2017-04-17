@@ -1,21 +1,26 @@
 from django.core.management.base import BaseCommand, CommandError
 from public_officials.models import *
+from public_officials.services import *
 import csv
-
+# https://congress.api.sunlightfoundation.com/legislators?per_page=all
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        with open('./public_officials/officials.csv') as legislators:
-            read_legislators = csv.reader(legislators, delimiter=',')
-            header = read_legislators.next()
-            for row in read_legislators:
-                Legislator.objects.create(
-                name=row[0],
-                cid=row[1],
-                state=row[2],
-                pid=row[3],
-                first_elected=row[4],
-                chamber=row[5],
-                last_updated = row[6]
-                )
-                self.stdout.write(self.style.SUCCESS('Successfully created legislator %s' % row[0]))
+        legislator_service = LegislatorService()
+        legislators = legislator_service.get_all_legislators
+        for legislator in legislators:
+            Legislator.objects.create(
+            first_name=legislator["first_name"],
+            last_name=legislator["last_name"],
+            phone=legislator["phone"],
+            email=legislator["oc_email"],
+            state=legislator["state"],
+            state_name=legislator["state_name"],
+            cid=legislator["crp_id"],
+            pid=legislator["bioguide_id"],
+            chamber=legislator["chamber"],
+            term_start=legislator["term_end"],
+            term_end=legislator["term_start"],
+            party=legislator["party"]
+            )
+            self.stdout.write(self.style.SUCCESS('Successfully created legislator %s' % row[0]))
