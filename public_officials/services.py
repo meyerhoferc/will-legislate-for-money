@@ -68,7 +68,6 @@ class LegislatorService:
         return industries
 
     def get_all_legislators(self):
-
         url = "https://congress.api.sunlightfoundation.com/legislators"
         payload = {
             'per_page': 'all'

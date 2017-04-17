@@ -5,6 +5,7 @@ import csv
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+        Legislator.objects.all().delete()
         legislator_service = LegislatorService()
         legislators = legislator_service.get_all_legislators
         for legislator in legislators:
