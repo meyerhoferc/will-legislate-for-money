@@ -154,5 +154,7 @@ class LegislatorModelTest(TestCase):
                                                     party="D",
                                                     state="CO",
                                                     cid="N00006134")
-        expected_result = {"Texas": legislator_one, "Colorado": [legislator_three, legislator_four]}
-        self.assertEqual(expected_result, Legislator.get_senators_by_state)
+
+        result = Legislator.get_senators_by_state()
+        self.assertEqual(legislator_two.id, result["Texas"].first().id)
+        self.assertEqual(legislator_three.id, result["Colorado"].first().id)

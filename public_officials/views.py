@@ -17,8 +17,8 @@ def legislator_detail(request, legislator_id):
     return render(request, 'public-officials/detail.html', {'legislator': legislator, 'organizations': organization_contributors, 'industries': industry_contributors})
 
 def senator_index(request):
-    senators = Legislator.get_senators_by_state
-    return render(request, 'public-officials/senators/index.html', {'senators': senators})
+    senators_by_state = Legislator.get_senators_by_state()
+    return render(request, 'public-officials/senators/index.html', {'senators_by_state': senators_by_state, 'states': senators_by_state.keys()})
 
 def representative_index(request):
     representatives = Legislator.objects.filter(chamber="house")

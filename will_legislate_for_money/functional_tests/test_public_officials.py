@@ -107,16 +107,15 @@ class GuestUserTest(StaticLiveServerTestCase):
 
         self.browser.get(self.live_server_url + '/senators/')
         header_text = self.browser.find_element_by_tag_name('h1').text
-        texas_senator = self.browser.find_element_by_css_selector('#texas-senators').text
-        colorado_senator = self.browser.find_element_by_css_selector('#colorado-senators').text
+        texas_senator = self.browser.find_element_by_css_selector('#Texas-senators').text
+        colorado_senator = self.browser.find_element_by_css_selector('#Colorado-senators').text
         self.assertIn("All Senators", header_text)
         self.assertIn("Henry Schmojo", texas_senator)
-        self.assertIn("Texas", colorado_senator)
         self.assertNotIn("Henry Schmojo", colorado_senator)
         self.assertIn("Love Fluff", colorado_senator)
-        self.assertIn("Colorado", colorado_senator)
         self.assertNotIn("Love Fluff", texas_senator)
-        self.assertNotIn("Diana DeGette", senators)
+        self.assertNotIn("Diana DeGette", texas_senator)
+        self.assertNotIn("Diana DeGette", colorado_senator)
 
     def test_checks_for_content_on_legislators_representative_index(self):
         legislator_one = Legislator.objects.create(first_name="Diana",
@@ -159,13 +158,11 @@ class GuestUserTest(StaticLiveServerTestCase):
 
         self.browser.get(self.live_server_url + '/representatives/')
         header_text = self.browser.find_element_by_tag_name('h1').text
-        colorado_rep = self.browser.find_element_by_css_selector('#colorado-reps').text
-        texas_rep = self.browser.find_element_by_css_selector('#texas-reps').text
+        colorado_rep = self.browser.find_element_by_css_selector('#Colorado-reps').text
+        texas_rep = self.browser.find_element_by_css_selector('#Texas-reps').text
         self.assertIn("All Representatives", header_text)
         self.assertIn("Henry Schmojo", texas_rep)
-        self.assertIn("Texas", texas_rep)
         self.assertNotIn("Henry Schmojo", colorado_rep)
-        self.assertIn("Colorado", colorado_rep)
         self.assertIn("Diana DeGette", colorado_rep)
         self.assertNotIn("Diana DeGette", texas_rep)
         self.assertNotIn("Love Fluff", senators)
