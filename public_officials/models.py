@@ -51,3 +51,8 @@ class Legislator(models.Model):
             senators = self.objects.filter(state_name=state).filter(chamber="house")
             representatives_by_state[state] = senators
         return representatives_by_state
+
+    @classmethod
+    def get_all_state_names(self):
+        states = self.objects.values('state_name').distinct('state_name')
+        return states
