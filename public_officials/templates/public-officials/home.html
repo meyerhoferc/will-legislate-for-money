@@ -13,6 +13,14 @@
         <div class="selections">
           <a href="{% url 'senator_index' %}">View Senators</a>
           <a href="{% url 'representative_index' %}">View Representatives</a>
+          <div class="dropdown btn-group dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Search by State<span class="caret"></span></button>
+              <ul class="text-center dropdown-menu">
+                {% for state in states %}
+                <li>{{ state }}</li>
+                {% endfor %}
+              </ul>
+            </div>
           <a href="#">Search by State</a>
         </div>
       </div>
