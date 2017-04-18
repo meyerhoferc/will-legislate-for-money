@@ -103,3 +103,56 @@ class LegislatorModelTest(TestCase):
         self.assertEqual(saved_legislator.cid, "1234")
         self.assertEqual(saved_legislator.state, "AZ")
         self.assertEqual(saved_legislator.first_name, "Razz")
+
+    def test_get_senators_by_state(self):
+        legislator_one = Legislator.objects.create(first_name="Diana",
+                                                   last_name="DeGette",
+                                                   phone="12345",
+                                                   email="email@email.com",
+                                                   state_name="Colorado",
+                                                   pid="D000197",
+                                                   chamber="house",
+                                                   term_start="2017-01-03",
+                                                   term_end="2019-01-03",
+                                                   party="D",
+                                                   state="CO",
+                                                   cid="N00006134")
+
+        legislator_two = Legislator.objects.create(first_name="Henry",
+                                                   last_name="Schmojo",
+                                                   phone="12345",
+                                                   email="email@email.com",
+                                                   state_name="Texas",
+                                                   pid="D000197",
+                                                   chamber="senate",
+                                                   term_start="2017-01-03",
+                                                   term_end="2019-01-03",
+                                                   party="D",
+                                                   state="TX",
+                                                   cid="N00006134")
+        legislator_three = Legislator.objects.create(first_name="Love",
+                                                     last_name="Fluff",
+                                                     phone="12345",
+                                                     email="email@email.com",
+                                                     state_name="Colorado",
+                                                     pid="D000197",
+                                                     chamber="senate",
+                                                     term_start="2017-01-03",
+                                                     term_end="2019-01-03",
+                                                     party="D",
+                                                     state="CO",
+                                                     cid="N00006134")
+        legislator_four = Legislator.objects.create(first_name="Another",
+                                                    last_name="Fluff",
+                                                    phone="12345",
+                                                    email="email@email.com",
+                                                    state_name="Colorado",
+                                                    pid="D000197",
+                                                    chamber="senate",
+                                                    term_start="2017-01-03",
+                                                    term_end="2019-01-03",
+                                                    party="D",
+                                                    state="CO",
+                                                    cid="N00006134")
+        expected_result = {"Texas": legislator_one, "Colorado": [legislator_three, legislator_four]}
+        self.assertEqual(expected_result, Legislator.get_senators_by_state)
