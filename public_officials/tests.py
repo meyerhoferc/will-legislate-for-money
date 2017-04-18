@@ -211,5 +211,5 @@ class LegislatorModelTest(TestCase):
                                                     cid="N00006134")
 
         result = Legislator.get_representatives_by_state()
-        self.assertEqual(legislator_one.id, result["Texas"].first().id)
-        self.assertEqual(legislator_two.id, result["Colorado"].first().id)
+        self.assertEqual(legislator_one.id, result["Colorado"].first().id)
+        self.assertEqual(legislator_two.id, result["Texas"].first().id)
