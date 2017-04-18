@@ -107,7 +107,7 @@ class GuestUserTest(StaticLiveServerTestCase):
 
         self.browser.get(self.live_server_url + '/senators/')
         header_text = self.browser.find_element_by_tag_name('h1').text
-        senators = self.browser.find_element_by_css_selector('senators').text
+        senators = self.browser.find_element_by_css_selector('#senators').text
         self.assertIn("All Senators", header_text)
         self.assertIn("Henry Schmojo", senators)
         self.assertIn("Love Fluff", senators)

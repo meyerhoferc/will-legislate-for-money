@@ -15,3 +15,7 @@ def legislator_detail(request, legislator_id):
     organization_contributors = legislator_service.get_legislator_org_contributions(cid)
     industry_contributors = legislator_service.get_legislator_ind_contributions(cid)
     return render(request, 'public-officials/detail.html', {'legislator': legislator, 'organizations': organization_contributors, 'industries': industry_contributors})
+
+def senator_index(request):
+    senators = Legislator.objects.filter(chamber="senate")
+    return render(request, 'public-officials/senators/index.html', {'senators': senators})

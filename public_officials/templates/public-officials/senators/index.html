@@ -7,13 +7,18 @@
     <title>Will Legislate For Money</title>
   </head>
   <body>
+    <h1>All Senators</h1>
+
     <div class="container-fluid">
-      <div class="row col-md-10">
-        <h3 class="text-center">Your One Stop Corruption Watch</h3>
-        <div class="selections">
-          <a href="{% url 'senator_index' %}">View Senators</a>
-          <a href="#">View Representatives</a>
-          <a href="#">Search by State</a>
+      <div class="row">
+        <div class="col-md-10" id="senators">
+          {% for senator in senators %}
+          <ul>
+            <p>
+              <a href="{% url 'public_officials:detail' senator.id %}" id="{{ forloop.counter }}">{{ senator.first_name }} {{ senator.last_name }}</a>
+            </p>
+          </ul>
+          {% endfor %}
         </div>
       </div>
     </div>
