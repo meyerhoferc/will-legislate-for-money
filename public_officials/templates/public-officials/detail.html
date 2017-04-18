@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <link href="/static/public_officials/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/public_officials/stylesheets/main.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/public_officials/js/legislator_detail.js"></script>
     <title>Will Legislate For Money</title>
   </head>
   <body>
     {% load format_legislator_json %}
     <div class="container-fluid">
       <div class="row-well profile">
-        <div class="col-md-6">
+        <div class="col-md-6 legislator" data-legislator-id="{{ legislator.cid }}">
           <h1>{{ legislator.first_name }} {{ legislator.last_name }}</h1>
           {% if legislator.chamber == 'house' %}
             <h5>{{ legislator.state_name }} Representative</h5>
