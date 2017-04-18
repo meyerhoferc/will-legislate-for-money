@@ -6,7 +6,8 @@ import json
 import pdb
 
 def home_page(request):
-    return render(request, 'public-officials/home.html')
+    states = Legislator.get_all_state_names()
+    return render(request, 'public-officials/home.html', {'states': states})
 
 def legislator_detail(request, legislator_id):
     legislator_service = LegislatorService()

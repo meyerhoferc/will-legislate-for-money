@@ -213,3 +213,58 @@ class LegislatorModelTest(TestCase):
         result = Legislator.get_representatives_by_state()
         self.assertEqual(legislator_one.id, result["Colorado"].first().id)
         self.assertEqual(legislator_two.id, result["Texas"].first().id)
+
+    def test_get_all_state_names(self):
+        legislator_one = Legislator.objects.create(first_name="Diana",
+                                                   last_name="DeGette",
+                                                   phone="12345",
+                                                   email="email@email.com",
+                                                   state_name="Colorado",
+                                                   pid="D000197",
+                                                   chamber="house",
+                                                   term_start="2017-01-03",
+                                                   term_end="2019-01-03",
+                                                   party="D",
+                                                   state="CO",
+                                                   cid="N00006134")
+
+        legislator_two = Legislator.objects.create(first_name="Henry",
+                                                   last_name="Schmojo",
+                                                   phone="12345",
+                                                   email="email@email.com",
+                                                   state_name="Texas",
+                                                   pid="D000197",
+                                                   chamber="house",
+                                                   term_start="2017-01-03",
+                                                   term_end="2019-01-03",
+                                                   party="D",
+                                                   state="TX",
+                                                   cid="N00006134")
+        legislator_three = Legislator.objects.create(first_name="Love",
+                                                     last_name="Fluff",
+                                                     phone="12345",
+                                                     email="email@email.com",
+                                                     state_name="Colorado",
+                                                     pid="D000197",
+                                                     chamber="senate",
+                                                     term_start="2017-01-03",
+                                                     term_end="2019-01-03",
+                                                     party="D",
+                                                     state="CO",
+                                                     cid="N00006134")
+        legislator_four = Legislator.objects.create(first_name="Another",
+                                                    last_name="Fluff",
+                                                    phone="12345",
+                                                    email="email@email.com",
+                                                    state_name="Colorado",
+                                                    pid="D000197",
+                                                    chamber="senate",
+                                                    term_start="2017-01-03",
+                                                    term_end="2019-01-03",
+                                                    party="D",
+                                                    state="CO",
+                                                    cid="N00006134")
+        returned_states = Legislator.get_all_state_names()
+        self.assertEqual(2, returned_states.count())
+        self.assertEqual('Colorado', returned_states[0].get('state_name'))
+        self.assertEqual('Texas', returned_states[1].get('state_name'))
