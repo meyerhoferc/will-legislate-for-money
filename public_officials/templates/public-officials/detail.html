@@ -11,17 +11,16 @@
     <div class="container-fluid">
       <div class="row-well profile">
         <div class="col-md-6">
-          <h1>{{ legislator_profile|get_value:'cand_name' }}</h1>
-          {% if legislator_profile|get_value:'chamber' == 'H' %}
-            <h5>{{ legislator_profile|get_value:'state' }} Representative</h5>
+          <h1>{{ legislator.first_name }} {{ legislator.last_name }}</h1>
+          {% if legislator.chamber == 'house' %}
+            <h5>{{ legislator.state_name }} Representative</h5>
           {% else %}
-            <h5>{{ legislator_profile|get_value:'state' }} Senator</h5>
+            <h5>{{ legislator.state_name}} Senator</h5>
           {% endif %}
-          <p>First Elected: {{ legislator_profile|get_value:'first_elected' }}</p>
-          <p>Next Election: {{ legislator_profile|get_value:'next_election' }}</p>
-          <p>Party: {{ legislator_profile|get_value:'party' }}</p>
-          <p>State: {{ legislator_profile|get_value:'state' }}</p>
-          <p>Last Updated: {{ legislator_profile|get_value:'last_updated'}}</p>
+          <p>Email: {{ legislator.email }}</p>
+          <p>Phone: {{ legislator.phone }}</p>
+          <p>Term: {{ legislator.term_start}} to {{ legislator.term_end }}</p>
+          <p>Party: {{ legislator.party }}</p>
         </div>
       </div>
     </div>

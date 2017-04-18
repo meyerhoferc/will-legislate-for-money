@@ -27,7 +27,7 @@ class GuestUserTest(StaticLiveServerTestCase):
     def test_checks_for_content_on_official_show(self):
         with vcr.use_cassette('cassettes/get_all_legislator_information'):
             legislator = Legislator.objects.create(first_name="Diana",
-                                                   last_name="Degette",
+                                                   last_name="DeGette",
                                                    phone="12345",
                                                    email="email@email.com",
                                                    state_name="Colorado",
@@ -38,6 +38,7 @@ class GuestUserTest(StaticLiveServerTestCase):
                                                    party="D",
                                                    state="CO",
                                                    cid="N00006134")
+
             self.browser.get(self.live_server_url + '/legislators/%d/' % legislator.id)
             name_text = self.browser.find_element_by_tag_name('h1').text
             status_text = self.browser.find_element_by_tag_name('h5').text
@@ -45,10 +46,11 @@ class GuestUserTest(StaticLiveServerTestCase):
             organization_text = self.browser.find_element_by_css_selector('.organization-contributors').text
             industry_text = self.browser.find_element_by_css_selector('.industry-contributors').text
             self.assertIn("Diana DeGette", name_text)
-            self.assertIn("CO Representative", status_text)
-            self.assertIn("Term Length: 2017-01-03 to 2019-01-03", bio_text)
+            self.assertIn("Colorado Representative", status_text)
+            self.assertIn("Term: 2017-01-03 to 2019-01-03", bio_text)
             self.assertIn("Party: D", bio_text)
-            self.assertIn("State: CO", bio_text)
+            self.assertIn("Email: email@email.com", bio_text)
+            self.assertIn("Phone: 12345", bio_text)
             self.assertIn("PACs", organization_text)
             self.assertIn("Total", organization_text)
             self.assertIn("Individual Donations", organization_text)
