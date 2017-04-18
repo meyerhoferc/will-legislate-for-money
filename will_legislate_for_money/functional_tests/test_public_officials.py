@@ -84,13 +84,13 @@ class GuestUserTest(StaticLiveServerTestCase):
                                                    last_name="Schmojo",
                                                    phone="12345",
                                                    email="email@email.com",
-                                                   state_name="Colorado",
+                                                   state_name="Texas",
                                                    pid="D000197",
                                                    chamber="senate",
                                                    term_start="2017-01-03",
                                                    term_end="2019-01-03",
                                                    party="D",
-                                                   state="CO",
+                                                   state="TX",
                                                    cid="N00006134")
         legislator_three = Legislator.objects.create(first_name="Love",
                                                      last_name="Fluff",
@@ -107,10 +107,15 @@ class GuestUserTest(StaticLiveServerTestCase):
 
         self.browser.get(self.live_server_url + '/senators/')
         header_text = self.browser.find_element_by_tag_name('h1').text
-        senators = self.browser.find_element_by_css_selector('#senators').text
+        texas_senator = self.browser.find_element_by_css_selector('#texas-senators').text
+        colorado_senator = self.browser.find_element_by_css_selector('#colorado-senators').text
         self.assertIn("All Senators", header_text)
-        self.assertIn("Henry Schmojo", senators)
-        self.assertIn("Love Fluff", senators)
+        self.assertIn("Henry Schmojo", texas_senator)
+        self.assertIn("Texas", colorado_senator)
+        self.assertNotIn("Henry Schmojo", colorado_senator)
+        self.assertIn("Love Fluff", colorado_senator)
+        self.assertIn("Colorado", colorado_senator)
+        self.assertNotIn("Love Fluff", texas_senator)
         self.assertNotIn("Diana DeGette", senators)
 
     def test_checks_for_content_on_legislators_representative_index(self):
@@ -131,13 +136,13 @@ class GuestUserTest(StaticLiveServerTestCase):
                                                    last_name="Schmojo",
                                                    phone="12345",
                                                    email="email@email.com",
-                                                   state_name="Colorado",
+                                                   state_name="Texas",
                                                    pid="D000197",
-                                                   chamber="senate",
+                                                   chamber="house",
                                                    term_start="2017-01-03",
                                                    term_end="2019-01-03",
                                                    party="D",
-                                                   state="CO",
+                                                   state="TX",
                                                    cid="N00006134")
         legislator_three = Legislator.objects.create(first_name="Love",
                                                      last_name="Fluff",
@@ -154,8 +159,13 @@ class GuestUserTest(StaticLiveServerTestCase):
 
         self.browser.get(self.live_server_url + '/representatives/')
         header_text = self.browser.find_element_by_tag_name('h1').text
-        senators = self.browser.find_element_by_css_selector('#representatives').text
+        colorado_rep = self.browser.find_element_by_css_selector('#colorado-reps').text
+        texas_rep = self.browser.find_element_by_css_selector('#texas-reps').text
         self.assertIn("All Representatives", header_text)
-        self.assertNotIn("Henry Schmojo", senators)
+        self.assertIn("Henry Schmojo", texas_rep)
+        self.assertIn("Texas", texas_rep)
+        self.assertNotIn("Henry Schmojo", colorado_rep)
+        self.assertIn("Colorado", colorado_rep)
+        self.assertIn("Diana DeGette", colorado_rep)
+        self.assertNotIn("Diana DeGette", texas_rep)
         self.assertNotIn("Love Fluff", senators)
-        self.assertIn("Diana DeGette", senators)
