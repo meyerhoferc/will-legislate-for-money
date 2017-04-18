@@ -58,6 +58,27 @@ class SenatorPageTest(TestCase):
         response = self.client.get('/senators/')
         self.assertTemplateUsed(response, 'public-officials/senators/index.html')
 
+class RepresentativePageTest(TestCase):
+    def test_senators_url_resolves_to_senators_index(self):
+        found = resolve('/representatives/')
+        self.assertEqual(found.func, representative_index)
+
+    def test_senator_index_page_returns_correct_template(self):
+        Legislator.objects.create(first_name="Diana",
+                                  last_name="Degette",
+                                  phone="12345",
+                                  email="email@email.com",
+                                  state_name="Colorado",
+                                  pid="D000197",
+                                  chamber="house",
+                                  term_start="2017-01-03",
+                                  term_end="2019-01-03",
+                                  party="D",
+                                  state="CO",
+                                  cid="N00006134")
+        response = self.client.get('/representatives/')
+        self.assertTemplateUsed(response, 'public-officials/representatives/index.html')
+
 
 class LegislatorModelTest(TestCase):
     def test_a_legislators_attributes(self):
