@@ -165,4 +165,3 @@ class GuestUserTest(StaticLiveServerTestCase):
         self.assertNotIn("Henry Schmojo", colorado_rep)
         self.assertIn("Diana DeGette", colorado_rep)
         self.assertNotIn("Diana DeGette", texas_rep)
-        self.assertNotIn("Love Fluff", senators)

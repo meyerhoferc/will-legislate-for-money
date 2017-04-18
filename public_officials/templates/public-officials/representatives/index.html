@@ -7,17 +7,23 @@
     <title>Will Legislate For Money</title>
   </head>
   <body>
-
+    {% load format_legislator_json %}
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-10" id="representatives">
           <h1>All Representatives</h1>
-          {% for representative in representatives %}
-          <ul>
-            <p>
-              <a href="{% url 'public_officials:detail' representative.id %}" id="{{ forloop.counter }}">{{ representative.first_name }} {{ representative.last_name }}</a>
-            </p>
-          </ul>
+          {% for state in states %}
+          <h5>{{ state }}</h5>
+            <div id="{{ state }}-reps">
+              {% for rep in representatives_by_state|get_value:state %}
+              <ul>
+                <p>
+                  <a href="{% url 'public_officials:detail' rep.id %}" id="{{ forloop.counter }}">{{ rep.first_name }} {{ rep.last_name }}</a>
+                </p>
+              </ul>
+            </div>
+            {% endfor %}
+          <hr>
           {% endfor %}
         </div>
       </div>
