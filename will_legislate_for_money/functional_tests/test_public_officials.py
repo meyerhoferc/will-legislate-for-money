@@ -65,3 +65,50 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.assertIn("$0", industry_text)
             self.assertIn("$144254", industry_text)
             self.assertIn("$144254", industry_text)
+
+    def test_checks_for_content_on_legislators_senators_index(self):
+        legislator_one = Legislator.objects.create(first_name="Diana",
+                                                   last_name="DeGette",
+                                                   phone="12345",
+                                                   email="email@email.com",
+                                                   state_name="Colorado",
+                                                   pid="D000197",
+                                                   chamber="house",
+                                                   term_start="2017-01-03",
+                                                   term_end="2019-01-03",
+                                                   party="D",
+                                                   state="CO",
+                                                   cid="N00006134")
+
+        legislator_two = Legislator.objects.create(first_name="Henry",
+                                                   last_name="Schmojo",
+                                                   phone="12345",
+                                                   email="email@email.com",
+                                                   state_name="Colorado",
+                                                   pid="D000197",
+                                                   chamber="senate",
+                                                   term_start="2017-01-03",
+                                                   term_end="2019-01-03",
+                                                   party="D",
+                                                   state="CO",
+                                                   cid="N00006134")
+        legislator_three = Legislator.objects.create(first_name="Love",
+                                                     last_name="Fluff",
+                                                     phone="12345",
+                                                     email="email@email.com",
+                                                     state_name="Colorado",
+                                                     pid="D000197",
+                                                     chamber="senate",
+                                                     term_start="2017-01-03",
+                                                     term_end="2019-01-03",
+                                                     party="D",
+                                                     state="CO",
+                                                     cid="N00006134")
+
+        self.browser.get(self.live_server_url + '/legislators/senators/')
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        senators = self.browser.find_element_by_css_selector('senators').text
+        self.assertIn("All Senators", header_text)
+        self.assertIn("Henry Schmojo", senators)
+        self.assertIn("Love Fluff", senators)
+        self.assertNotIn("Diana DeGette", senators)
