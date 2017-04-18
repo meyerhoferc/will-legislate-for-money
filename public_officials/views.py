@@ -19,3 +19,7 @@ def legislator_detail(request, legislator_id):
 def senator_index(request):
     senators = Legislator.objects.filter(chamber="senate")
     return render(request, 'public-officials/senators/index.html', {'senators': senators})
+
+def representative_index(request):
+    representatives = Legislator.objects.filter(chamber="house")
+    return render(request, 'public-officials/representatives/index.html', {'representatives': representatives})

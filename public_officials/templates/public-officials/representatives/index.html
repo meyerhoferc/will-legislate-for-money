@@ -10,12 +10,12 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-10" id="senators">
-          <h1>All Senators</h1>
-          {% for senator in senators %}
+        <div class="col-md-10" id="representatives">
+          <h1>All Representatives</h1>
+          {% for representative in representatives %}
           <ul>
             <p>
-              <a href="{% url 'public_officials:detail' senator.id %}" id="{{ forloop.counter }}">{{ senator.first_name }} {{ senator.last_name }}</a>
+              <a href="{% url 'public_officials:detail' representative.id %}" id="{{ forloop.counter }}">{{ representative.first_name }} {{ representative.last_name }}</a>
             </p>
           </ul>
           {% endfor %}
