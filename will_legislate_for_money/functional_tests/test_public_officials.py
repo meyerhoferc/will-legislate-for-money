@@ -15,19 +15,27 @@ class GuestUserTest(StaticLiveServerTestCase):
         self.browser.quit()
 
     def test_check_for_correct_content_on_root(self):
-        with vcr.use_cassette('cassettes/get_legislators'):
-            self.browser.get(self.live_server_url)
-            self.assertIn('Will Legislate For Money', self.browser.title)
-            header_text = self.browser.find_element_by_tag_name('h1').text
-            self.assertIn('Your One Stop Corruption Watch', header_text)
-            politician_text = self.browser.find_element_by_id('politicians').text
-            self.assertIn("Diana DeGette", politician_text)
-            self.assertIn("Jared Polis", politician_text)
-            self.assertIn("Scott Tipton", politician_text)
+        self.browser.get(self.live_server_url)
+        self.assertIn('Will Legislate For Money', self.browser.title)
+        header_text = self.browser.find_element_by_tag_name('h3').text
+        self.assertIn('Your One Stop Corruption Watch', header_text)
+        selection_text = self.browser.find_element_by_css_selector('.selections').text
+        self.assertIn("View Senators", selection_text)
+        self.assertIn("View Representatives", selection_text)
+        self.assertIn("Search by State", selection_text)
 
     def test_checks_for_content_on_official_show(self):
         with vcr.use_cassette('cassettes/get_all_legislator_information'):
-            legislator = Legislator.objects.create(name="D",
+            legislator = Legislator.objects.create(first_name="Diana",
+                                                   last_name="Degette",
+                                                   phone="12345",
+                                                   email="email@email.com",
+                                                   state_name="Colorado",
+                                                   pid="D000197",
+                                                   chamber="house",
+                                                   term_start="2017-01-03",
+                                                   term_end="2019-01-03",
+                                                   party="D",
                                                    state="CO",
                                                    cid="N00006134")
             self.browser.get(self.live_server_url + '/legislators/%d/' % legislator.id)
@@ -36,13 +44,11 @@ class GuestUserTest(StaticLiveServerTestCase):
             bio_text = self.browser.find_element_by_css_selector('.profile').text
             organization_text = self.browser.find_element_by_css_selector('.organization-contributors').text
             industry_text = self.browser.find_element_by_css_selector('.industry-contributors').text
-            self.assertIn("DeGette, Diana", name_text)
+            self.assertIn("Diana DeGette", name_text)
             self.assertIn("CO Representative", status_text)
-            self.assertIn("First Elected: 1996", bio_text)
-            self.assertIn("Next Election: 2016", bio_text)
+            self.assertIn("Term Length: 2017-01-03 to 2019-01-03", bio_text)
             self.assertIn("Party: D", bio_text)
             self.assertIn("State: CO", bio_text)
-            self.assertIn("Last Updated: 12/31/2016", bio_text)
             self.assertIn("PACs", organization_text)
             self.assertIn("Total", organization_text)
             self.assertIn("Individual Donations", organization_text)

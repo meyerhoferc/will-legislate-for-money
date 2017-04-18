@@ -9,15 +9,11 @@
   <body>
     <div class="container-fluid">
       <div class="row col-md-10">
-        <h1 class="text-center">Your One Stop Corruption Watch</h1>
-        <div id="politicians">
-          {% for legislator in legislator_list %}
-            <ul>
-              <h4 id="legislator-link">
-                <a href="{% url 'public_officials:detail' legislator.id %}" id="{{ forloop.counter }}">{{ legislator.name }}</a>
-              </h4>
-            </ul>
-          {% endfor %}
+        <h3 class="text-center">Your One Stop Corruption Watch</h3>
+        <div class=".selections">
+          <a href="#">View Senators</a>
+          <a href="#">View Representatives</a>
+          <a href="#">Search by State</a>
         </div>
       </div>
     </div>

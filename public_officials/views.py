@@ -6,14 +6,12 @@ import json
 import pdb
 
 def home_page(request):
-    legislator_service = LegislatorService()
-    legislator_list = legislator_service.get_legislators_by_state()
-    return render(request, 'public-officials/home.html', {'legislator_list': legislator_list})
+    return render(request, 'public-officials/home.html')
 
 def legislator_detail(request, legislator_id):
     legislator_service = LegislatorService()
-    cid = Legislator.objects.filter(pk=legislator_id).first().cid
-    legislator_profile = legislator_service.get_legislator_profile(cid)
+    legislator = Legislator.objects.get(pk=legislator_id)
+    cid = legislator.cid
     organization_contributors = legislator_service.get_legislator_org_contributions(cid)
     industry_contributors = legislator_service.get_legislator_ind_contributions(cid)
-    return render(request, 'public-officials/detail.html', {'legislator_profile': legislator_profile, 'organizations': organization_contributors, 'industries': industry_contributors})
+    return render(request, 'public-officials/detail.html', {'legislator': legislator, 'organizations': organization_contributors, 'industries': industry_contributors})
