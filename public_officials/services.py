@@ -51,9 +51,9 @@ class LegislatorService:
             'method': 'candContrib',
             'cid': cid
             }
-        organizations_json = requests.get(url, params=payload)
-        organizations = json.loads(organizations_json.content)['response']['contributors']['contributor']
-        return organizations
+        organizations = requests.get(url, params=payload)
+        organizations_json = organizations.json()['response']['contributors']['contributor']
+        return organizations_json
 
     def get_legislator_ind_contributions(self, cid):
         url = "https://www.opensecrets.org/api/"
@@ -63,9 +63,9 @@ class LegislatorService:
             'method': 'candIndustry',
             'cid': cid
             }
-        industries_json = requests.get(url, params=payload)
-        industries = json.loads(industries_json.content)['response']['industries']['industry']
-        return industries
+        industries = requests.get(url, params=payload)
+        industries_json = industries.json()['response']['industries']['industry']
+        return industries_json
 
     def get_all_legislators(self):
         url = "https://congress.api.sunlightfoundation.com/legislators"

@@ -43,14 +43,13 @@ class GuestUserTest(StaticLiveServerTestCase):
             name_text = self.browser.find_element_by_tag_name('h1').text
             status_text = self.browser.find_element_by_tag_name('h5').text
             bio_text = self.browser.find_element_by_css_selector('.profile').text
-            organization_text = self.browser.find_element_by_css_selector('.organization-contributors').text
-            industry_text = self.browser.find_element_by_css_selector('.industry-contributors').text
             self.assertIn("Diana DeGette", name_text)
             self.assertIn("Colorado Representative", status_text)
             self.assertIn("Term: 2017-01-03 to 2019-01-03", bio_text)
             self.assertIn("Party: D", bio_text)
             self.assertIn("Email: email@email.com", bio_text)
             self.assertIn("Phone: 12345", bio_text)
+            organization_text = self.browser.find_element_by_css_selector('.organization-contributors').text
             self.assertIn("PACs", organization_text)
             self.assertIn("Total", organization_text)
             self.assertIn("Individual Donations", organization_text)
@@ -58,6 +57,7 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.assertIn("$136825", organization_text)
             self.assertIn("$0", organization_text)
             self.assertIn("$136825", organization_text)
+            industry_text = self.browser.find_element_by_css_selector('.industry-contributors').text
             self.assertIn("PACs", industry_text)
             self.assertIn("Total", industry_text)
             self.assertIn("Individual Donations", industry_text)

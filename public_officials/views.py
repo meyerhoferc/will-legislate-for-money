@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from public_officials.services import *
 from public_officials.models import *
 import json
@@ -10,11 +10,8 @@ def home_page(request):
     return render(request, 'public-officials/home.html', {'states': states})
 
 def legislator_detail(request, legislator_id):
-    legislator_service = LegislatorService()
     legislator = Legislator.objects.get(pk=legislator_id)
-    cid = legislator.cid
-    organization_contributors = legislator_service.get_legislator_org_contributions(cid)
-    return render(request, 'public-officials/detail.html', {'legislator': legislator, 'organizations': organization_contributors})
+    return render(request, 'public-officials/detail.html', {'legislator': legislator})
 
 def senator_index(request):
     senators_by_state = Legislator.get_senators_by_state()
@@ -28,4 +25,10 @@ def industry_contributions(request):
     legislator_id = request.GET['legislator_id']
     legislator_service = LegislatorService()
     industry_contributors = legislator_service.get_legislator_ind_contributions(legislator_id)
-    return render_to_response('public-officials/detail.html', {'industries': industry_contributors})
+    return JsonResponse(industry_contributors, safe=False)
+
+def organization_contributions(request):
+    legislator_id = request.GET['legislator_id']
+    legislator_service = LegislatorService()
+    organization_contributors = legislator_service.get_legislator_org_contributions(legislator_id)
+    return JsonResponse(organization_contributors, safe=False)

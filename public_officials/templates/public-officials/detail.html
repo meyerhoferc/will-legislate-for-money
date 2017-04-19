@@ -40,15 +40,7 @@
               <th>Individual Donations</th>
               <th>PACs</th>
             </thead>
-            <tbody>
-              {% for organization in organizations %}
-              <tr class="organization">
-                <td><h6>{{ organization|get_nested_value:'org_name' }}</h6></td>
-                <td><p>${{ organization|get_nested_value:'total' }}</p></td>
-                <td><p>${{ organization|get_nested_value:'indivs'}}</p></td>
-                <td><p>${{ organization|get_nested_value:'pacs' }}</p></td>
-              </tr>
-              {% endfor %}
+            <tbody id="organization-data">
             </tbody>
           </table>
         </div>
@@ -64,15 +56,7 @@
               <th>Individual Donations</th>
               <th>PACs</th>
             </thead>
-            <tbody>
-              {% for industry in industries %}
-              <tr>
-                <td><h6>{{ industry|get_nested_value:'industry_name'}}</h6></td>
-                <td><p>${{ industry|get_nested_value:'total' }}</p></td>
-                <td><p>${{ industry|get_nested_value:'indivs'}}</p></td>
-                <td><p>${{ industry|get_nested_value:'pacs' }}</p></td>
-              </tr>
-              {% endfor %}
+            <tbody id="industry-data">
             </tbody>
           </table>
         </div>
