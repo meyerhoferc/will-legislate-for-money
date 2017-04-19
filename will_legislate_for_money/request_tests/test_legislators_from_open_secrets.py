@@ -4,7 +4,7 @@ from public_officials.services import *
 import pdb
 import vcr
 
-class LegislatorDataTest(TestCase):
+class LegislatorContributionDataTest(TestCase):
 
     def test_service_gets_organizational_contributions_for_one_legislator(self):
         with vcr.use_cassette('cassettes/get_legislator_organizations'):
@@ -26,3 +26,10 @@ class LegislatorDataTest(TestCase):
             legislators = legislator_service.get_all_legislators()
             self.assertTrue(legislators)
             self.assertEqual("Luther", legislators[0]["first_name"])
+
+class LegislatorSponsoredPolicyDataTest(TestCase):
+    def test_service_gets_sponsored_bills_for_one_legislator(self):
+        legislator_service = LegislatorService()
+        legislator_recent_bills = legislator_service.get_recent_bills('L000287')
+        self.assertTrue(legislator_recent_bills)
+        self.assertEqual("Environmental Justice Act of 2016", legislator_recent_bills[0]["title"])

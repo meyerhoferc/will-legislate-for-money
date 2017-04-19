@@ -16,8 +16,6 @@ class Legislator(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
-
     @classmethod
     def get_senators_by_state(self):
         ALL_STATES = ['Alabama', "Alaska", "Arizona", "Arkansas", "California",
