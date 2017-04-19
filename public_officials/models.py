@@ -1,5 +1,5 @@
 from django.db import models
-
+import pdb
 class Legislator(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -54,5 +54,9 @@ class Legislator(models.Model):
 
     @classmethod
     def get_all_state_names(self):
-        states = self.objects.values('state_name').distinct('state_name')
-        return states
+        unique_states = []
+        states = self.objects.values('state_name')
+        for state in states:
+            if state not in unique_states:
+                unique_states.append(state)
+        return unique_states
