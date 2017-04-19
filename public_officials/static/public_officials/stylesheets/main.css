@@ -5,20 +5,30 @@ MUSTARD #CCA43B;
 LIGHT GREY #E5E5E5;
 LIGHT GREY-GREEN #DEE737;
 WHITE #FFFFFF;*/
+
+/*ALTERNATIVE COLOR PALETTE
+DARK SLATE BLUE #3D348B
+MEDIUM SLATE BLUE #7678ED
+SELECTIVE YELLOW #F7B801
+EGGSHELL #EEEBD3
+TANGERINE #F18701
+PERSIMMON #F35B04*/
+
+
 body {
-  background-color: #DEE7E7;
+  background-color: #e6f2ff;
 }
 
-h1 {
-  color: #242F40;
+h1, h2, h3 {
+  color: #4d4d4d;
 }
 
 h4 a {
-  color: #535657;
+  color: #1a5e63;
 }
 
 h4 a:hover{
-  color: #CCA43B;
+  color: #F35B04;
 }
 
 table {

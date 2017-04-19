@@ -165,10 +165,3 @@ class GuestUserTest(StaticLiveServerTestCase):
         self.assertNotIn("Henry Schmojo", colorado_rep)
         self.assertIn("Diana DeGette", colorado_rep)
         self.assertNotIn("Diana DeGette", texas_rep)
-
-    def test_correct_links_in_navbar(self):
-        self.browser.get(self.live_server_url)
-        navbar_text = self.browser.find_element_by_tag_name('nav')
-        self.assertIn('Senators', navbar_text)
-        self.assertIn('Representatives', navbar_text)
-        self.assertIn('Home', navbar_text)
