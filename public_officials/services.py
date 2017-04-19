@@ -8,6 +8,7 @@ from will_legislate_for_money.secrets import *
 class LegislatorService:
     def __init__(self):
         self.open_secrets_key = OPEN_SECRETS_KEY
+        self.propublica_key = PROPUBLICA_KEY
 
     def get_legislators_by_state(self, state='CO'):
         url = "https://www.opensecrets.org/api/"
@@ -75,3 +76,10 @@ class LegislatorService:
         legislators_json = requests.get(url, params=payload)
         legislators = json.loads(legislators_json.content)['results']
         return legislators
+
+    def get_recent_bills(self, pid):
+        url = "https://api.propublica.org/congress/v1/members/%s/bills/introduced.json" % pid
+        headers = {'X-API-Key': self.propublica_key}
+        bills = requests.get(url, headers=headers)
+        formatted_bills = bills.json()['results'][0]['bills']
+        return formatted_bills

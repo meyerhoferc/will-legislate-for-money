@@ -29,7 +29,8 @@ class LegislatorContributionDataTest(TestCase):
 
 class LegislatorSponsoredPolicyDataTest(TestCase):
     def test_service_gets_sponsored_bills_for_one_legislator(self):
-        legislator_service = LegislatorService()
-        legislator_recent_bills = legislator_service.get_recent_bills('L000287')
-        self.assertTrue(legislator_recent_bills)
-        self.assertEqual("Environmental Justice Act of 2016", legislator_recent_bills[0]["title"])
+        with vcr.use_cassette('cassettes/get_sponsored_bills'):
+            legislator_service = LegislatorService()
+            legislator_recent_bills = legislator_service.get_recent_bills('L000287')
+            self.assertTrue(legislator_recent_bills)
+            self.assertEqual("Missed Opportunities Act of 2017", legislator_recent_bills[0]["title"])
