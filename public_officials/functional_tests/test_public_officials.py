@@ -22,7 +22,7 @@ class GuestUserTest(StaticLiveServerTestCase):
         self.browser.get(self.live_server_url)
         self.assertIn('Will Legislate For Money', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h3').text
-        self.assertIn('Your One Stop Corruption Watch', header_text)
+        self.assertIn('Your One Stop Legislator Watch', header_text)
         selection_text = self.browser.find_element_by_css_selector('.selections').text
         self.assertIn("View Senators", selection_text)
         self.assertIn("View Representatives", selection_text)
@@ -59,7 +59,7 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.assertIn('Organization Contributions', tabs_text)
             self.assertIn('Sponsored Bills', tabs_text)
             self.assertIn('Recent Decisions', tabs_text)
-            
+
     def test_checks_for_content_on_legislators_senators_index(self):
         legislator_one = Legislator.objects.create(first_name="Diana",
                                                    last_name="DeGette",
