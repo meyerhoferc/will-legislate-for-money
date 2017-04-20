@@ -57,24 +57,15 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.assertIn("PACs", organization_text)
             self.assertIn("Total", organization_text)
             self.assertIn("Individual Donations", organization_text)
-            self.assertIn("Democracy Engine", organization_text)
-            self.assertIn("$136825", organization_text)
-            self.assertIn("$0", organization_text)
-            self.assertIn("$136825", organization_text)
             industry_text = self.browser.find_element_by_css_selector('.industry-contributors').text
             self.assertIn("PACs", industry_text)
             self.assertIn("Total", industry_text)
             self.assertIn("Individual Donations", industry_text)
-            self.assertIn("Pharmaceuticals/Health Products", industry_text)
-            self.assertIn("$0", industry_text)
-            self.assertIn("$144254", industry_text)
-            self.assertIn("$144254", industry_text)
             sponsored_text = self.browser.find_element_by_css_selector('.sponsored-bills').text
             self.assertIn('Fracturing Responsibility and Awareness of Chemicals Act of 2017', sponsored_text)
-            self.assertIn('Title', sponsored_text)
+            self.assertIn('Bill Title', sponsored_text)
+            self.assertIn('Introduction Date', sponsored_text)
             self.assertIn('Sponsored Bills', sponsored_text)
-            self.assertIn('EPS Improvement Act Act of 2017', sponsored_text)
-            self.assertIn('Medicaid and CHIP Quality Improvement Act of 2016', sponsored_text)
 
     def test_checks_for_content_on_legislators_senators_index(self):
         legislator_one = Legislator.objects.create(first_name="Diana",

@@ -27,7 +27,7 @@
 
     <div class="container-fluid">
       <div class="row-well profile">
-        <div class="col-md-6 legislator" data-legislator-id="{{ legislator.cid }}">
+        <div class="col-md-6 legislator" data-legislator-id="{{ legislator.cid }}" data-legislator-pid="{{ legislator.pid }}">
           <h1>{{ legislator.first_name }} {{ legislator.last_name }}</h1>
           {% if legislator.chamber == 'house' %}
             <h5>{{ legislator.state_name }} Representative</h5>
@@ -75,6 +75,22 @@
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col md-6 sponsored-bills">
+        <table class="table table-bordered table-striped">
+          <div class="text-center">
+            <h3>Sponsored Bills</h3>
+            <thead>
+              <th>Bill Title</th>
+              <th>Introduction Date</th>
+            </thead>
+            <tbody id="sponsored-bills">
+            </tbody>
+          </div>
+        </table>
       </div>
     </div>
   </body>

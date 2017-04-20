@@ -34,11 +34,27 @@ var getOrganizationContributors = function(id){
   });
 };
 
-var industryCounter = 0;
-var organizationCounter = 0;
+var getSponsoredBills = function(id){
+  $.get('/legislators/sponsored-bills', {legislator_id: id}, function(bills){
+    $.each(bills, function(index, bill){
+      console.log(bill.title);
+      $('#sponsored-bills').append(
+        "<tr><td><h6><a href='"
+        + bill.congressdotgov_url
+        + "'>"
+        + bill.title
+        + "</a><//h6></td><td><p>"
+        + bill.introduced_date
+        + "</p></td></tr>"
+      )
+    })
+  });
+};
 
 $(document).ready(function(){
   var legislator_id = $('.legislator').attr('data-legislator-id');
+  var legislator_pid = $('.legislator').attr('data-legislator-pid');
   getIndustryContributors(legislator_id);
   getOrganizationContributors(legislator_id);
+  getSponsoredBills(legislator_pid);
 });

@@ -32,3 +32,9 @@ def organization_contributions(request):
     legislator_service = LegislatorService()
     organization_contributors = legislator_service.get_legislator_org_contributions(legislator_id)
     return JsonResponse(organization_contributors, safe=False)
+
+def sponsored_bills(request):
+    legislator_id = request.GET['legislator_id']
+    legislator_service = LegislatorService()
+    sponsored_bills = legislator_service.get_recent_bills(legislator_id)
+    return JsonResponse(sponsored_bills, safe=False)
