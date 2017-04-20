@@ -37,7 +37,6 @@ var getOrganizationContributors = function(id){
 var getSponsoredBills = function(id){
   $.get('/legislators/sponsored-bills', {legislator_id: id}, function(bills){
     $.each(bills, function(index, bill){
-      console.log(bill.title);
       $('#sponsored-bills').append(
         "<tr><td><h6><a href='"
         + bill.congressdotgov_url
@@ -52,6 +51,7 @@ var getSponsoredBills = function(id){
 };
 
 $(document).ready(function(){
+  $('#tabs').tabs();
   var legislator_id = $('.legislator').attr('data-legislator-id');
   var legislator_pid = $('.legislator').attr('data-legislator-pid');
   getIndustryContributors(legislator_id);

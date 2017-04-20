@@ -53,20 +53,13 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.assertIn("Party: D", bio_text)
             self.assertIn("Email: email@email.com", bio_text)
             self.assertIn("Phone: 12345", bio_text)
-            organization_text = self.browser.find_element_by_css_selector('.organization-contributors').text
-            self.assertIn("PACs", organization_text)
-            self.assertIn("Total", organization_text)
-            self.assertIn("Individual Donations", organization_text)
-            industry_text = self.browser.find_element_by_css_selector('.industry-contributors').text
-            self.assertIn("PACs", industry_text)
-            self.assertIn("Total", industry_text)
-            self.assertIn("Individual Donations", industry_text)
-            sponsored_text = self.browser.find_element_by_css_selector('.sponsored-bills').text
-            self.assertIn('Fracturing Responsibility and Awareness of Chemicals Act of 2017', sponsored_text)
-            self.assertIn('Bill Title', sponsored_text)
-            self.assertIn('Introduction Date', sponsored_text)
-            self.assertIn('Sponsored Bills', sponsored_text)
-
+            tabs_text = self.browser.find_element_by_css_selector('#tabs').text
+            self.assertIn('About', tabs_text)
+            self.assertIn('Industry Contributions', tabs_text)
+            self.assertIn('Organization Contributions', tabs_text)
+            self.assertIn('Sponsored Bills', tabs_text)
+            self.assertIn('Recent Decisions', tabs_text)
+            
     def test_checks_for_content_on_legislators_senators_index(self):
         legislator_one = Legislator.objects.create(first_name="Diana",
                                                    last_name="DeGette",

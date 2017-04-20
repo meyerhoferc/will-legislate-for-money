@@ -2,10 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/public_officials/js/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript" src="/static/public_officials/js/legislator_detail.js"></script>
     <link href="/static/public_officials/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/public_officials/stylesheets/main.css" rel="stylesheet">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/public_officials/js/legislator_detail.js"></script>
+    <link href="/static/public_officials/stylesheets/jquery-ui.css" rel="stylesheet">
     <title>Will Legislate For Money</title>
   </head>
   <body>
@@ -42,56 +44,87 @@
       </div>
     </div>
 
-    <div class="contianer-fluid contribution-info">
-      <div class="row-well">
-        <div class="col-md-6 organization-contributors">
-          <table class="table table-bordered table-striped">
-            <div class="text-center">
-              <h3>Contributions by Organization (Cycle: {{ organizations|get_value:'cycle' }})</h3>
-            </div>
-            <thead>
-              <th>Organization</th>
-              <th>Total</th>
-              <th>Individual Donations</th>
-              <th>PACs</th>
-            </thead>
-            <tbody id="organization-data">
-            </tbody>
-          </table>
-        </div>
+    <div id="tabs" class="col-md-5">
+      <ul>
+        <li><a href="#tab-1">About</a></li>
+        <li><a href="#tab-2">Industry Contributions</a></li>
+        <li><a href="#tab-3">Organization Contributions</a></li>
+        <li><a href="#tab-4">Sponsored Bills</a></li>
+        <li><a href="#tab-5">Recent Decisions</a></li>
+      </ul>
+      <div id="tab-1">
+        <div class="container-fluid">
+          <div class="row-well">
 
-        <div class="col-md-6 industry-contributors">
-          <table class="table table-bordered table-striped">
-            <div class="text-center">
-              <h3>Contributions by Industry (Cycle: {{ industries|get_value:'cycle' }}) Last Updated: {{ industries|get_value:'last_updated' }}</h3>
-            </div>
-            <thead>
-              <th>Industry</th>
-              <th>Total</th>
-              <th>Individual Donations</th>
-              <th>PACs</th>
-            </thead>
-            <tbody id="industry-data">
-            </tbody>
-          </table>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col md-6 sponsored-bills">
-          <table class="table table-bordered table-striped">
-            <div class="text-center">
-              <h3>Sponsored Bills</h3>
-              <thead>
-                <th>Bill Title</th>
-                <th>Introduction Date</th>
-              </thead>
-              <tbody id="sponsored-bills">
-              </tbody>
+      <div id="tab-2">
+        <div class="container-fluid contribution-info">
+          <div class="row-well">
+            <div class="organization-contributors">
+              <table class="table table-bordered table-striped">
+                <div class="text-center">
+                  <h3>Contributions by Organization</h3>
+                </div>
+                <thead>
+                  <th>Organization</th>
+                  <th>Total</th>
+                  <th>Individual Donations</th>
+                  <th>PACs</th>
+                </thead>
+                <tbody id="organization-data">
+                </tbody>
+              </table>
             </div>
-          </table>
+          </div>
+        </div>
+      </div>
+      <div id="tab-3">
+        <div class="container-fluid contribution-info">
+          <div class="row-well">
+            <div class="industry-contributors">
+              <table class="table table-bordered table-striped">
+                <div class="text-center">
+                  <h3>Contributions by Industry</h3>
+                </div>
+                <thead>
+                  <th>Industry</th>
+                  <th>Total</th>
+                  <th>Individual Donations</th>
+                  <th>PACs</th>
+                </thead>
+                <tbody id="industry-data">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='tab-4'>
+        <div class="container-fluid">
+          <div class="row-well">
+            <div class="sponsored-bills">
+              <table class="table table-bordered table-striped">
+                <div class="text-center">
+                  <h3>Sponsored Bills</h3>
+                  <thead>
+                    <th>Bill Title</th>
+                    <th>Introduction Date</th>
+                  </thead>
+                  <tbody id="sponsored-bills">
+                  </tbody>
+                </div>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='tab-5'>
+        <div class="container-fluid">
+          <div class="row-well">
+
+          </div>
         </div>
       </div>
     </div>
