@@ -46,11 +46,11 @@ class LegislatorSponsoredPolicyDataTest(TestCase):
             self.assertEqual("Missed Opportunities Act of 2017", legislator_recent_bills[0]["title"])
 
 class LegislatorVotingHistoryDataTest(TestCase):
-    
+
     def test_service_gets_voting_history_for_one_legislator(self):
-        legislator_service = LegislatorService()
-        voting_history = legislator_service.get_voting_history('L000287')
-        self.assertTrue(voting_history)
-        self.assertEqual("Supporting America's Innovators Act of 2017", voting_history[0]["title"])
-        self.assertEqual("Yes", voting_history[0]["position"])
-        self.assertEqual("Passed", voting_history[0]["result"])
+        with vcr.use_cassette('cassettes/get_vote_history'):
+            legislator_service = LegislatorService()
+            voting_history = legislator_service.get_voting_history('L000287')
+            self.assertTrue(voting_history)
+            self.assertEqual("Yes", voting_history[0]["position"])
+            self.assertEqual("Passed", voting_history[0]["result"])

@@ -5,6 +5,7 @@ import pdb
 from public_officials.models import Legislator
 from will_legislate_for_money.secrets import *
 
+
 class LegislatorService:
     def __init__(self):
         self.open_secrets_key = OPEN_SECRETS_KEY
@@ -49,3 +50,10 @@ class LegislatorService:
         bills = requests.get(url, headers=headers)
         formatted_bills = bills.json()['results'][0]['bills']
         return formatted_bills
+
+    def get_voting_history(self, pid):
+        url = "https://api.propublica.org/congress/v1/members/%s/votes.json" % pid
+        headers = {'X-API-Key': self.propublica_key}
+        votes = requests.get(url, headers=headers)
+        formatted_votes = votes.json()['results'][0]['votes']
+        return formatted_votes
