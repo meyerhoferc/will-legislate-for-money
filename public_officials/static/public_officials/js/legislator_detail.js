@@ -54,7 +54,7 @@ $(document).ready(function(){
   $('#tabs').tabs();
   var legislator_id = $('.legislator').attr('data-legislator-id');
   var legislator_pid = $('.legislator').attr('data-legislator-pid');
-  getIndustryContributors(legislator_id);
   getOrganizationContributors(legislator_id);
+  getIndustryContributors(legislator_id);
   getSponsoredBills(legislator_pid);
 });

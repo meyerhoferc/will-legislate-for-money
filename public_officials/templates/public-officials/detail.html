@@ -36,8 +36,8 @@
     <div id="tabs" class="col-md-10 col-md-offset-1">
       <ul>
         <li><a href="#tab-1">About</a></li>
-        <li><a href="#tab-2">Industry Contributions</a></li>
-        <li><a href="#tab-3">Organization Contributions</a></li>
+        <li><a href="#tab-2">Organization Contributions</a></li>
+        <li><a href="#tab-3">Industry Contributions</a></li>
         <li><a href="#tab-4">Sponsored Bills</a></li>
         <li><a href="#tab-5">Recent Decisions</a></li>
       </ul>
@@ -52,7 +52,8 @@
             <p>Term Beginning: {{ legislator.term_start}}</p>
             <p>Term End: {{ legislator.term_end}}</p>
             <p>Party: {{ legislator.party }}</p>
-            <p>Email: {{ legislator.email }}</p>
+            <a href="mailto:{{ legislator.email }}">{{ legislator.email }}</a>
+            <!-- <p>Email: {{ legislator.email }}</p> -->
             <p>Phone: {{ legislator.phone }}</p>
           </div>
         </div>
