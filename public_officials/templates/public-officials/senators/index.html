@@ -24,20 +24,22 @@
     </nav>
 
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-10" id="senators">
+      <div class="row-well">
+        <div class="col-md-4 col-md-offset-4" id="senators">
           <h1>All Senators</h1>
           {% for state in states %}
-          <h5>{{ state }}</h5>
+          <h3>{{ state }}</h3>
             <div id="{{ state }}-senators">
-              {% for senator in senators_by_state|get_value:state %}
-              <ul>
-                <p>
-                  <a href="{% url 'public_officials:detail' senator.id %}" id="{{ forloop.counter }}">{{ senator.first_name }} {{ senator.last_name }}</a>
-                </p>
+              <ul class="list-group">
+                {% for senator in senators_by_state|get_value:state %}
+                <li class="list-group-item">
+                  <h4>
+                    <a href="{% url 'public_officials:detail' senator.id %}" id="{{ forloop.counter }}">{{ senator.first_name }} {{ senator.last_name }}</a>
+                  </h4>
+                </li>
+                {% endfor %}
               </ul>
             </div>
-            {% endfor %}
           <hr>
           {% endfor %}
         </div>

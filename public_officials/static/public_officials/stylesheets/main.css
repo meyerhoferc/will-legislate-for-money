@@ -27,8 +27,16 @@ h4 a {
   color: #1a5e63;
 }
 
-h4 a:hover{
+h4 a:hover {
   color: #F35B04;
+}
+
+.email {
+  color: #1a5e63;
+}
+
+.email a:hover {
+  color: #3D348B;
 }
 
 table {
