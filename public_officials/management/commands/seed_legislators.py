@@ -20,8 +20,8 @@ class Command(BaseCommand):
             cid=legislator["crp_id"],
             pid=legislator["bioguide_id"],
             chamber=legislator["chamber"],
-            term_start=legislator["term_end"],
-            term_end=legislator["term_start"],
+            term_start=legislator["term_start"],
+            term_end=legislator["term_end"],
             party=legislator["party"]
             )
             self.stdout.write(self.style.SUCCESS('Successfully created legislator %s' % legislator["last_name"]))

@@ -45,14 +45,16 @@ class GuestUserTest(StaticLiveServerTestCase):
 
             self.browser.get(self.live_server_url + '/legislators/%d/' % legislator.id)
             name_text = self.browser.find_element_by_tag_name('h1').text
-            status_text = self.browser.find_element_by_tag_name('h5').text
+            status_text = self.browser.find_element_by_tag_name('h3').text
             bio_text = self.browser.find_element_by_css_selector('.profile').text
+            stats_text = self.browser.find_element_by_css_selector('.stats').text
             self.assertIn("Diana DeGette", name_text)
             self.assertIn("Colorado Representative", status_text)
-            self.assertIn("Term: 2017-01-03 to 2019-01-03", bio_text)
-            self.assertIn("Party: D", bio_text)
-            self.assertIn("Email: email@email.com", bio_text)
-            self.assertIn("Phone: 12345", bio_text)
+            self.assertIn("Term Beginning: 2017-01-03", stats_text)
+            self.assertIn("Term End: 2019-01-03", stats_text)
+            self.assertIn("Party: D", stats_text)
+            self.assertIn("Email: email@email.com", stats_text)
+            self.assertIn("Phone: 12345", stats_text)
             tabs_text = self.browser.find_element_by_css_selector('#tabs').text
             self.assertIn('About', tabs_text)
             self.assertIn('Industry Contributions', tabs_text)
