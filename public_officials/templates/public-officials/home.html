@@ -31,15 +31,6 @@
         <div class="selections col-md-4 col-md-offset-4 text-center">
           <h4><a href="{% url 'senator_index' %}">View Senators</a></h4>
           <h4><a href="{% url 'representative_index' %}">View Representatives</a></h4>
-          <div class="dropdown text-center">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Search by State
-            <span class="caret"></span></button>
-            <ul class="text-center dropdown-menu" aria-labelledby="dropdownMenu1">
-              {% for state in states %}
-              <li class="text-center">{{ state|get_value:'state_name' }}</li>
-              {% endfor %}
-            </ul>
-          </div>
         </div>
       </div>
     </div>
