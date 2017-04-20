@@ -38,3 +38,9 @@ def sponsored_bills(request):
     legislator_service = LegislatorService()
     sponsored_bills = legislator_service.get_recent_bills(legislator_id)
     return JsonResponse(sponsored_bills, safe=False)
+
+def voting_history(request):
+    legislator_id = request.GET['legislator_id']
+    legislator_service = LegislatorService()
+    voting_history = legislator_service.get_voting_history(legislator_id)
+    return JsonResponse(voting_history, safe=False)

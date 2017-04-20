@@ -50,6 +50,33 @@ var getSponsoredBills = function(id){
   });
 };
 
+var determineTitle = function(vote){
+  var title;
+  if (vote['bill'].title == undefined ) {
+    title = vote.description
+  } else {
+    title = vote['bill'].title
+  }
+  return title;
+}
+
+var getVotingHistory = function(id){
+  $.get('/legislators/voting-history', {legislator_id: id}, function(votes){
+    $.each(votes, function(index, vote){
+      var title = determineTitle(vote);
+      $('#votes').append(
+        "<tr><td><h6>"
+        + title
+        + "</h6></td><td><p>"
+        + vote.position
+        + "</p></td><td><p>"
+        + vote.result
+        + "</p></td></tr>"
+      )
+    })
+  });
+};
+
 $(document).ready(function(){
   $('#tabs').tabs();
   var legislator_id = $('.legislator').attr('data-legislator-id');
@@ -57,4 +84,5 @@ $(document).ready(function(){
   getOrganizationContributors(legislator_id);
   getIndustryContributors(legislator_id);
   getSponsoredBills(legislator_pid);
+  getVotingHistory(legislator_pid);
 });
