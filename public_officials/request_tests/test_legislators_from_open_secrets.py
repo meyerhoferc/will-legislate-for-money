@@ -4,6 +4,15 @@ from public_officials.services import *
 import pdb
 import vcr
 
+class LegislatorProfileDataTest(TestCase):
+
+    def test_service_gets_all_legislators(self):
+        with vcr.use_cassette('cassettes/get_sunlight_profile'):
+            legislator_service = LegislatorService()
+            legislators = legislator_service.get_all_legislators()
+            self.assertTrue(legislators)
+            self.assertEqual(536, len(legislators))
+
 class LegislatorContributionDataTest(TestCase):
 
     def test_service_gets_organizational_contributions_for_one_legislator(self):
