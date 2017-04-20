@@ -1,5 +1,6 @@
 from fabric.contrib.files import append, exists, sed
 from fabric.api import env, local, run
+from will_legislate_for_money.secrets import *
 import random
 
 REPO_URL = 'https://github.com/meyerhoferc/will-legislate-for-money'
@@ -11,6 +12,7 @@ def deploy():
     _get_latest_source(source_folder)
     _update_settings(source_folder, env.host)
     _update_virtualenv(source_folder)
+    _update_secrets(source_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
 
@@ -42,10 +44,20 @@ def _update_virtualenv(source_folder):
     if not exists(virtualenv_folder + '/bin/pip'):
         run(f'python3.6 -m venv {virtualenv_folder}')
     run(f'{virtualenv_folder}/bin/pip install -r {source_folder}/requirements.txt')
+    run(f'{virtualenv_folder}/bin/pip install requests')
+
+def _update_secrets(source_folder):
+    current_open_secrets = OPEN_SECRETS_KEY
+    current_propublica = PROPUBLICA_KEY
+    secrets_file = source_folder + '/will_legislate_for_money/secrets.py'
+    if not exists(secrets_file):
+        run(f'touch {source_folder}/will_legislate_for_money/secrets.py')
+    secrets_file = source_folder + '/will_legislate_for_money/secrets.py'
+    run(f'echo "OPEN_SECRETS_KEY = \'{current_open_secrets}\'" > {secrets_file}')
+    run(f'echo "PROPUBLICA_KEY = \'{current_propublica}\'" > {secrets_file}')
 
 def _update_static_files(source_folder):
     run(f'cd {source_folder} && ../virtualenv/bin/python manage.py collectstatic --noinput')
 
 def _update_database(source_folder):
     run(f'cd {source_folder} && ../virtualenv/bin/python manage.py migrate --noinput')
-    run(f'cd {source_folder} && ../virtualenv/bin/python manage.py seed_legislators')

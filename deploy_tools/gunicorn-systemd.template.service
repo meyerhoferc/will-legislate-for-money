@@ -4,8 +4,8 @@ Description=Gunicorn server for SITENAME
 [Service]
 Restart=on-failure
 User=razz
-WorkingDirectory=/home/elspeth/sites/SITENAME/source
-ExecStart=/home/elspeth/sites/SITENAME/virtualenv/bin/gunicorn --bind unix:/tmp/SITENAME.socket will_legislate_for_money.wsgi:application
+WorkingDirectory=/home/razz/sites/SITENAME/source
+ExecStart=/home/razz/sites/SITENAME/virtualenv/bin/gunicorn --bind unix:/tmp/SITENAME.socket will_legislate_for_money.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
