@@ -1,5 +1,6 @@
 from django.db import models
 import pdb
+
 class Legislator(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -55,6 +56,7 @@ class Legislator(models.Model):
         unique_states = []
         states = self.objects.values('state_name')
         for state in states:
-            if state not in unique_states:
-                unique_states.append(state)
-        return unique_states
+            if state['state_name'] not in unique_states:
+                unique_states.append(state['state_name'])
+        sorted_states = sorted(unique_states)
+        return sorted_states

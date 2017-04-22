@@ -275,5 +275,5 @@ class LegislatorModelTest(TestCase):
                                                     cid="N00006134")
         returned_states = Legislator.get_all_state_names()
         self.assertEqual(2, len(returned_states))
-        self.assertEqual('Colorado', returned_states[0].get('state_name'))
-        self.assertEqual('Texas', returned_states[1].get('state_name'))
+        self.assertEqual('Colorado', returned_states[0])
+        self.assertEqual('Texas', returned_states[1])

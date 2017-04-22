@@ -42,12 +42,12 @@
           <div class="col-md-2 col-md-offset-5">
             <div class="dropdown" id="cta">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Search by State
+                View by State
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 {% for state in states %}
-                  <li class="text-center"><a href="{% url 'state' %}?state={{ state|get_value:'state_name' }}">{{ state|get_value:'state_name' }}</a></li>
+                  <li class="text-center"><a href="{% url 'state' %}?state={{ state }}">{{ state }}</a></li>
                 {% endfor %}
               </ul>
             </div>
@@ -55,6 +55,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>
