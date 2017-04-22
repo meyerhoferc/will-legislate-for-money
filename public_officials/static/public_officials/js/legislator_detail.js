@@ -1,36 +1,50 @@
 var getIndustryContributors = function(id){
   $.get('/legislators/industry-contributions/', {legislator_id: id}, function(data){
-    $.each(data, function(index, industry){
-      $('#industry-data').append(
-        "<tr><td><h6>"
-        + industry['@attributes'].industry_name
-        + "</h6></td><td><p>$"
-        + industry['@attributes'].total
-        + "</p></td><td><p>$"
-        + industry['@attributes'].indivs
-        + "</p></td><td><p>$"
-        + industry['@attributes'].pacs
-        + "</p></td></tr>"
-      )
-    });
+    if (data == "empty") {
+      $('.industry-contributors').html('')
+      $('.industry-contributors').append(
+        "<h3 class='text-center'>No Data Available Yet</h3>"
+      );
+    } else {
+      $.each(data, function(index, industry){
+        $('#industry-data').append(
+          "<tr><td><h6>"
+          + industry['@attributes'].industry_name
+          + "</h6></td><td><p>$"
+          + industry['@attributes'].total
+          + "</p></td><td><p>$"
+          + industry['@attributes'].indivs
+          + "</p></td><td><p>$"
+          + industry['@attributes'].pacs
+          + "</p></td></tr>"
+        )
+      });
+    }
   });
 };
 
 var getOrganizationContributors = function(id){
   $.get('/legislators/organization-contributions/', {legislator_id: id}, function(data){
-    $.each(data, function(index, organization){
-      $('#organization-data').append(
-        "<tr><td><h6>"
-        + organization['@attributes'].org_name
-        + "</h6></td><td><p>$"
-        + organization['@attributes'].total
-        + "</p></td><td><p>$"
-        + organization['@attributes'].indivs
-        + "</p></td><td><p>$"
-        + organization['@attributes'].pacs
-        + "</p></td></tr>"
-      )
-    })
+    if (data == "empty") {
+      $('.organization-contributors').html('')
+      $('.organization-contributors').append(
+        "<h3 class='text-center'>No Data Available Yet</h3>"
+      );
+    } else {
+      $.each(data, function(index, organization){
+        $('#organization-data').append(
+          "<tr><td><h6>"
+          + organization['@attributes'].org_name
+          + "</h6></td><td><p>$"
+          + organization['@attributes'].total
+          + "</p></td><td><p>$"
+          + organization['@attributes'].indivs
+          + "</p></td><td><p>$"
+          + organization['@attributes'].pacs
+          + "</p></td></tr>"
+        )
+      })
+    }
   });
 };
 

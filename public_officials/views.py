@@ -23,14 +23,20 @@ def representative_index(request):
 
 def industry_contributions(request):
     legislator_id = request.GET['legislator_id']
-    legislator_service = LegislatorService()
-    industry_contributors = legislator_service.get_legislator_ind_contributions(legislator_id)
+    if legislator_id != '':
+        legislator_service = LegislatorService()
+        industry_contributors = legislator_service.get_legislator_ind_contributions(legislator_id)
+    else:
+        industry_contributors = "empty"
     return JsonResponse(industry_contributors, safe=False)
 
 def organization_contributions(request):
     legislator_id = request.GET['legislator_id']
-    legislator_service = LegislatorService()
-    organization_contributors = legislator_service.get_legislator_org_contributions(legislator_id)
+    if legislator_id != '':
+        legislator_service = LegislatorService()
+        organization_contributors = legislator_service.get_legislator_org_contributions(legislator_id)
+    else:
+        organization_contributors = "empty"
     return JsonResponse(organization_contributors, safe=False)
 
 def sponsored_bills(request):
