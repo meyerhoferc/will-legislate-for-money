@@ -26,6 +26,7 @@ class GuestUserTest(StaticLiveServerTestCase):
         selection_text = self.browser.find_element_by_css_selector('.selections').text
         self.assertIn("View Senators", selection_text)
         self.assertIn("View Representatives", selection_text)
+        self.assertIn("Search by State", selection_text)
 
     def test_checks_for_content_on_official_show(self):
         with vcr.use_cassette('cassettes/get_all_legislator_information'):
