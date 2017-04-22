@@ -14,6 +14,15 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'public-officials/home.html')
 
+class StatePageTest(TestCase):
+    def test_state_url_resolves_to_state_view(self):
+        found = resolve('/state')
+        self.assertEqual(found.func, state_legislators)
+
+    def test_state_legislators_returns_correct_template(self):
+        response = self.client.get('/state')
+        self.assertTemplateUsed(response, 'public-officials/state.html')
+
 class DetailPageTest(TestCase):
     def test_detail_url_resolves_to_legislator_detail_view(self):
         found = resolve('/legislators/1/')

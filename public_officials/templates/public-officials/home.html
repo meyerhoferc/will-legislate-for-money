@@ -47,7 +47,7 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 {% for state in states %}
-                  <li class="text-center"><a href="#">{{ state|get_value:'state_name' }}</a></li>
+                  <li class="text-center"><a href="{% url 'public_officials:state' state|get_value:'state_name' %}">{{ state|get_value:'state_name' }}</a></li>
                 {% endfor %}
               </ul>
             </div>
