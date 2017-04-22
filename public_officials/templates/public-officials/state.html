@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="/static/public_officials/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/public_officials/stylesheets/main.css" rel="stylesheet">
+    <title>Will Legislate For Money</title>
+  </head>
+  <body>
+    {% load format_legislator_json %}
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="{% url 'senator_index' %}">Senators</a></li>
+              <li><a href="{% url 'representative_index' %}">Representatives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row text-center">
+        <h1>Legislators for {{ state }}</h1>
+        <div class="col-md-3 col-md-offset-3">
+          <div class="senators">
+            <h3>Senators</h3>
+            <ul class="list-group">
+            {% for senator in senators %}
+              <li class="list-group-item">
+                <h4><a href="{% url 'public_officials:detail' senator.id%}">{{ senator.first_name }} {{ senator.last_name }}</a></h4>
+              </li>
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="representatives">
+            <h3>Representatives</h3>
+            <ul class="list-group">
+            {% for rep in representatives %}
+              <li class="list-group-item">
+                <h4><a href="{% url 'public_officials:detail' rep.id%}">{{ rep.first_name }} {{ rep.last_name }}</a></h4>
+              </li>
+            {% endfor %}
+          </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

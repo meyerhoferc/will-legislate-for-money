@@ -44,3 +44,9 @@ def voting_history(request):
     legislator_service = LegislatorService()
     voting_history = legislator_service.get_voting_history(legislator_id)
     return JsonResponse(voting_history, safe=False)
+
+def state_legislators(request):
+    state = request.GET['state']
+    senators = Legislator.objects.filter(state_name=state).filter(chamber="senate")
+    representatives = Legislator.objects.filter(state_name=state).filter(chamber="house")
+    return render(request, 'public-officials/state.html', {'state': state, 'senators': senators, 'representatives': representatives})

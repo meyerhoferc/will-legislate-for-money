@@ -16,11 +16,11 @@ class HomePageTest(TestCase):
 
 class StatePageTest(TestCase):
     def test_state_url_resolves_to_state_view(self):
-        found = resolve('/state')
+        found = resolve('/state/')
         self.assertEqual(found.func, state_legislators)
 
     def test_state_legislators_returns_correct_template(self):
-        response = self.client.get('/state')
+        response = self.client.get('/state/?state=Texas')
         self.assertTemplateUsed(response, 'public-officials/state.html')
 
 class DetailPageTest(TestCase):
