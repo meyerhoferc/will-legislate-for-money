@@ -49,3 +49,13 @@ table {
   justify-content: center;
   align-items: center;
 }
+
+.selections {
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown {
+  display: inline-block;
+  padding-left: 100px;
+}
