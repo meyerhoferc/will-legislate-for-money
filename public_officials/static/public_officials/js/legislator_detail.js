@@ -36,17 +36,24 @@ var getOrganizationContributors = function(id){
 
 var getSponsoredBills = function(id){
   $.get('/legislators/sponsored-bills', {legislator_id: id}, function(bills){
-    $.each(bills, function(index, bill){
-      $('#sponsored-bills').append(
-        "<tr><td><h6><a href='"
-        + bill.congressdotgov_url
-        + "'>"
-        + bill.title
-        + "</a><//h6></td><td><p>"
-        + bill.introduced_date
-        + "</p></td></tr>"
-      )
-    })
+    if (bills == "empty") {
+      $('.sponsored-bills').html('')
+      $('.sponsored-bills').append(
+        "<h3 class='text-center'>No Data Available Yet</h3>"
+      );
+    } else {
+      $.each(bills, function(index, bill){
+        $('#sponsored-bills').append(
+          "<tr><td><h6><a href='"
+          + bill.congressdotgov_url
+          + "'>"
+          + bill.title
+          + "</a><//h6></td><td><p>"
+          + bill.introduced_date
+          + "</p></td></tr>"
+        )
+      });
+    }
   });
 };
 

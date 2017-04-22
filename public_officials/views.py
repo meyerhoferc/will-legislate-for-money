@@ -37,6 +37,8 @@ def sponsored_bills(request):
     legislator_id = request.GET['legislator_id']
     legislator_service = LegislatorService()
     sponsored_bills = legislator_service.get_recent_bills(legislator_id)
+    if len(sponsored_bills) == 0:
+        sponsored_bills = "empty"
     return JsonResponse(sponsored_bills, safe=False)
 
 def voting_history(request):
