@@ -55,6 +55,9 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.assertIn("Party: D", stats_text)
             self.assertIn("email@email.com", stats_text)
             self.assertIn("Phone: 12345", stats_text)
+            self.assertIn("Facebook: ", stats_text)
+            self.assertIn("Twitter: ", stats_text)
+            self.assertIn("YouTube: ", stats_text)
             tabs_text = self.browser.find_element_by_css_selector('#tabs').text
             self.assertIn('About', tabs_text)
             self.assertIn('Industry Contributions', tabs_text)
