@@ -14,7 +14,7 @@ class Legislator(models.Model):
     term_start = models.CharField(max_length=30)
     term_end = models.CharField(max_length=30)
     party = models.CharField(max_length=30)
-    twitter_id = models.CharField(max_length=15)
+    twitter_id = models.CharField(max_length=15, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
