@@ -79,21 +79,32 @@ var determineTitle = function(vote){
     title = vote['bill'].title
   }
   return title;
-}
+};
+
+var determineQuestion = function(title){
+  var proposition;
+  if (title == undefined || title == '') {
+    proposition = "empty";
+  };
+  return proposition;
+};
 
 var getVotingHistory = function(id){
   $.get('/legislators/voting-history', {legislator_id: id}, function(votes){
     $.each(votes, function(index, vote){
       var title = determineTitle(vote);
-      $('#votes').append(
-        "<tr><td><h5>"
-        + title
-        + "</h5></td><td><p>"
-        + vote.position
-        + "</p></td><td><p>"
-        + vote.result
-        + "</p></td></tr>"
-      )
+      var proposition = determineQuestion(title);
+      if (proposition != "empty") {
+        $('#votes').append(
+          "<tr><td><h5>"
+          + title
+          + "</h5></td><td><p>"
+          + vote.position
+          + "</p></td><td class='col-md-2'><p>"
+          + vote.result
+          + "</p></td></tr>"
+        )
+      };
     })
   });
 };
