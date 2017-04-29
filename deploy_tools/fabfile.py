@@ -2,6 +2,7 @@ from fabric.contrib.files import append, exists, sed
 from fabric.api import env, local, run
 from will_legislate_for_money.secrets import *
 import random
+import pdb
 
 REPO_URL = 'https://github.com/meyerhoferc/will-legislate-for-money'
 
