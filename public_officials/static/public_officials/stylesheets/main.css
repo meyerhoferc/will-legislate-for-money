@@ -60,11 +60,11 @@ table {
   padding-left: 100px;
 }
 
-#tabs a {
+h5 a {
   color: #1a5e63;
 }
 
-#tabs a:hover {
+h5 a:hover {
   color: #F35B04;
 }
 
@@ -74,4 +74,22 @@ a {
 
 a:hover {
   color: #F35B04;
+}
+
+#tabs .link {
+  color: #1a5e63;
+}
+
+#tabs .link:hover {
+  color: #F35B04;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+  border: 1px solid #263248;
+  background: #263248;
 }

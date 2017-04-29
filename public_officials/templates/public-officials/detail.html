@@ -50,11 +50,11 @@
             {% else %}
               <h3>{{ legislator.state_name}} Senator</h3>
             {% endif %}
-            <p id="twitter-link"><a href="https://twitter.com/{{ legislator.twitter_id }}">Twitter</a></p>
+            <p><a href="https://twitter.com/{{ legislator.twitter_id }}" class="link">Twitter</a></p>
+            <p><a href="mailto:{{ legislator.email }}" class="link">{{ legislator.email }}</a></p>
             <p>Term Beginning: {{ legislator.term_start}}</p>
             <p>Term End: {{ legislator.term_end}}</p>
             <p>Party: {{ legislator.party }}</p>
-            <a href="mailto:{{ legislator.email }}">{{ legislator.email }}</a>
             <p>Phone: {{ legislator.phone }}</p>
           </div>
         </div>

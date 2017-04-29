@@ -8,9 +8,9 @@ var getIndustryContributors = function(id){
     } else {
       $.each(data, function(index, industry){
         $('#industry-data').append(
-          "<tr><td><h6>"
+          "<tr><td><h5>"
           + industry['@attributes'].industry_name
-          + "</h6></td><td><p>$"
+          + "</h5></td><td><p>$"
           + industry['@attributes'].total
           + "</p></td><td><p>$"
           + industry['@attributes'].indivs
@@ -33,9 +33,9 @@ var getOrganizationContributors = function(id){
     } else {
       $.each(data, function(index, organization){
         $('#organization-data').append(
-          "<tr><td><h6>"
+          "<tr><td><h5>"
           + organization['@attributes'].org_name
-          + "</h6></td><td><p>$"
+          + "</h5></td><td><p>$"
           + organization['@attributes'].total
           + "</p></td><td><p>$"
           + organization['@attributes'].indivs
@@ -58,11 +58,11 @@ var getSponsoredBills = function(id){
     } else {
       $.each(bills, function(index, bill){
         $('#sponsored-bills').append(
-          "<tr><td><h6><a href='"
+          "<tr><td><h5><a href='"
           + bill.congressdotgov_url
-          + "'>"
+          + "' class='link'>"
           + bill.title
-          + "</a><//h6></td><td><p>"
+          + "</a><//h5></td><td><p>"
           + bill.introduced_date
           + "</p></td></tr>"
         )
@@ -86,9 +86,9 @@ var getVotingHistory = function(id){
     $.each(votes, function(index, vote){
       var title = determineTitle(vote);
       $('#votes').append(
-        "<tr><td><h6>"
+        "<tr><td><h5>"
         + title
-        + "</h6></td><td><p>"
+        + "</h5></td><td><p>"
         + vote.position
         + "</p></td><td><p>"
         + vote.result
