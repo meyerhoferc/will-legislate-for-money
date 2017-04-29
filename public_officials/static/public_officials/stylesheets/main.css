@@ -59,3 +59,11 @@ table {
   display: inline-block;
   padding-left: 100px;
 }
+
+#tabs a {
+  color: #1a5e63;
+}
+
+#tabs a:hover {
+  color: #F35B04;
+}
