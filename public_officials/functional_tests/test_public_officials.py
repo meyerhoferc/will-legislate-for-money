@@ -41,7 +41,8 @@ class GuestUserTest(StaticLiveServerTestCase):
                                                    term_end="2019-01-03",
                                                    party="D",
                                                    state="CO",
-                                                   cid="N00006134")
+                                                   cid="N00006134",
+                                                   twitter_id="RepDianaDeGette")
 
             self.browser.get(self.live_server_url + '/legislators/%d/' % legislator.id)
             name_text = self.browser.find_element_by_tag_name('h1').text
@@ -55,9 +56,7 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.assertIn("Party: D", stats_text)
             self.assertIn("email@email.com", stats_text)
             self.assertIn("Phone: 12345", stats_text)
-            self.assertIn("Facebook: ", stats_text)
-            self.assertIn("Twitter: ", stats_text)
-            self.assertIn("YouTube: ", stats_text)
+            self.assertIn("Twitter: https://twitter.com/RepDianaDeGette", stats_text)
             tabs_text = self.browser.find_element_by_css_selector('#tabs').text
             self.assertIn('About', tabs_text)
             self.assertIn('Industry Contributions', tabs_text)
