@@ -57,3 +57,10 @@ class LegislatorService:
         votes = requests.get(url, headers=headers)
         formatted_votes = votes.json()['results'][0]['votes']
         return formatted_votes
+
+class BillService:
+    def get_recent_bills(self):
+        url = "https://www.govtrack.us/api/v2/bill?congress=115&order_by=-current_status_date"
+        bills = requests.get(url)
+        formatted_bills = bills.json()['objects'][0:39]
+        return formatted_bills

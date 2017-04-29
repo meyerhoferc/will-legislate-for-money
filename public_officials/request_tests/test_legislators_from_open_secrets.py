@@ -54,3 +54,12 @@ class LegislatorVotingHistoryDataTest(TestCase):
             self.assertTrue(voting_history)
             self.assertEqual("Yes", voting_history[0]["position"])
             self.assertEqual("Passed", voting_history[0]["result"])
+
+class RecentVotesDataTest(TestCase):
+
+    def test_service_gets_twenty_recent_bills(self):
+        with vcr.use_cassette('cassettes/get_recent_bills'):
+            bill_service = BillService()
+            recent_bills = bill_service.get_recent_bills()
+            self.assertTrue(recent_bills)
+            self.assertEqual("Pete", recent_bills[0]['sponsor']['firstname'])
