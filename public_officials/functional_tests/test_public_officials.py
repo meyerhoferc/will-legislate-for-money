@@ -51,8 +51,8 @@ class GuestUserTest(StaticLiveServerTestCase):
             stats_text = self.browser.find_element_by_css_selector('.stats').text
             self.assertIn("Diana DeGette", name_text)
             self.assertIn("Colorado Representative", status_text)
-            self.assertIn("Term Beginning: 2017-01-03", stats_text)
-            self.assertIn("Term End: 2019-01-03", stats_text)
+            self.assertIn("Term Start: January 03, 2017", stats_text)
+            self.assertIn("Term End: January 03, 2019", stats_text)
             self.assertIn("Party: D", stats_text)
             self.assertIn("email@email.com", stats_text)
             self.assertIn("Phone: 12345", stats_text)
