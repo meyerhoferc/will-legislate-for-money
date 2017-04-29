@@ -54,8 +54,8 @@ def _update_secrets(source_folder):
     if not exists(secrets_file):
         run(f'touch {source_folder}/will_legislate_for_money/secrets.py')
     secrets_file = source_folder + '/will_legislate_for_money/secrets.py'
-    run(f'echo "OPEN_SECRETS_KEY = \'{current_open_secrets}\'" > {secrets_file}')
-    run(f'echo "PROPUBLICA_KEY = \'{current_propublica}\'" > {secrets_file}')
+    run(f'echo "OPEN_SECRETS_KEY = \'{current_open_secrets}\'" >> {secrets_file}')
+    run(f'echo "PROPUBLICA_KEY = \'{current_propublica}\'" >> {secrets_file}')
 
 def _update_static_files(source_folder):
     run(f'cd {source_folder} && ../virtualenv/bin/python manage.py collectstatic --noinput')
