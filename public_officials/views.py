@@ -58,3 +58,8 @@ def state_legislators(request):
     senators = Legislator.objects.filter(state_name=state).filter(chamber="senate")
     representatives = Legislator.objects.filter(state_name=state).filter(chamber="house")
     return render(request, 'public-officials/state.html', {'state': state, 'senators': senators, 'representatives': representatives})
+
+def bills_index(request):
+    bill_service = BillService()
+    bills = bill_service.get_recent_bills()
+    return render(request, 'public-officials/bills/index.html', {'bills': bills})

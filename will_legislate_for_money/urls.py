@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^state/$', public_official_views.state_legislators, name="state"),
     url(r'^senators/$', public_official_views.senator_index, name="senator_index"),
     url(r'^representatives/$', public_official_views.representative_index, name="representative_index"),
+    url(r'^recent-bills/$', public_official_views.bills_index, name="bills_index"),
     url(r'^legislators/', include('public_officials.urls')),
     url(r'^admin/', admin.site.urls),
 ]

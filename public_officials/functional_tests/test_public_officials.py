@@ -163,3 +163,8 @@ class GuestUserTest(StaticLiveServerTestCase):
         self.assertNotIn("Henry Schmojo", colorado_rep)
         self.assertIn("Diana DeGette", colorado_rep)
         self.assertNotIn("Diana DeGette", texas_rep)
+
+    def test_has_link_to_view_recent_bills_and_that_content(self):
+        self.browser.get(self.live_server_url)
+        navbar_text = self.browser.find_element_by_css_selector('.navbar').text
+        self.assertIn("Recent Bills", navbar_text)

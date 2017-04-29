@@ -277,3 +277,12 @@ class LegislatorModelTest(TestCase):
         self.assertEqual(2, len(returned_states))
         self.assertEqual('Colorado', returned_states[0])
         self.assertEqual('Texas', returned_states[1])
+
+class RecentBillsPageTest(TestCase):
+    def test_recent_bills_url_resolves_to_bills_index_view(self):
+        found = resolve('/recent-bills/')
+        self.assertEqual(found.func, bills_index)
+
+    def test_recent_bills_url_renders_correct_template(self):
+        response = self.client.get('/recent-bills/')
+        self.assertTemplateUsed(response, 'public-officials/bills/index.html')
