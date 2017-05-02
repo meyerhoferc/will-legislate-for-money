@@ -65,4 +65,5 @@ def _update_database(source_folder):
     run(f'cd {source_folder} && ../virtualenv/bin/python manage.py migrate --noinput')
 
 def _update_images(source_folder):
+    run(f'cd {source_folder} && mkdir public_officials/static/public_officials/images/profiles')
     run(f'cd {source_folder} && ../virtualenv/bin/python manage.py get_images')
