@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="/static/public_officials/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/public_officials/stylesheets/main.css" rel="stylesheet">
+    <title>About</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="{% url 'bills_index' %}">Recent Bills</a></li>
+              <li><a href="{% url 'senator_index' %}">Senators</a></li>
+              <li><a href="{% url 'representative_index' %}">Representatives</a></li>
+              <li><a href="{% url 'about' %}">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10 about">
+          <h3>This application was made possible by: </h3>
+          <ul>
+            <h4><a href="https://www.opensecrets.org/resources/create/api_doc.php">Open Secrets API</a></h4>
+            <h4><a href="https://propublica.github.io/congress-api-docs/">Propublica Congress API</a></h4>
+            <h4><a href="https://sunlightlabs.github.io/congress/legislators.html">Sunlight Congress API</a></h4>
+            <h4><a href="https://www.govtrack.us/">GovTrack.us API</a></h4>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

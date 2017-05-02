@@ -19,6 +19,7 @@ from public_officials import views as public_official_views
 
 urlpatterns = [
     url(r'^$', public_official_views.home_page, name="home"),
+    url(r'^about/$', public_official_views.about, name="about"),
     url(r'^state/$', public_official_views.state_legislators, name="state"),
     url(r'^senators/$', public_official_views.senator_index, name="senator_index"),
     url(r'^representatives/$', public_official_views.representative_index, name="representative_index"),

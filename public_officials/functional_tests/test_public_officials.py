@@ -176,3 +176,15 @@ class GuestUserTest(StaticLiveServerTestCase):
         self.assertIn("Pete Sessions", bills_text)
         self.assertIn("This bill was assigned to a congressional committee on April 28, 2017, which will consider it before possibly sending it on to the House or Senate as a whole.", bills_text)
         self.assertIn("Providing for consideration of the joint resolution (H.J. Res. 99) making further continuing appropriations for fiscal year 2017, and for other purposes.", bills_text)
+
+    def test_has_about_page(self):
+        self.browser.get(self.live_server_url)
+        navbar_text = self.browser.find_element_by_css_selector('.navbar').text
+        self.assertIn("About", navbar_text)
+        self.browser.get(self.live_server_url + '/about/')
+        about_text = self.browser.find_element_by_css_selector('.about').text
+        self.assertIn("This application was made possible by:", about_text)
+        self.assertIn("Open Secrets API", about_text)
+        self.assertIn("Propublica Congress API", about_text)
+        self.assertIn("Sunlight Congress API", about_text)
+        self.assertIn("GovTrack.us API", about_text)

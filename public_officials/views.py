@@ -63,3 +63,6 @@ def bills_index(request):
     bill_service = BillService()
     bills = bill_service.get_recent_bills()
     return render(request, 'public-officials/bills/index.html', {'bills': bills})
+
+def about(request):
+    return render(request, 'public-officials/about.html')
