@@ -14,9 +14,9 @@ def deploy():
     _update_settings(source_folder, env.host)
     _update_virtualenv(source_folder)
     _update_secrets(source_folder)
-    _update_static_files(source_folder)
     _update_database(source_folder)
-    _update_images
+    _update_images(source_folder)
+    _update_static_files(source_folder)
 
 def _create_directory_structure_if_necessary(site_folder):
     for subfolder in ('database', 'static', 'virtualenv', 'source'):
