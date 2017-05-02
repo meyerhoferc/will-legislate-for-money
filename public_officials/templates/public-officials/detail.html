@@ -45,17 +45,24 @@
       <div id="tab-1">
         <div class="container-fluid">
           <div class="row-well stats">
-            {% if legislator.chamber == 'house' %}
-              <h3>{{ legislator.state_name }} Representative</h3>
-            {% else %}
-              <h3>{{ legislator.state_name}} Senator</h3>
-            {% endif %}
-            <p><a href="https://twitter.com/{{ legislator.twitter_id }}" class="link">Twitter</a></p>
-            <p><a href="mailto:{{ legislator.email }}" class="link">{{ legislator.email }}</a></p>
-            <p>Term Start: {{ legislator|format_date:'term_start' }}</p>
-            <p>Term End: {{ legislator|format_date:'term_end' }}</p>
-            <p>Party: {{ legislator.party }}</p>
-            <p>Phone: {{ legislator.phone }}</p>
+            <div class="col-md-2">
+              <div class="image">
+                 <img src="/static/public_officials/images/profiles/{{ legislator.pid }}.jpg" class="img-thumbnail" alt="profile pic" width="225" height="275">
+              </div>
+            </div>
+            <div class="col-md-4">
+              {% if legislator.chamber == 'house' %}
+                <h3>{{ legislator.state_name }} Representative</h3>
+              {% else %}
+                <h3>{{ legislator.state_name}} Senator</h3>
+              {% endif %}
+              <p><a href="https://twitter.com/{{ legislator.twitter_id }}" class="link">Twitter</a></p>
+              <p><a href="mailto:{{ legislator.email }}" class="link">{{ legislator.email }}</a></p>
+              <p>Term Start: {{ legislator|format_date:'term_start' }}</p>
+              <p>Term End: {{ legislator|format_date:'term_end' }}</p>
+              <p>Party: {{ legislator.party }}</p>
+              <p>Phone: {{ legislator.phone }}</p>
+            </div>
           </div>
         </div>
       </div>
