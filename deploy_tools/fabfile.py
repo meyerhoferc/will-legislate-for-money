@@ -16,6 +16,7 @@ def deploy():
     _update_secrets(source_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
+    _update_images
 
 def _create_directory_structure_if_necessary(site_folder):
     for subfolder in ('database', 'static', 'virtualenv', 'source'):
@@ -62,3 +63,6 @@ def _update_static_files(source_folder):
 
 def _update_database(source_folder):
     run(f'cd {source_folder} && ../virtualenv/bin/python manage.py migrate --noinput')
+
+def _update_images(source_folder):
+    run(f'cd {source_folder} && ../virtualenv/bin/python manage.py get_images')
