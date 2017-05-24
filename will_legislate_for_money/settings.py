@@ -74,6 +74,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'will_legislate_for_money.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.twitter.TwitterOAuth',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
