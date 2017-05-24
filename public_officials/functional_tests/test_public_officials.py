@@ -141,6 +141,7 @@ class GuestUserTest(StaticLiveServerTestCase):
                                                    party="D",
                                                    state="TX",
                                                    cid="N00006134")
+
         legislator_three = Legislator.objects.create(first_name="Love",
                                                      last_name="Fluff",
                                                      phone="12345",

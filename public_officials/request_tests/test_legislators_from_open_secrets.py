@@ -11,7 +11,7 @@ class LegislatorProfileDataTest(TestCase):
             legislator_service = LegislatorService()
             legislators = legislator_service.get_all_legislators()
             self.assertTrue(legislators)
-            self.assertEqual(536, len(legislators))
+            self.assertEqual(537, len(legislators))
 
 class LegislatorContributionDataTest(TestCase):
 
@@ -34,7 +34,7 @@ class LegislatorContributionDataTest(TestCase):
             legislator_service = LegislatorService()
             legislators = legislator_service.get_all_legislators()
             self.assertTrue(legislators)
-            self.assertEqual("Luther", legislators[0]["first_name"])
+            self.assertEqual("Ron", legislators[0]["first_name"])
 
 class LegislatorSponsoredPolicyDataTest(TestCase):
 
@@ -43,7 +43,7 @@ class LegislatorSponsoredPolicyDataTest(TestCase):
             legislator_service = LegislatorService()
             legislator_recent_bills = legislator_service.get_recent_bills('L000287')
             self.assertTrue(legislator_recent_bills)
-            self.assertEqual("Missed Opportunities Act of 2017", legislator_recent_bills[0]["title"])
+            self.assertEqual("Taxpayer Protection Act of 2017", legislator_recent_bills[0]["title"])
 
 class LegislatorVotingHistoryDataTest(TestCase):
 
@@ -62,4 +62,4 @@ class RecentVotesDataTest(TestCase):
             bill_service = BillService()
             recent_bills = bill_service.get_recent_bills()
             self.assertTrue(recent_bills)
-            self.assertEqual("Pete", recent_bills[0]['sponsor']['firstname'])
+            self.assertEqual("Mike", recent_bills[0]['sponsor']['firstname'])
