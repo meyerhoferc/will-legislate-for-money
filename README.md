@@ -20,7 +20,7 @@ In your virtual environment, install:
 
     requests
     
-		shutil
+    shutil
 
 To set up the database and seed data:
 
