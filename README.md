@@ -12,7 +12,7 @@ If you are new to Python/Django, you can use this guide to help set up your envi
 
     http://www.obeythetestinggoat.com/book/pre-requisite-installations.html
 
-Will Legislate For Money uses Python 3 and Django 1.11rc1.
+Will Legislate For Money uses Python 3.6 and Django 1.11rc1.
 
 Clone down this repo.
 
@@ -28,6 +28,7 @@ To set up the database and seed data:
 
     python manage.py migrate
     python manage.py seed_legislators
+    python manage.py get_images
 
 **Usage**
 
