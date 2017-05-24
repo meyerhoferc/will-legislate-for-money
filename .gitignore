@@ -6,3 +6,4 @@ secrets.py
 /cassettes
 .coverage
 public_officials/static/images/profiles
+/penv
