@@ -31,4 +31,11 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^accounts/profile/', public_official_views.home_page, name="home"),
+    url(r'^accounts/login/', auth_views.login, name='login'),
 ]
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'home'
+SOCIAL_AUTH_LOGIN_URL = 'home'

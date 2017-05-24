@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import *
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse, JsonResponse
 from public_officials.services import *
@@ -66,3 +67,8 @@ def bills_index(request):
 
 def about(request):
     return render(request, 'public-officials/about.html')
+
+def logout(request):
+    django.contrib.auth.logout
+    states = Legislator.get_all_state_names()
+    return render(request, 'public-officials/home.html', {'states': states})

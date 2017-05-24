@@ -1,3 +1,4 @@
+from will_legislate_for_money.secrets import *
 """
 Django settings for will_legislate_for_money project.
 
@@ -147,3 +148,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+SOCIAL_AUTH_TWITTER_KEY = TWITTER_KEY
+SOCIAL_AUTH_TWITTER_SECRET = TWITTER_SECRET
