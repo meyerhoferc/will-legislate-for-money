@@ -2,6 +2,8 @@
 
 Will Legislate For Money is a Python/Django app built as a tool to give voters easier access to information on their legislators’ campaign funding and congressional action.
 
+![alt text](https://cloud.githubusercontent.com/assets/1721599/26426097/6a793574-4094-11e7-809f-993d644a85b0.png)
+
 You can use the live site at http://legislate.money
 
 **Setup**
