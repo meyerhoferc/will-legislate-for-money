@@ -5,4 +5,5 @@ __pycache__
 secrets.py
 /cassettes
 .coverage
-/will_legislate_for_money/public_officials/static/public_officials/images/profiles
+public_officials/static/images/profiles
+/public_officials/static/public_officials/images/profiles

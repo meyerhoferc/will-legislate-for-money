@@ -5,7 +5,6 @@ import pdb
 from public_officials.models import Legislator
 from will_legislate_for_money.secrets import *
 
-
 class LegislatorService:
     def __init__(self):
         self.open_secrets_key = OPEN_SECRETS_KEY
