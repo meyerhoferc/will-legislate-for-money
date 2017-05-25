@@ -25,6 +25,7 @@
               {% if request.user.is_anonymous %}
               <li><a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a></li>
               {% else %}
+              <li><a href="{% url 'user_show' %}">Profile</a></li>
               <li><a href="{% url 'log_out' %}">Logout</a></li>
               {% endif %}
           </ul>
