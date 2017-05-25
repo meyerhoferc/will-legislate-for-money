@@ -2,6 +2,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import *
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse, JsonResponse
+from django.core.cache import cache
 from public_officials.services import *
 from public_officials.models import *
 import json
@@ -25,34 +26,67 @@ def representative_index(request):
 
 def industry_contributions(request):
     legislator_id = request.GET['legislator_id']
-    if legislator_id != '':
-        legislator_service = LegislatorService()
-        industry_contributors = legislator_service.get_legislator_ind_contributions(legislator_id)
-    else:
-        industry_contributors = "empty"
+    cache_key = 'industry_contributions_%s' % legislator_id
+    cache_time = 86400
+    industry_contributors = cache.get(cache_key)
+
+    if not industry_contributors:
+
+        if legislator_id != '':
+            legislator_service = LegislatorService()
+            industry_contributors = legislator_service.get_legislator_ind_contributions(legislator_id)
+        else:
+            industry_contributors = "empty"
+
+        cache.set(cache_key, industry_contributors, cache_time)
+
     return JsonResponse(industry_contributors, safe=False)
 
 def organization_contributions(request):
     legislator_id = request.GET['legislator_id']
-    if legislator_id != '':
-        legislator_service = LegislatorService()
-        organization_contributors = legislator_service.get_legislator_org_contributions(legislator_id)
-    else:
-        organization_contributors = "empty"
+    cache_key = 'organization_contributions_%s' % legislator_id
+    cache_time = 86400
+    organization_contributors = cache.get(cache_key)
+
+    if not organization_contributors:
+
+        if legislator_id != '':
+            legislator_service = LegislatorService()
+            organization_contributors = legislator_service.get_legislator_org_contributions(legislator_id)
+        else:
+            organization_contributors = "empty"
+
+        cache.set(cache_key, organization_contributors, cache_time)
+
     return JsonResponse(organization_contributors, safe=False)
 
 def sponsored_bills(request):
     legislator_id = request.GET['legislator_id']
-    legislator_service = LegislatorService()
-    sponsored_bills = legislator_service.get_recent_bills(legislator_id)
+    cache_key = 'sponsored_bills_%s' % legislator_id
+    cache_time = 86400
+    sponsored_bills = cache.get(cache_key)
+
+    if not sponsored_bills:
+        legislator_service = LegislatorService()
+        sponsored_bills = legislator_service.get_recent_bills(legislator_id)
+        cache.set(cache_key, sponsored_bills, cache_time)
+
     if len(sponsored_bills) == 0:
         sponsored_bills = "empty"
+
     return JsonResponse(sponsored_bills, safe=False)
 
 def voting_history(request):
     legislator_id = request.GET['legislator_id']
-    legislator_service = LegislatorService()
-    voting_history = legislator_service.get_voting_history(legislator_id)
+    cache_key = 'voting_history_%s' % legislator_id
+    cache_time = 43200
+    voting_history = cache.get(cache_key)
+
+    if not voting_history:
+        legislator_service = LegislatorService()
+        voting_history = legislator_service.get_voting_history(legislator_id)
+        cache.set(cache_key, voting_history, cache_time)
+
     return JsonResponse(voting_history, safe=False)
 
 def state_legislators(request):
@@ -62,8 +96,15 @@ def state_legislators(request):
     return render(request, 'public-officials/state.html', {'state': state, 'senators': senators, 'representatives': representatives})
 
 def bills_index(request):
-    bill_service = BillService()
-    bills = bill_service.get_recent_bills()
+    cache_key = 'recent_bills'
+    cache_time = 1800
+    bills = cache.get(cache_key)
+
+    if not bills:
+        bill_service = BillService()
+        bills = bill_service.get_recent_bills()
+        cache.set(cache_key, bills, cache_time)
+
     return render(request, 'public-officials/bills/index.html', {'bills': bills})
 
 def about(request):
