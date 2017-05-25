@@ -92,3 +92,14 @@ a.ui-button:active,
   border: 1px solid #263248;
   background: #263248;
 }
+
+.legislator h1 {
+  display: inline;
+}
+
+button.follow {
+  background-color: #F18701;
+  margin: 5px;
+  font-weight: bold;
+  line-height: 1;
+}
