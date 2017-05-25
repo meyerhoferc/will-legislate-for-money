@@ -109,6 +109,13 @@ var getVotingHistory = function(id){
   });
 };
 
+var followLegislator = function() {
+  if ($('.follow').text() == 'Follow') {
+    return $('.follow').text('Unfollow')
+  }
+  $('.follow').text('Follow')
+};
+
 $(document).ready(function(){
   $('#tabs').tabs();
   var legislator_id = $('.legislator').attr('data-legislator-id');
@@ -117,4 +124,5 @@ $(document).ready(function(){
   getIndustryContributors(legislator_id);
   getSponsoredBills(legislator_pid);
   getVotingHistory(legislator_pid);
+  $('.follow').on('click', followLegislator);
 });
