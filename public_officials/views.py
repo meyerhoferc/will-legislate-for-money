@@ -1,3 +1,5 @@
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import *
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse, JsonResponse
 from django.core.cache import cache
@@ -107,3 +109,11 @@ def bills_index(request):
 
 def about(request):
     return render(request, 'public-officials/about.html')
+
+def log_out(request):
+    logout(request)
+    return redirect('/')
+
+@login_required
+def user_show(request):
+    return render(request, 'public-officials/user_show.html')
