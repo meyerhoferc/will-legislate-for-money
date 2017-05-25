@@ -72,3 +72,7 @@ def about(request):
 def log_out(request):
     logout(request)
     return redirect('/')
+
+@login_required
+def user_show(request):
+    return render(request, 'public-officials/user_show.html')
