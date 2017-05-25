@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^legislators/', include('public_officials.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^logout/$', public_official_views.log_out, name="log_out"),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^accounts/profile/', public_official_views.home_page, name="home"),
     url(r'^accounts/login/', auth_views.login, name='login'),
