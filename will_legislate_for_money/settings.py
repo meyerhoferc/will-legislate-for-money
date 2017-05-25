@@ -1,3 +1,4 @@
+from will_legislate_for_money.secrets import *
 """
 Django settings for will_legislate_for_money project.
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'public_officials',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'will_legislate_for_money.urls'
@@ -63,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -70,6 +75,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'will_legislate_for_money.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.twitter.TwitterOAuth',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -138,6 +148,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+SOCIAL_AUTH_TWITTER_KEY = TWITTER_KEY
+SOCIAL_AUTH_TWITTER_SECRET = TWITTER_SECRET
+
 
 CACHES = {
     'default': {

@@ -17,6 +17,8 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from public_officials import views as public_official_views
 
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     url(r'^$', public_official_views.home_page, name="home"),
     url(r'^about/$', public_official_views.about, name="about"),
@@ -26,4 +28,13 @@ urlpatterns = [
     url(r'^recent-bills/$', public_official_views.bills_index, name="bills_index"),
     url(r'^legislators/', include('public_officials.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^logout/$', public_official_views.log_out, name="log_out"),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^accounts/profile/', public_official_views.user_show, name="user_show"),
+    url(r'^accounts/login/', auth_views.login, name='login'),
 ]
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'home'
+SOCIAL_AUTH_LOGIN_URL = 'home'
