@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'public_officials',
+    'djangobower',
+    'django_nvd3',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +140,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'underscore',
+    'd3#3.3.13',
+    'nvd3#1.7.1',
+)

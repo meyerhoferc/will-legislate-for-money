@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <body>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/public_officials/js/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript" src="/static/public_officials/js/legislator_detail.js"></script>
+    <link href="/static/public_officials/stylesheets/jquery-ui.css" rel="stylesheet">
+    <link href="/static/public_officials/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/public_officials/stylesheets/main.css" rel="stylesheet">
+    <title>Will Legislate For Money</title>
+    {% include_chart_jscss %}
+    {% load_chart charttype chartdata chartcontainer extra %}
+  </head>
+  <body>
+    {% load nvd3_tags %}
+    {% load format_legislator_json %}
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'bills_index' %}">Recent Bills</a></li>
+            <li><a href="{% url 'senator_index' %}">Senators</a></li>
+            <li><a href="{% url 'representative_index' %}">Representatives</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<body>
+    <h1>Fruits vs Calories</h1>
+    {% include_container chartcontainer 400 600 %}
+</body>

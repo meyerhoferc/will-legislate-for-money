@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse, JsonResponse
 from public_officials.services import *
 from public_officials.models import *
+from nvd3 import pieChart
 import json
 import pdb
 
@@ -66,3 +67,22 @@ def bills_index(request):
 
 def about(request):
     return render(request, 'public-officials/about.html')
+
+def contributions(request):
+    xdata = ["Apple", "Apricot", "Avocado", "Banana", "Boysenberries", "Blueberries", "Dates", "Grapefruit", "Kiwi", "Lemon"]
+    ydata = [52, 48, 160, 94, 75, 71, 490, 82, 46, 17]
+    chartdata = {'x': xdata, 'y': ydata}
+    charttype = "pieChart"
+    chartcontainer = 'piechart_container'
+    data = {
+        'charttype': charttype,
+        'chartdata': chartdata,
+        'chartcontainer': chartcontainer,
+        'extra': {
+            'x_is_date': False,
+            'x_axis_format': '',
+            'tag_script_js': True,
+            'jquery_on_ready': False,
+        }
+    }
+    return render(request, 'public-officials/contributions.html', data)
