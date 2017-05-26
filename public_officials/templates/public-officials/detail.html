@@ -23,18 +23,27 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{% url 'bills_index' %}">Recent Bills</a></li>
-            <li><a href="{% url 'senator_index' %}">Senators</a></li>
-            <li><a href="{% url 'representative_index' %}">Representatives</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
+              <li><a href="{% url 'bills_index' %}">Recent Bills</a></li>
+              <li><a href="{% url 'senator_index' %}">Senators</a></li>
+              <li><a href="{% url 'representative_index' %}">Representatives</a></li>
+              <li><a href="{% url 'about' %}">About</a></li>
+              {% if request.user.is_anonymous %}
+              <li><a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a></li>
+              {% else %}
+              <li><a href="{% url 'user_show' %}">Profile</a></li>
+              <li><a href="{% url 'log_out' %}">Logout</a></li>
+              {% endif %}
           </ul>
         </div>
       </div>
     </nav>
 
     <div class="container-fluid">
-      <div class="row-well profile col-md-4 col-md-offset-1 legislator" data-legislator-id="{{ legislator.cid }}" data-legislator-pid="{{ legislator.pid }}">
+      <div class="profile col-md-4 col-md-offset-1 legislator" data-legislator-id="{{ legislator.cid }}" data-legislator-pid="{{ legislator.pid }}">
         <h1>{{ legislator.first_name }} {{ legislator.last_name }}</h1>
+      </div>
+      <div class="col-md-1 col-md-offset-5">
+        <button class="follow btn">Follow</button>
       </div>
     </div>
 

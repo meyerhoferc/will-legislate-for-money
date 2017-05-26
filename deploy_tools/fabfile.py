@@ -47,16 +47,21 @@ def _update_virtualenv(source_folder):
         run(f'python3.6 -m venv {virtualenv_folder}')
     run(f'{virtualenv_folder}/bin/pip install -r {source_folder}/requirements.txt')
     run(f'{virtualenv_folder}/bin/pip install requests')
+    run(f'{virtualenv_folder}/bin/pip install social-auth-app-django')
 
 def _update_secrets(source_folder):
     current_open_secrets = OPEN_SECRETS_KEY
     current_propublica = PROPUBLICA_KEY
+    current_twitter_key = TWITTER_KEY
+    current_twitter_secret = TWITTER_SECRET
     secrets_file = source_folder + '/will_legislate_for_money/secrets.py'
     if not exists(secrets_file):
         run(f'touch {source_folder}/will_legislate_for_money/secrets.py')
     secrets_file = source_folder + '/will_legislate_for_money/secrets.py'
-    run(f'echo "OPEN_SECRETS_KEY = \'{current_open_secrets}\'" >> {secrets_file}')
-    run(f'echo "PROPUBLICA_KEY = \'{current_propublica}\'" >> {secrets_file}')
+    run(f'echo "OPEN_SECRETS_KEY = \'{current_open_secrets}\'" > {secrets_file}')
+    run(f'echo "PROPUBLICA_KEY = \'{current_propublica}\'" > {secrets_file}')
+    run(f'echo "TWITTER_KEY = \'{current_twitter_key}\'" > {secrets_file}')
+    run(f'echo "TWITTER_SECRET = \'{current_twitter_secret}\'" > {secrets_file}')
 
 def _update_static_files(source_folder):
     run(f'cd {source_folder} && ../virtualenv/bin/python manage.py collectstatic --noinput')

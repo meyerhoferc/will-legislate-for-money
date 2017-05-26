@@ -1,3 +1,4 @@
+from will_legislate_for_money.secrets import *
 """
 Django settings for will_legislate_for_money project.
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'public_officials',
     'djangobower',
     'django_nvd3',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'will_legislate_for_money.urls'
@@ -65,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -72,6 +77,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'will_legislate_for_money.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.twitter.TwitterOAuth',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -153,3 +163,13 @@ BOWER_INSTALLED_APPS = (
     'd3#3.3.13',
     'nvd3#1.7.1',
 )
+SOCIAL_AUTH_TWITTER_KEY = TWITTER_KEY
+SOCIAL_AUTH_TWITTER_SECRET = TWITTER_SECRET
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}

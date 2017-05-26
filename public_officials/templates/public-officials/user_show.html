@@ -9,7 +9,6 @@
     <title>Will Legislate For Money</title>
   </head>
   <body>
-    {% load format_legislator_json %}
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -25,43 +24,12 @@
               {% if request.user.is_anonymous %}
               <li><a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a></li>
               {% else %}
-              <li><a href="{% url 'user_show' %}">Profile</a></li>
               <li><a href="{% url 'log_out' %}">Logout</a></li>
               {% endif %}
           </ul>
         </div>
       </div>
     </nav>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2 big-image">
-          <img class="img-responsive" src="/static/public_officials/images/congress.jpeg" alt="congress">
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row text-center">
-        <h1>Your One Stop Legislator Watch</h1>
-        <div class="selections">
-          <h4><a href="{% url 'senator_index' %}">View Senators</a></h4>
-          <h4><a href="{% url 'representative_index' %}">View Representatives</a></h4>
-          <div class="text-center">
-            <div class="dropdown" id="cta">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                View by State
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                {% for state in states %}
-                  <li class="text-center"><a href="{% url 'state' %}?state={{ state }}">{{ state }}</a></li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <h2 class='text-center'>Welcome {{ request.user }}!!!</h2>
   </body>
 </html>
