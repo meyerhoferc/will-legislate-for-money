@@ -3,8 +3,6 @@
   <head>
     <body>
     <meta charset="utf-8">
-    {% include_chart_jscss %}
-    {% load_chart charttype chartdata chartcontainer extra %}
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/static/public_officials/js/jquery-ui-1.12.1.min.js"></script>
     <script type="text/javascript" src="/static/public_officials/js/legislator_detail.js"></script>
@@ -54,7 +52,6 @@
         <li><a href="#tab-3">Industry Contributions</a></li>
         <li><a href="#tab-4">Sponsored Bills</a></li>
         <li><a href="#tab-5">Recent Decisions</a></li>
-        <li><a href="#tab-6">Data Dashboard</a></li>
       </ul>
       <div id="tab-1">
         <div class="container-fluid">
@@ -157,17 +154,6 @@
                   </tbody>
                 </div>
               </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id='tab-6'>
-        {% load nvd3_tags %}
-        <div class="container-fluid">
-          <div class="row-well">
-            <div class="data-dashboard">
-              <h1>Fruits vs Calories</h1>
-              {% include_container chartcontainer 400 600 %}
             </div>
           </div>
         </div>
