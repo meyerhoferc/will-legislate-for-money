@@ -6,6 +6,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/static/public_officials/js/jquery-ui-1.12.1.min.js"></script>
     <script type="text/javascript" src="/static/public_officials/js/legislator_detail.js"></script>
+    <script type="text/javascript" src="/static/public_officials/js/chartkick.js"></script>
     <link href="/static/public_officials/stylesheets/jquery-ui.css" rel="stylesheet">
     <link href="/static/public_officials/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/public_officials/stylesheets/main.css" rel="stylesheet">
@@ -52,6 +53,7 @@
         <li><a href="#tab-3">Industry Contributions</a></li>
         <li><a href="#tab-4">Sponsored Bills</a></li>
         <li><a href="#tab-5">Recent Decisions</a></li>
+        <li><a href="#tab-6">Data Dashboard</a></li>
       </ul>
       <div id="tab-1">
         <div class="container-fluid">
@@ -158,6 +160,19 @@
           </div>
         </div>
       </div>
+      <div id='tab-6'>
+        <div class="container-fluid">
+          <div class="row-well">
+            <div class="data-charts">
+              <h4>Organization Contributions</h4>
+              <div id="org-donations" style="height: 300px"></div>
+              <h4>Industry Contributions</h4>
+              <div id="industry-donations" style="height: 300px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
   </body>
 </html>
