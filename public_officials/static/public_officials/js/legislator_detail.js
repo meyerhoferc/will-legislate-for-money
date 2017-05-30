@@ -7,6 +7,7 @@ var getIndustryContributors = function(id){
       );
     } else {
       industryDonationsChart(data)
+      totalDonationsChart(data)
       $.each(data, function(index, industry){
         $('#industry-data').append(
           "<tr><td><h5>"
@@ -23,6 +24,23 @@ var getIndustryContributors = function(id){
     }
   });
 };
+
+var totalDonationsChart = function(info){
+  var data = []
+  var indiv_total = []
+  var pac_total = []
+  info.forEach(function(industry){
+    var indiv = parseInt(industry['@attributes'].indivs)
+    var pacs = parseInt(industry['@attributes'].pacs)
+    indiv_total.push(indiv)
+    pac_total.push(pacs)
+  })
+  var indiv_sum = ["Individual Donations", (indiv_total.reduce((a, b) => a + b, 0))]
+  var pac_sum = ["Pac Donations", (pac_total.reduce((a, b) => a + b, 0))]
+  data.push(indiv_sum)
+  data.push(pac_sum)
+  new Chartkick.PieChart("total-donations", data)
+}
 
 var industryDonationsChart = function(info){
   var data = []
