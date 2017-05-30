@@ -65,6 +65,7 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.assertIn('Organization Contributions', tabs_text)
             self.assertIn('Sponsored Bills', tabs_text)
             self.assertIn('Recent Decisions', tabs_text)
+            self.assertIn('Data Dashboard', tabs_text)
 
     def test_checks_for_content_on_legislators_senators_index(self):
         legislator_one = Legislator.objects.create(first_name="Diana",
