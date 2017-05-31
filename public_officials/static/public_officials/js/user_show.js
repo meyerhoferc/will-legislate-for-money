@@ -21,8 +21,16 @@ function removeLegislator(unfollowButton){
   unfollowButton.remove()
 }
 
+function changeHoverColor(){
+  $(".list-group-item").hover(function() {
+  $(this).css({"background-color": "#ADD8E6", "font-weight": "bold"})
+}).mouseout(function(){
+  $(this).css({"background-color": "white", "font-weight": "normal"})
+})
+}
+
 $(document).ready(function(){
   $('.display-tweets').on('click', displayTweets)
   $('.unfollow-button').on('click', unfollowLegislator)
-
+  changeHoverColor()
 });
