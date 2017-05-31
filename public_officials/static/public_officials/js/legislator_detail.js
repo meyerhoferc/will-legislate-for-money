@@ -6,6 +6,7 @@ var getIndustryContributors = function(id){
         "<h3 class='text-center'>No Data Available Yet</h3>"
       );
     } else {
+      industryDonationsChart(data)
       $.each(data, function(index, industry){
         $('#industry-data').append(
           "<tr><td><h5>"
@@ -23,6 +24,28 @@ var getIndustryContributors = function(id){
   });
 };
 
+var industryDonationsChart = function(info){
+  var data = []
+  info.forEach(function (industry){
+    var name = industry['@attributes'].industry_name
+    var total = industry['@attributes'].total
+    var industry = [name, total]
+    data.push(industry)
+  })
+  new Chartkick.PieChart("industry-donations", data)
+}
+
+var orgDonationsChart = function(info){
+  var data = []
+  info.forEach(function (organization){
+    var name = organization['@attributes'].org_name
+    var total = organization['@attributes'].total
+    var org = [name, total]
+    data.push(org)
+  })
+  new Chartkick.PieChart("org-donations", data)
+};
+
 var getOrganizationContributors = function(id){
   $.get('/legislators/organization-contributions/', {legislator_id: id}, function(data){
     if (data == "empty") {
@@ -31,6 +54,7 @@ var getOrganizationContributors = function(id){
         "<h3 class='text-center'>No Data Available Yet</h3>"
       );
     } else {
+      orgDonationsChart(data);
       $.each(data, function(index, organization){
         $('#organization-data').append(
           "<tr><td><h5>"
