@@ -111,6 +111,12 @@ button.follow {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.btn.unfollow-button:hover{
+  font-weight: bold;
+}
+.btn.display-tweets:hover{
+  font-weight: bold;
+}
 
 .btn.display-tweets {
   font-size: 12pt;

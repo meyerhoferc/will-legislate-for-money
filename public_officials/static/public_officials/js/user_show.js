@@ -23,7 +23,7 @@ function removeLegislator(unfollowButton){
 
 function changeLegislatorHoverColor(){
   $(".list-group-item").hover(function() {
-  $(this).css({"background-color": "#ADD8E6", "font-weight": "bold"})
+  $(this).css({"background-color": "#ADD8E6", "font-weight": "bold", "color": 'black'})
 }).mouseout(function(){
   $(this).css({"background-color": "white", "font-weight": "normal"})
 })
