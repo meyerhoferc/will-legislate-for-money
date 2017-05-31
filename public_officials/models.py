@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import pdb
 
 class Legislator(models.Model):
@@ -17,6 +18,8 @@ class Legislator(models.Model):
     twitter_id = models.CharField(max_length=15, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    users = models.ManyToManyField(User)
+
 
     @classmethod
     def get_senators_by_state(self):
