@@ -184,10 +184,23 @@ var unfollowLegislator = function(legId, uId) {
   return $('.follow').text('Follow')
 }
 
-var toggleCharts = function() {
+var toggleOrgChart = function() {
   $(".organization-contributors").html("")
-  var $org-chart= $(".data-charts")
-  $(".organization-contributors").append($org-chart)
+  var $orgChart = $(".data-charts")
+  $(".organization-contributors").append($orgChart)
+}
+
+var toggleIndustryChart = function() {
+  $(".industry-contributors").html("")
+  var $orgChart = $(".industry-data-charts")
+  $(".industry-contributors").append($orgChart)
+}
+
+
+var toggleTableChart = function() {
+  $(".organization-contributors").html("")
+  var $orgChart = $(".test")
+  $(".organization-contributors").append($orgChart)
 }
 
 $(document).ready(function(){
@@ -199,5 +212,9 @@ $(document).ready(function(){
   getSponsoredBills(legislator_pid);
   getVotingHistory(legislator_pid);
   $('.follow').on('click', followLegislator);
-  $('.btn-charts').on('click', toggleCharts)
+  $('.btn-charts').on('click', toggleOrgChart)
+  $('.btn-industry').on('click', toggleIndustryChart)
+  $('.btn-table').on('click', toggleTableChart)
+  
+  
 });

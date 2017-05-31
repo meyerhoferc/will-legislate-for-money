@@ -60,6 +60,9 @@
         <li><a href="#tab-3">Industry Contributions</a></li>
         <li><a href="#tab-4">Sponsored Bills</a></li>
         <li><a href="#tab-5">Recent Decisions</a></li>
+        <li style="visibility: hidden"><a href="#tab-6">Organization Contributions Charts</a></li>
+        <li style="visibility: hidden"><a href="#tab-7">Total Contribution Data</a></li>
+        
       </ul>
       <div id="tab-1">
         <div class="container-fluid">
@@ -90,7 +93,8 @@
           <div class="row-well">
             <div class="data-charts"></div>
             <div class="organization-contributors">
-              <table class="table table-bordered table-striped">
+              <div class="test">
+              <table class="table table-bordered table-striped organization">
                 <button class="btn btn-charts float-left">Visualize Data</button>
                 <div class="text-center">
                   <h3>Contributions by Organization</h3>
@@ -104,6 +108,7 @@
                 <tbody id="organization-data">
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
@@ -114,6 +119,7 @@
             <div class="industry-contributors">
               <table class="table table-bordered table-striped">
                 <div class="text-center">
+                <button class="btn btn-industry float-left">Visualize Data</button>                  
                   <h3>Contributions by Industry</h3>
                 </div>
 
@@ -173,6 +179,7 @@
         <div class="container-fluid">
           <div class="row-well">
             <div class="data-charts">
+              <button class="btn btn-table float-left">Visualize Data</button> 
               <h4>Organization Contributions</h4>
               <div id="org-donations" style="height: 300px"></div>
             </div>
@@ -184,6 +191,7 @@
           <div class="row-well">
             <div class="industry-data-charts">
               <h4>Industry Contributions</h4>
+              <button class="btn btn-industry-table float-left">Visualize Data</button>               
               <div id="industry-donations" style="height: 300px"></div>
               <h4>Total Contribution Data</h4>
               <div id="total-donations" style="height: 300px"></div>
