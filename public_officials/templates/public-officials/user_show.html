@@ -9,6 +9,7 @@
     <title>Will Legislate For Money</title>
   </head>
   <body>
+    {% load debug %}
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -24,12 +25,15 @@
               {% if request.user.is_anonymous %}
               <li><a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a></li>
               {% else %}
+              {% pdb %}
               <li><a href="{% url 'log_out' %}">Logout</a></li>
               {% endif %}
           </ul>
         </div>
       </div>
     </nav>
+    <div>
+    </div>
       <h2 class='text-center'>Welcome {{ request.user }}!!!</h2>
   </body>
 </html>

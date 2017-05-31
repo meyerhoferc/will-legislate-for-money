@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import pdb
 
 class Legislator(models.Model):
@@ -61,3 +62,7 @@ class Legislator(models.Model):
                 unique_states.append(state['state_name'])
         sorted_states = sorted(unique_states)
         return sorted_states
+
+class UsersLegislators(models.Model):
+    user = models.ForeignKey(User, related_name='following')
+    legislator = models.ForeignKey(Legislator, related_name='followed_by')
