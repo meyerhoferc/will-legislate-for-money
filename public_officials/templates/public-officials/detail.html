@@ -44,7 +44,7 @@
 
       <div class="col-md-1 col-md-offset-5" id="follow-legislator">
         {% if request.user.is_authenticated %}
-          {% if request.user in followers %}
+          {% if following %}
             <button class="follow btn" data-legislator-id="{{ legislator.id }}" data-user-id="{{ request.user.id}}" >Unfollow</button>
           {% else %}
             <button class="follow btn" data-legislator-id="{{ legislator.id }}" data-user-id="{{ request.user.id}}" >Follow</button>
@@ -52,7 +52,7 @@
         {% endif %}
       </div>
     </div>
-    
+
     <div id="tabs" class="col-md-10 col-md-offset-1">
       <ul>
         <li><a href="#tab-1">About</a></li>
