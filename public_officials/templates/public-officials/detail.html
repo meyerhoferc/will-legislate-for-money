@@ -44,7 +44,11 @@
 
       <div class="col-md-1 col-md-offset-5" id="follow-legislator">
         {% if request.user.is_authenticated %}
-        <button class="follow btn" data-legislator-id="{{ legislator.id }}" data-user-id="{{ request.user.id}}" >Follow</button>
+          {% if request.user in followers %}
+            <button class="follow btn" data-legislator-id="{{ legislator.id }}" data-user-id="{{ request.user.id}}" >Unfollow</button>
+          {% else %}
+            <button class="follow btn" data-legislator-id="{{ legislator.id }}" data-user-id="{{ request.user.id}}" >Follow</button>
+          {% endif %}
         {% endif %}
       </div>
     </div>

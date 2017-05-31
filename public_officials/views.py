@@ -16,7 +16,8 @@ def home_page(request):
 
 def legislator_detail(request, legislator_id):
     legislator = Legislator.objects.get(pk=legislator_id)
-    return render(request, 'public-officials/detail.html', {'legislator': legislator})
+    followers = legislator.users.all()
+    return render(request, 'public-officials/detail.html', {'legislator': legislator, 'followers': followers})
 
 def senator_index(request):
     senators_by_state = Legislator.get_senators_by_state()
