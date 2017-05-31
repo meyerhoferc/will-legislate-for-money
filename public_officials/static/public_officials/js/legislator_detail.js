@@ -39,7 +39,7 @@ var totalDonationsChart = function(info){
   var pac_sum = ["Pac Donations", (pac_total.reduce((a, b) => a + b, 0))]
   data.push(indiv_sum)
   data.push(pac_sum)
-  new Chartkick.PieChart("total-donations", data)
+  new Chartkick.PieChart("total-donations", data, {is3D: true})
 }
 
 var industryDonationsChart = function(info){
@@ -172,6 +172,13 @@ var followLegislator = function() {
   $('.follow').text('Follow')
 };
 
+var toggleCharts = function() {
+  $(".organization-contributors").html("")
+  var $org-chart= $(".data-charts")
+  $(".organization-contributors").append($org-chart)
+
+}
+
 $(document).ready(function(){
   $('#tabs').tabs();
   var legislator_id = $('.legislator').attr('data-legislator-id');
@@ -181,4 +188,5 @@ $(document).ready(function(){
   getSponsoredBills(legislator_pid);
   getVotingHistory(legislator_pid);
   $('.follow').on('click', followLegislator);
+  $('.btn-charts').on('click', toggleCharts)
 });
