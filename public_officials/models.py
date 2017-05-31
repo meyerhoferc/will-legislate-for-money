@@ -18,6 +18,8 @@ class Legislator(models.Model):
     twitter_id = models.CharField(max_length=15, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    users = models.ManyToManyField(User)
+
 
     @classmethod
     def get_senators_by_state(self):
@@ -62,7 +64,3 @@ class Legislator(models.Model):
                 unique_states.append(state['state_name'])
         sorted_states = sorted(unique_states)
         return sorted_states
-
-class UsersLegislators(models.Model):
-    user = models.ForeignKey(User, related_name='following')
-    legislator = models.ForeignKey(Legislator, related_name='followed_by')
