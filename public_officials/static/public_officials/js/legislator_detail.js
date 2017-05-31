@@ -45,13 +45,27 @@ var totalDonationsChart = function(info){
 var industryDonationsChart = function(info){
   var data = []
   info.forEach(function (industry){
+    industryBreakdownChart(industry['@attributes'])
     var name = industry['@attributes'].industry_name
     var total = industry['@attributes'].total
     var industry = [name, total]
     data.push(industry)
-  })
+  });
   new Chartkick.PieChart("industry-donations", data)
-}
+};
+
+var industryBreakdownChart = function(data){
+  var name = data.industry_name
+  var id   = data.industry_code
+  $(".industry-data-charts").append(`<h4>${name}</h4>`)
+  $(".industry-data-charts").append(`<div id=${id}></div>`)
+  var indiv = ["Individual Donations", (data.indivs || 0)]
+  var pac = ["PAC Donations", (data.pacs || 0)]
+  var chartData = []
+  chartData.push(indiv)
+  chartData.push(pac)
+  new Chartkick.PieChart(id, chartData)
+};
 
 var orgDonationsChart = function(info){
   var data = []
