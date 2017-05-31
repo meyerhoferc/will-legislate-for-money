@@ -60,8 +60,6 @@
         <li><a href="#tab-3">Industry Contributions</a></li>
         <li><a href="#tab-4">Sponsored Bills</a></li>
         <li><a href="#tab-5">Recent Decisions</a></li>
-        <li><a href="#tab-6">Data Dashboard</a></li>
-        <li><a href="#tab-7">Industry Breakdown</a></li>
       </ul>
       <div id="tab-1">
         <div class="container-fluid">
@@ -90,8 +88,10 @@
       <div id="tab-2">
         <div class="container-fluid contribution-info">
           <div class="row-well">
+            <div class="data-charts"></div>
             <div class="organization-contributors">
               <table class="table table-bordered table-striped">
+                <button class="btn btn-charts float-left">Visualize Data</button>
                 <div class="text-center">
                   <h3>Contributions by Organization</h3>
                 </div>
@@ -116,6 +116,7 @@
                 <div class="text-center">
                   <h3>Contributions by Industry</h3>
                 </div>
+
                 <thead>
                   <th>Industry</th>
                   <th>Total</th>
@@ -172,12 +173,8 @@
         <div class="container-fluid">
           <div class="row-well">
             <div class="data-charts">
-              <h4>Total Contribution Data</h4>
-              <div id="total-donations" style="height: 300px"></div>
               <h4>Organization Contributions</h4>
               <div id="org-donations" style="height: 300px"></div>
-              <h4>Industry Contributions</h4>
-              <div id="industry-donations" style="height: 300px"></div>
             </div>
           </div>
         </div>
@@ -186,6 +183,10 @@
         <div class="container-fluid">
           <div class="row-well">
             <div class="industry-data-charts">
+              <h4>Industry Contributions</h4>
+              <div id="industry-donations" style="height: 300px"></div>
+              <h4>Total Contribution Data</h4>
+              <div id="total-donations" style="height: 300px"></div>
             </div>
           </div>
         </div>
