@@ -6,6 +6,7 @@ var getIndustryContributors = function(id){
         "<h3 class='text-center'>No Data Available Yet</h3>"
       );
     } else {
+  console.log(data)
       industryDonationsChart(data)
       $.each(data, function(index, industry){
         $('#industry-data').append(
