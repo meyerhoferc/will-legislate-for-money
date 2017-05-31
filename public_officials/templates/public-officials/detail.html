@@ -42,7 +42,7 @@
         <h1>{{ legislator.first_name }} {{ legislator.last_name }}</h1>
       </div>
       <div class="col-md-1 col-md-offset-5">
-        <button class="follow btn">Follow</button>
+        <button class="follow btn" data-legislator-id="{{ legislator.id }}" data-user-id="{{ request.user.id}}" >Follow</button>
       </div>
     </div>
 

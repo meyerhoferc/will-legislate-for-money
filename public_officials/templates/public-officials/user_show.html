@@ -30,8 +30,14 @@
         </div>
       </div>
     </nav>
-    <div>
-    </div>
       <h2 class='text-center'>Welcome {{ request.user }}!!!</h2>
+        <div class='list-group col-md-4' margin=20px>
+          <h4 class='text-center'>Your Followed Representatives</h4>
+          {% for legislator in legislators %}
+            <a class="list-group-item" href='/legislators/{{legislator.id}}'>
+              {{ legislator.first_name }} {{legislator.last_name}} {{legislator.chamber.capitalize }} {{legislator.state}}-{{legislator.party}}
+            </a>
+          {% endfor %}
+        </div>
   </body>
 </html>

@@ -33,6 +33,9 @@ urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^accounts/profile/', public_official_views.user_show, name="user_show"),
     url(r'^accounts/login/', auth_views.login, name='login'),
+    url(r'^add-follower', public_official_views.add_follower, name="add_follower"),
+    url(r'^remove-follower', public_official_views.remove_follower, name="remove_follower"),
+
 ]
 
 LOGIN_URL = 'login'
