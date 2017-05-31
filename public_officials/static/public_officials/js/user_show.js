@@ -21,16 +21,25 @@ function removeLegislator(unfollowButton){
   unfollowButton.remove()
 }
 
-function changeHoverColor(){
+function changeLegislatorHoverColor(){
   $(".list-group-item").hover(function() {
   $(this).css({"background-color": "#ADD8E6", "font-weight": "bold"})
 }).mouseout(function(){
   $(this).css({"background-color": "white", "font-weight": "normal"})
 })
 }
-
+function makeNavBarAccessible(){
+  $('li>a').css({'color': 'black', 'font-size': '12pt'})
+  $('.navbar-brand').css('color', 'black')
+  $('li, .navbar-brand').hover(function(){
+    $(this).css({'background-color': "#ADD8E6", "font-weight": "bold"})
+  }).mouseout(function(){
+    $(this).css({'background-color': "#F8F8F8", "font-weight": "normal"})
+  })
+}
 $(document).ready(function(){
   $('.display-tweets').on('click', displayTweets)
   $('.unfollow-button').on('click', unfollowLegislator)
-  changeHoverColor()
+  changeLegislatorHoverColor()
+  makeNavBarAccessible()
 });
