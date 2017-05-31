@@ -2,7 +2,7 @@
 function displayTweets(){
   $('#tweet-box').html('')
   let twitterId = this.getAttribute('data-twitter-id')
-  let tweetLink = `<a class="twitter-timeline" data-width="450" href="https://twitter.com/${twitterId}">Tweets by ${twitterId}</a>`
+  let tweetLink = `<a class="twitter-timeline" data-width="700" href="https://twitter.com/${twitterId}">Tweets by ${twitterId}</a>`
   $('#tweet-box').append(`<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>`)
   $('#tweet-box').append(tweetLink)
 }
