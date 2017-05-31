@@ -38,8 +38,8 @@
             <a class="list-group-item" href='/legislators/{{legislator.id}}'>
               {{ legislator.first_name }} {{legislator.last_name}} {{legislator.chamber.capitalize }} {{legislator.state}}-{{legislator.party}}
             </a>
-            <button class='btn btn-info display-tweets' data-twitter-id='{{legislator.twitter_id}}'>Display Tweets from {{legislator.first_name}}</button>
-            <button style='float: right' class='btn btn-danger unfollow-button' data-leg-id='{{legislator.id}}' data-user-id='{{request.user.id}}'>Unfollow {{legislator.first_name}}</button>
+            <button class='btn display-tweets' data-twitter-id='{{legislator.twitter_id}}'>Display Tweets from {{legislator.first_name}}</button>
+            <button style='float: right' class='btn unfollow-button' data-leg-id='{{legislator.id}}' data-user-id='{{request.user.id}}'>Unfollow {{legislator.first_name}}</button>
           {% endfor %}
         </div>
         <div id='tweet-box'>

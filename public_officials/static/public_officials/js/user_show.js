@@ -29,18 +29,8 @@ function changeHoverColor(){
 })
 }
 
-function modifyButtonMargins(){
-  $(".display-tweets, .unfollow-button").css({"margin-top": '10px', "margin-bottom": '10px'})
-}
-
-function modifyButtonColor(){
-  $(".display-tweets").css({'background-color': '#1DCAFF', 'font-size': '12pt', 'color': 'black'})
-  $(".unfollow-button").css({'font-size': '12pt','color': 'black' })
-}
 $(document).ready(function(){
   $('.display-tweets').on('click', displayTweets)
   $('.unfollow-button').on('click', unfollowLegislator)
   changeHoverColor()
-  modifyButtonMargins()
-  modifyButtonColor()
 });
