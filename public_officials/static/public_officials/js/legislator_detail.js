@@ -134,11 +134,22 @@ var getVotingHistory = function(id){
 };
 
 var followLegislator = function() {
+  let legisId = $('.follow').data().legislatorId
+  let userId = $('.follow').data().userId
   if ($('.follow').text() == 'Follow') {
+    $.post('/add-follower', {lid: legisId, uid: userId } )
     return $('.follow').text('Unfollow')
   }
-  $('.follow').text('Follow')
+  else {
+    unfollowLegislator(legisId, userId)
+
+  }
 };
+
+var unfollowLegislator = function(legId, uId) {
+  $.post('/remove-follower', {lid: legId, uid: uId})
+  return $('.follow').text('Follow')
+}
 
 $(document).ready(function(){
   $('#tabs').tabs();

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/static/public_officials/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/public_officials/js/user_show.js"></script>
     <link href="/static/public_officials/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/public_officials/stylesheets/main.css" rel="stylesheet">
     <title>Will Legislate For Money</title>
@@ -30,8 +31,18 @@
         </div>
       </div>
     </nav>
-    <div>
-    </div>
       <h2 class='text-center'>Welcome {{ request.user }}!!!</h2>
+        <div class='list-group col-md-4' style='margin-left: 20px;'>
+          <h4 class='text-center'>Your Followed Representatives</h4>
+          {% for legislator in legislators %}
+            <a class="list-group-item" href='/legislators/{{legislator.id}}'>
+              {{ legislator.first_name }} {{legislator.last_name}} {{legislator.chamber.capitalize }} {{legislator.state}}-{{legislator.party}}
+            </a>
+            <button class='btn btn-info display-tweets' data-twitter-id='{{legislator.twitter_id}}'>Display Tweets from {{legislator.first_name}}</button>
+            <button style='float: right;' class='btn btn-danger unfollow-button' data-leg-id='{{legislator.id}}' data-user-id='{{request.user.id}}'>Unfollow {{legislator.first_name}}</button>
+          {% endfor %}
+        </div>
+        <div id='tweet-box'>
+        </div>
   </body>
 </html>

@@ -6,6 +6,7 @@ from django.core.cache import cache
 from public_officials.services import *
 from public_officials.models import *
 from nvd3 import pieChart
+from django.views.decorators.csrf import csrf_exempt
 import json
 import pdb
 
@@ -15,7 +16,8 @@ def home_page(request):
 
 def legislator_detail(request, legislator_id):
     legislator = Legislator.objects.get(pk=legislator_id)
-    return render(request, 'public-officials/detail.html', {'legislator': legislator})
+    following = request.user in legislator.users.all()
+    return render(request, 'public-officials/detail.html', {'legislator': legislator, 'following': following})
 
 def senator_index(request):
     senators_by_state = Legislator.get_senators_by_state()
@@ -136,4 +138,19 @@ def log_out(request):
 
 @login_required
 def user_show(request):
-    return render(request, 'public-officials/user_show.html')
+    legislators = request.user.legislator_set.all()
+    return render(request, 'public-officials/user_show.html', {'legislators': legislators})
+
+@csrf_exempt
+def add_follower(request):
+    legislator_id = request.POST.get('lid')
+    user_id = request.POST.get('uid')
+    Legislator.objects.get(id=legislator_id).users.add(User.objects.get(id=user_id))
+    return HttpResponse(status=200)
+
+@csrf_exempt
+def remove_follower(request):
+    legislator_id = request.POST.get('lid')
+    user_id = request.POST.get('uid')
+    User.objects.get(id=user_id).legislator_set.remove(Legislator.objects.get(id=legislator_id))
+    return HttpResponse(status=200)
