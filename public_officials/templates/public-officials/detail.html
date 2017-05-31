@@ -41,9 +41,14 @@
       <div class="profile col-md-4 col-md-offset-1 legislator" data-legislator-id="{{ legislator.cid }}" data-legislator-pid="{{ legislator.pid }}">
         <h1>{{ legislator.first_name }} {{ legislator.last_name }}</h1>
       </div>
+
       <div class="col-md-1 col-md-offset-5" id="follow-legislator">
         {% if request.user.is_authenticated %}
-        <button class="follow btn">Follow</button>
+          {% if following %}
+            <button class="follow btn" data-legislator-id="{{ legislator.id }}" data-user-id="{{ request.user.id}}" >Unfollow</button>
+          {% else %}
+            <button class="follow btn" data-legislator-id="{{ legislator.id }}" data-user-id="{{ request.user.id}}" >Follow</button>
+          {% endif %}
         {% endif %}
       </div>
     </div>
