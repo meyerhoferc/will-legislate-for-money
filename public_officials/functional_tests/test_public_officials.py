@@ -47,11 +47,11 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.browser.get(self.live_server_url + '/legislators/%d/' % legislator.id)
             name_text = self.browser.find_element_by_tag_name('h1').text
             status_text = self.browser.find_element_by_tag_name('h3').text
-            follow_button_text = self.browser.find_element_by_css_selector('.follow').text
+            follow_button_text = self.browser.find_element_by_css_selector('#follow-legislator').text
             bio_text = self.browser.find_element_by_css_selector('.profile').text
             stats_text = self.browser.find_element_by_css_selector('.stats').text
             self.assertIn("Diana DeGette", name_text)
-            self.assertIn("Follow", follow_button_text)
+            self.assertNotIn("Follow", follow_button_text)
             self.assertIn("Colorado Representative", status_text)
             self.assertIn("Term Start: January 03, 2017", stats_text)
             self.assertIn("Term End: January 03, 2019", stats_text)
