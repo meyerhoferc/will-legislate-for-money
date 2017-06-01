@@ -2,7 +2,7 @@
 function displayTweets(){
   $('#tweet-box').html('')
   let twitterId = this.getAttribute('data-twitter-id')
-  let tweetLink = `<a class="twitter-timeline" data-width="450" href="https://twitter.com/${twitterId}">Tweets by ${twitterId}</a>`
+  let tweetLink = `<a class="twitter-timeline" data-width="700" href="https://twitter.com/${twitterId}">Tweets by ${twitterId}</a>`
   $('#tweet-box').append(`<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>`)
   $('#tweet-box').append(tweetLink)
 }
@@ -21,8 +21,25 @@ function removeLegislator(unfollowButton){
   unfollowButton.remove()
 }
 
+function changeLegislatorHoverColor(){
+  $(".list-group-item").hover(function() {
+  $(this).css({"background-color": "#ADD8E6", "font-weight": "bold", "color": 'black'})
+}).mouseout(function(){
+  $(this).css({"background-color": "white", "font-weight": "normal"})
+})
+}
+function makeNavBarAccessible(){
+  $('li>a').css({'color': 'black', 'font-size': '12pt'})
+  $('.navbar-brand').css('color', 'black')
+  $('li, .navbar-brand').hover(function(){
+    $(this).css({'background-color': "#ADD8E6", "font-weight": "bold"})
+  }).mouseout(function(){
+    $(this).css({'background-color': "#F8F8F8", "font-weight": "normal"})
+  })
+}
 $(document).ready(function(){
   $('.display-tweets').on('click', displayTweets)
   $('.unfollow-button').on('click', unfollowLegislator)
-
+  changeLegislatorHoverColor()
+  makeNavBarAccessible()
 });
