@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
   <head>
     <meta charset="utf-8">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -32,17 +32,17 @@
       </div>
     </nav>
       <h2 class='text-center'>Welcome {{ request.user }}!!!</h2>
-        <div class='list-group col-md-4' style='margin-left: 20px;'>
-          <h4 class='text-center'>Your Followed Representatives</h4>
+        <div class=' col-md-4 list-group' style='margin-left: 50px;'>
+          <h4 class='text-center'>Your Followed Legislators</h4>
           {% for legislator in legislators %}
-            <a class="list-group-item" href='/legislators/{{legislator.id}}'>
+            <a id='followed-legislators' class="list-group-item" href='/legislators/{{legislator.id}}'>
               {{ legislator.first_name }} {{legislator.last_name}} {{legislator.chamber.capitalize }} {{legislator.state}}-{{legislator.party}}
             </a>
-            <button class='btn btn-info display-tweets' data-twitter-id='{{legislator.twitter_id}}'>Display Tweets from {{legislator.first_name}}</button>
-            <button style='float: right;' class='btn btn-danger unfollow-button' data-leg-id='{{legislator.id}}' data-user-id='{{request.user.id}}'>Unfollow {{legislator.first_name}}</button>
+            <button class='btn display-tweets' data-twitter-id='{{legislator.twitter_id}}'>Display Tweets from {{legislator.first_name}}</button>
+            <button style='float: right' class='btn unfollow-button' data-leg-id='{{legislator.id}}' data-user-id='{{request.user.id}}'>Unfollow {{legislator.first_name}}</button>
           {% endfor %}
         </div>
-        <div id='tweet-box'>
+        <div id='tweet-box' >
         </div>
   </body>
 </html>

@@ -8,7 +8,6 @@ from public_officials.models import *
 from nvd3 import pieChart
 from django.views.decorators.csrf import csrf_exempt
 import json
-import pdb
 
 def home_page(request):
     states = Legislator.get_all_state_names()
