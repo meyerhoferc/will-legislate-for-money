@@ -65,7 +65,6 @@ class GuestUserTest(StaticLiveServerTestCase):
             self.assertIn('Organization Contributions', tabs_text)
             self.assertIn('Sponsored Bills', tabs_text)
             self.assertIn('Recent Decisions', tabs_text)
-            self.assertIn('Data Dashboard', tabs_text)
 
     def test_information_in_organization_text(self):
         with vcr.use_cassette('cassettes/get_all_legislator_information'):
