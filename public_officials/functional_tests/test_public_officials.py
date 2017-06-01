@@ -50,6 +50,8 @@ class GuestUserTest(StaticLiveServerTestCase):
             follow_button_text = self.browser.find_element_by_css_selector('#follow-legislator').text
             bio_text = self.browser.find_element_by_css_selector('.profile').text
             stats_text = self.browser.find_element_by_css_selector('.stats').text
+            button_text = self.browser.find_element_by_css_selector('#follow-legislator').text
+            self.assertNotIn('Follow', button_text)
             self.assertIn("Diana DeGette", name_text)
             self.assertNotIn("Follow", follow_button_text)
             self.assertIn("Colorado Representative", status_text)
