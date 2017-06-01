@@ -1,12 +1,10 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-import time
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 from public_officials.models import *
-import vcr
 import os
-import pdb
+import vcr
 
 class GuestUserTest(StaticLiveServerTestCase):
     def setUp(self):

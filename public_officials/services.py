@@ -1,7 +1,5 @@
-from django.http import HttpRequest, HttpResponse
 import requests
 import json
-import pdb
 from public_officials.models import Legislator
 from will_legislate_for_money.secrets import *
 
