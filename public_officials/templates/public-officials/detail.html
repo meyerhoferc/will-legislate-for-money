@@ -19,7 +19,6 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="{% url 'home' %}">Home</a>
         </div>
-
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
               <li><a href="{% url 'bills_index' %}">Recent Bills</a></li>
@@ -109,6 +108,15 @@
             </div>
           </div>
         </div>
+        <div class="container-fluid">
+          <div class="row-well">
+            <div id="data-charts" style="display:none">
+              <button class="btn btn-org float-left">Visualize Data</button> 
+              <h4>Organization Contributions</h4>
+              <div id="org-donations" style="height: 300px"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="tab-3">
         <div class="container-fluid contribution-info">
@@ -120,7 +128,6 @@
                 <div class="text-center">
                   <h3>Contributions by Industry</h3>
                 </div>
-
                 <thead>
                   <th>Industry</th>
                   <th>Total</th>
@@ -131,6 +138,17 @@
                 </tbody>
               </table>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row-well">
+            <div id="industry-data-charts" style="display:none">
+              <button class="btn btn-industry float-left">Visualize Data</button>
+              <h4>Industry Contributions</h4>
+              <div id="industry-donations" style="height: 300px"></div>
+              <h4>Total Contribution Data</h4>
+              <div id="total-donations" style="height: 300px"></div>
             </div>
           </div>
         </div>
@@ -170,30 +188,6 @@
                   </tbody>
                 </div>
               </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id='tab-2'>
-        <div class="container-fluid">
-          <div class="row-well">
-            <div id="data-charts" style="display:none">
-              <button class="btn btn-org float-left">Visualize Data</button> 
-              <h4>Organization Contributions</h4>
-              <div id="org-donations" style="height: 300px"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id='tab-3'>
-        <div class="container-fluid">
-          <div class="row-well">
-            <div id="industry-data-charts" style="display:none">
-              <button class="btn btn-industry float-left">Visualize Data</button>
-              <h4>Industry Contributions</h4>
-              <div id="industry-donations" style="height: 300px"></div>
-              <h4>Total Contribution Data</h4>
-              <div id="total-donations" style="height: 300px"></div>
             </div>
           </div>
         </div>
