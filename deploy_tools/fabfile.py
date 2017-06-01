@@ -10,10 +10,10 @@ def deploy():
     site_folder = f'/home/{env.user}/sites/{env.host}'
     source_folder = site_folder + '/source'
     _create_directory_structure_if_necessary(site_folder)
+    _update_secrets(source_folder)
     _get_latest_source(source_folder)
     _update_settings(source_folder, env.host)
     _update_virtualenv(source_folder)
-    _update_secrets(source_folder)
     _update_database(source_folder)
     _update_images(source_folder)
     _update_static_files(source_folder)
@@ -48,6 +48,8 @@ def _update_virtualenv(source_folder):
     run(f'{virtualenv_folder}/bin/pip install -r {source_folder}/requirements.txt')
     run(f'{virtualenv_folder}/bin/pip install requests')
     run(f'{virtualenv_folder}/bin/pip install social-auth-app-django')
+    run(f'{virtualenv_folder}/bin/pip install django-nvd3')
+    run(f'{virtualenv_folder}/bin/pip install django-bower')
 
 def _update_secrets(source_folder):
     current_open_secrets = OPEN_SECRETS_KEY
@@ -64,11 +66,15 @@ def _update_secrets(source_folder):
     run(f'echo "TWITTER_SECRET = \'{current_twitter_secret}\'" > {secrets_file}')
 
 def _update_static_files(source_folder):
+    virtualenv_folder = source_folder + '/../virtualenv'
+    run(f'cd {source_folder} && {virtualenv_folder}/bin/python manage.py bower install')
     run(f'cd {source_folder} && ../virtualenv/bin/python manage.py collectstatic --noinput')
 
 def _update_database(source_folder):
     run(f'cd {source_folder} && ../virtualenv/bin/python manage.py migrate --noinput')
 
 def _update_images(source_folder):
-    run(f'cd {source_folder} && mkdir public_officials/static/public_officials/images/profiles')
+    images_folder = source_folder + '/pubic_officials/static/public_officials/images/profiles'
+    if not exists(images_folder):
+        run(f'cd {source_folder} && mkdir public_officials/static/public_officials/images/profiles')
     run(f'cd {source_folder} && ../virtualenv/bin/python manage.py get_images')

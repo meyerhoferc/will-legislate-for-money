@@ -1,7 +1,6 @@
 from django import template
 from django.template.defaulttags import register
 from public_officials.models import *
-import pdb
 
 register = template.Library()
 

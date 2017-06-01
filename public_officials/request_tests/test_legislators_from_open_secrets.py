@@ -1,7 +1,5 @@
 from django.test import TestCase
-from django.http import HttpRequest, HttpResponse
 from public_officials.services import *
-import pdb
 import vcr
 
 class LegislatorProfileDataTest(TestCase):

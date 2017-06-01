@@ -35,7 +35,7 @@
         <div class=' col-md-4 list-group' style='margin-left: 50px;'>
           <h4 class='text-center'>Your Followed Legislators</h4>
           {% for legislator in legislators %}
-            <a class="list-group-item" href='/legislators/{{legislator.id}}'>
+            <a id='followed-legislators' class="list-group-item" href='/legislators/{{legislator.id}}'>
               {{ legislator.first_name }} {{legislator.last_name}} {{legislator.chamber.capitalize }} {{legislator.state}}-{{legislator.party}}
             </a>
             <button class='btn display-tweets' data-twitter-id='{{legislator.twitter_id}}'>Display Tweets from {{legislator.first_name}}</button>
