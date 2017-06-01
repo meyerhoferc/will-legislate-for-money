@@ -60,9 +60,6 @@
         <li><a href="#tab-3">Industry Contributions</a></li>
         <li><a href="#tab-4">Sponsored Bills</a></li>
         <li><a href="#tab-5">Recent Decisions</a></li>
-        <li style="visibility: hidden"><a href="#tab-6">Organization Contributions Charts</a></li>
-        <li style="visibility: hidden"><a href="#tab-7">Total Contribution Data</a></li>
-        
       </ul>
       <div id="tab-1">
         <div class="container-fluid">
@@ -93,9 +90,9 @@
           <div class="row-well">
             <div class="data-charts"></div>
             <div class="organization-contributors">
-              <div class="test">
+              <div id="organization" style="display:block">
               <table class="table table-bordered table-striped organization">
-                <button class="btn btn-charts float-left">Visualize Data</button>
+              <button class="btn btn-org float-left">Visualize Data</button>
                 <div class="text-center">
                   <h3>Contributions by Organization</h3>
                 </div>
@@ -117,9 +114,10 @@
         <div class="container-fluid contribution-info">
           <div class="row-well">
             <div class="industry-contributors">
+              <div id="industry-total" style="display:block">
               <table class="table table-bordered table-striped">
-                <div class="text-center">
                 <button class="btn btn-industry float-left">Visualize Data</button>                  
+                <div class="text-center">
                   <h3>Contributions by Industry</h3>
                 </div>
 
@@ -132,6 +130,7 @@
                 <tbody id="industry-data">
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
@@ -175,23 +174,23 @@
           </div>
         </div>
       </div>
-      <div id='tab-6'>
+      <div id='tab-2'>
         <div class="container-fluid">
           <div class="row-well">
-            <div class="data-charts">
-              <button class="btn btn-table float-left">Visualize Data</button> 
+            <div id="data-charts" style="display:none">
+              <button class="btn btn-org float-left">Visualize Data</button> 
               <h4>Organization Contributions</h4>
               <div id="org-donations" style="height: 300px"></div>
             </div>
           </div>
         </div>
       </div>
-      <div id='tab-7'>
+      <div id='tab-3'>
         <div class="container-fluid">
           <div class="row-well">
-            <div class="industry-data-charts">
+            <div id="industry-data-charts" style="display:none">
+              <button class="btn btn-industry float-left">Visualize Data</button>
               <h4>Industry Contributions</h4>
-              <button class="btn btn-industry-table float-left">Visualize Data</button>               
               <div id="industry-donations" style="height: 300px"></div>
               <h4>Total Contribution Data</h4>
               <div id="total-donations" style="height: 300px"></div>

@@ -6,7 +6,6 @@ var getIndustryContributors = function(id){
         "<h3 class='text-center'>No Data Available Yet</h3>"
       );
     } else {
-  console.log(data)
       industryDonationsChart(data)
       totalDonationsChart(data)
       $.each(data, function(index, industry){
@@ -58,8 +57,8 @@ var industryDonationsChart = function(info){
 var industryBreakdownChart = function(data){
   var name = data.industry_name
   var id   = data.industry_code
-  $(".industry-data-charts").append(`<h4>${name}</h4>`)
-  $(".industry-data-charts").append(`<div id=${id}></div>`)
+  $("#industry-data-charts").append(`<h4>${name}</h4>`)
+  $("#industry-data-charts").append(`<div id=${id}></div>`)
   var indiv = ["Individual Donations", (data.indivs || 0)]
   var pac = ["PAC Donations", (data.pacs || 0)]
   var chartData = []
@@ -179,29 +178,32 @@ var followLegislator = function() {
   }
 };
 
-var unfollowLegislator = function(legId, uId) {
-  $.post('/remove-follower', {lid: legId, uid: uId})
-  return $('.follow').text('Follow')
-}
+var swapOrgContributionData = function(){
+  d1 = document.getElementById('organization')
+  d2 = document.getElementById('data-charts')
+  if(d2.style.display == "none")
+  {
+    d1.style.display = "none";
+    d2.style.display ="block";
+  } else {
+    d1.style.display = "block";
+    d2.style.display ="none";
+  };
+};
 
-var toggleOrgChart = function() {
-  $(".organization-contributors").html("")
-  var $orgChart = $(".data-charts")
-  $(".organization-contributors").append($orgChart)
-}
-
-var toggleIndustryChart = function() {
-  $(".industry-contributors").html("")
-  var $orgChart = $(".industry-data-charts")
-  $(".industry-contributors").append($orgChart)
-}
-
-
-var toggleTableChart = function() {
-  $(".organization-contributors").html("")
-  var $orgChart = $(".test")
-  $(".organization-contributors").append($orgChart)
-}
+var swapTotalContributionData = function(){
+  d1 = document.getElementById('industry-total')
+  d2 = document.getElementById('industry-data-charts')
+  console.log(d1)
+  if(d2.style.display == "none")
+  {
+    d1.style.display = "none";
+    d2.style.display ="block";
+  } else {
+    d1.style.display = "block";
+    d2.style.display ="none";
+  };
+};
 
 $(document).ready(function(){
   $('#tabs').tabs();
@@ -212,9 +214,7 @@ $(document).ready(function(){
   getSponsoredBills(legislator_pid);
   getVotingHistory(legislator_pid);
   $('.follow').on('click', followLegislator);
-  $('.btn-charts').on('click', toggleOrgChart)
-  $('.btn-industry').on('click', toggleIndustryChart)
-  $('.btn-table').on('click', toggleTableChart)
-  
+  $('.btn-org').on('click', swapOrgContributionData)
+  $('.btn-industry').on('click', swapTotalContributionData)
   
 });
