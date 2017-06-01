@@ -7,6 +7,7 @@ var getIndustryContributors = function(id){
       );
     } else {
       industryDonationsChart(data)
+      totalDonationsChart(data)
       $.each(data, function(index, industry){
         $('#industry-data').append(
           "<tr><td><h5>"
@@ -24,16 +25,47 @@ var getIndustryContributors = function(id){
   });
 };
 
+var totalDonationsChart = function(info){
+  var data = []
+  var indiv_total = []
+  var pac_total = []
+  info.forEach(function(industry){
+    var indiv = parseInt(industry['@attributes'].indivs)
+    var pacs = parseInt(industry['@attributes'].pacs)
+    indiv_total.push(indiv)
+    pac_total.push(pacs)
+  })
+  var indiv_sum = ["Individual Donations", (indiv_total.reduce((a, b) => a + b, 0))]
+  var pac_sum = ["Pac Donations", (pac_total.reduce((a, b) => a + b, 0))]
+  data.push(indiv_sum)
+  data.push(pac_sum)
+  new Chartkick.PieChart("total-donations", data, {is3D: true})
+}
+
 var industryDonationsChart = function(info){
   var data = []
   info.forEach(function (industry){
+    industryBreakdownChart(industry['@attributes'])
     var name = industry['@attributes'].industry_name
     var total = industry['@attributes'].total
     var industry = [name, total]
     data.push(industry)
-  })
+  });
   new Chartkick.PieChart("industry-donations", data)
-}
+};
+
+var industryBreakdownChart = function(data){
+  var name = data.industry_name
+  var id   = data.industry_code
+  $("#industry-data-charts").append(`<h4>${name}</h4>`)
+  $("#industry-data-charts").append(`<div id=${id}></div>`)
+  var indiv = ["Individual Donations", (data.indivs || 0)]
+  var pac = ["PAC Donations", (data.pacs || 0)]
+  var chartData = []
+  chartData.push(indiv)
+  chartData.push(pac)
+  new Chartkick.PieChart(id, chartData)
+};
 
 var orgDonationsChart = function(info){
   var data = []
@@ -146,9 +178,31 @@ var followLegislator = function() {
   }
 };
 
-var unfollowLegislator = function(legId, uId) {
-  $.post('/remove-follower', {lid: legId, uid: uId})
-  return $('.follow').text('Follow')
+var swapOrgContributionData = function(){
+  d1 = document.getElementById('organization')
+  d2 = document.getElementById('data-charts')
+  if(d2.style.display == "none")
+  {
+    d1.style.display = "none";
+    d2.style.display ="block";
+  } else {
+    d1.style.display = "block";
+    d2.style.display ="none";
+  }
+}
+
+var swapTotalContributionData = function(){
+  d1 = document.getElementById('industry-total')
+  d2 = document.getElementById('industry-data-charts')
+  console.log(d1)
+  if(d2.style.display == "none")
+  {
+    d1.style.display = "none";
+    d2.style.display ="block";
+  } else {
+    d1.style.display = "block";
+    d2.style.display ="none";
+  }
 }
 
 $(document).ready(function(){
@@ -160,4 +214,7 @@ $(document).ready(function(){
   getSponsoredBills(legislator_pid);
   getVotingHistory(legislator_pid);
   $('.follow').on('click', followLegislator);
+  $('.btn-org').on('click', swapOrgContributionData)
+  $('.btn-industry').on('click', swapTotalContributionData)
+
 });
