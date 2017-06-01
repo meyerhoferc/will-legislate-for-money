@@ -178,23 +178,9 @@ var followLegislator = function() {
   }
 };
 
-var swapOrgContributionData = function(){
-  d1 = document.getElementById('organization')
-  d2 = document.getElementById('data-charts')
-  if(d2.style.display == "none")
-  {
-    d1.style.display = "none";
-    d2.style.display ="block";
-  } else {
-    d1.style.display = "block";
-    d2.style.display ="none";
-  };
-};
-
-var swapTotalContributionData = function(){
-  d1 = document.getElementById('industry-total')
-  d2 = document.getElementById('industry-data-charts')
-  console.log(d1)
+var swapData = function(div1, div2){
+  d1 = document.getElementById(div1)
+  d2 = document.getElementById(div2)
   if(d2.style.display == "none")
   {
     d1.style.display = "none";
@@ -214,7 +200,7 @@ $(document).ready(function(){
   getSponsoredBills(legislator_pid);
   getVotingHistory(legislator_pid);
   $('.follow').on('click', followLegislator);
-  $('.btn-org').on('click', swapOrgContributionData)
-  $('.btn-industry').on('click', swapTotalContributionData)
+  $('.btn-org').on('click', swapData('organization', 'data-charts'))
+  $('.btn-industry').on('click', swapData('industry-total', 'industry-data-chart'))
   
 });
