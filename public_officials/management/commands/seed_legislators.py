@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand, CommandError
 from public_officials.models import *
 from public_officials.services import *
 import csv
-import pdb
 
 class Command(BaseCommand):
     def handle(self, *args, **options):

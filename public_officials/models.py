@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-import pdb
 
 class Legislator(models.Model):
     first_name = models.CharField(max_length=50)
