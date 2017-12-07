@@ -279,8 +279,10 @@ class GuestUserTest(StaticLiveServerTestCase):
         navbar_text = self.browser.find_element_by_css_selector('.navbar').text
         self.assertIn("About", navbar_text)
         self.browser.get(self.live_server_url + '/about/')
-        about_text = self.browser.find_element_by_css_selector('.about').text
-        self.assertIn("This application was made possible by:", about_text)
+        about_text = self.browser.find_element_by_css_selector('#about').text
+        donate_text = self.browser.find_element_by_css_selector('#donate').text
+        self.assertIn("We collect and curate data from:", about_text)
+        self.assertIn("Donate to keep us running!", donate_text)
         self.assertIn("Open Secrets API", about_text)
         self.assertIn("Propublica Congress API", about_text)
         self.assertIn("Sunlight Congress API", about_text)
