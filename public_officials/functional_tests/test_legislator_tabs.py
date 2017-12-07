@@ -16,16 +16,6 @@ class GuestUserTest(StaticLiveServerTestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_check_for_correct_content_on_root(self):
-        self.browser.get(self.live_server_url)
-        self.assertIn('Will Legislate For Money', self.browser.title)
-        header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('Your One Stop Legislator Watch', header_text)
-        selection_text = self.browser.find_element_by_css_selector('.selections').text
-        self.assertIn("View Senators", selection_text)
-        self.assertIn("View Representatives", selection_text)
-        self.assertIn("View by State", selection_text)
-
     def test_checks_for_profile_content_on_official_show(self):
         with vcr.use_cassette('cassettes/get_all_legislator_information'):
             legislator = Legislator.objects.create(first_name="Diana",
@@ -273,17 +263,17 @@ class GuestUserTest(StaticLiveServerTestCase):
         self.assertIn("Bill", bills_text)
         self.assertIn("Status", bills_text)
         self.assertIn("Sponsor", bills_text)
-    # 
-    # def test_has_about_page(self):
-    #     self.browser.get(self.live_server_url)
-    #     navbar_text = self.browser.find_element_by_css_selector('.navbar').text
-    #     self.assertIn("About", navbar_text)
-    #     self.browser.get(self.live_server_url + '/about/')
-    #     about_text = self.browser.find_element_by_css_selector('#about').text
-    #     donation_text = self.browser.find_element_by_css_selector('#donate').text
-    #     self.assertIn("We collect and curate data from:", about_text)
-    #     self.assertIn("Open Secrets API", about_text)
-    #     self.assertIn("Propublica Congress API", about_text)
-    #     self.assertIn("Sunlight Congress API", about_text)
-    #     self.assertIn("GovTrack.us API", about_text)
-    #     self.assertIn("Donate to keep us running!", donation_text)
+
+    def test_has_about_page(self):
+        self.browser.get(self.live_server_url)
+        navbar_text = self.browser.find_element_by_css_selector('.navbar').text
+        self.assertIn("About", navbar_text)
+        self.browser.get(self.live_server_url + '/about/')
+        about_text = self.browser.find_element_by_css_selector('#about').text
+        donate_text = self.browser.find_element_by_css_selector('#donate').text
+        self.assertIn("We collect and curate data from:", about_text)
+        self.assertIn("Donate to keep us running!", donate_text)
+        self.assertIn("Open Secrets API", about_text)
+        self.assertIn("Propublica Congress API", about_text)
+        self.assertIn("Sunlight Congress API", about_text)
+        self.assertIn("GovTrack.us API", about_text)
