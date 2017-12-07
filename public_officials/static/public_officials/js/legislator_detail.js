@@ -194,7 +194,6 @@ var swapOrgContributionData = function(){
 var swapTotalContributionData = function(){
   d1 = document.getElementById('industry-total')
   d2 = document.getElementById('industry-data-charts')
-  console.log(d1)
   if(d2.style.display == "none")
   {
     d1.style.display = "none";
@@ -216,5 +215,4 @@ $(document).ready(function(){
   $('.follow').on('click', followLegislator);
   $('.btn-org').on('click', swapOrgContributionData)
   $('.btn-industry').on('click', swapTotalContributionData)
-
 });
