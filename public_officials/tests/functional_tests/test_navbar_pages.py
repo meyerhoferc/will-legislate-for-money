@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 from public_officials.models import *
+from unittest import skip
 import os
 import vcr
 
@@ -16,6 +17,7 @@ class GuestUserTest(StaticLiveServerTestCase):
     def tearDown(self):
         self.browser.quit()
 
+    @skip('come back')
     def test_check_for_correct_content_on_root(self):
         self.browser.get(self.live_server_url)
         self.assertIn('Will Legislate For Money', self.browser.title)
@@ -26,7 +28,7 @@ class GuestUserTest(StaticLiveServerTestCase):
         self.assertIn("View Representatives", selection_text)
         self.assertIn("View by State", selection_text)
 
-
+    @skip('come back')
     def test_has_link_to_view_recent_bills_and_that_content(self):
         self.browser.get(self.live_server_url)
         navbar_text = self.browser.find_element_by_css_selector('.navbar').text
@@ -37,6 +39,7 @@ class GuestUserTest(StaticLiveServerTestCase):
         self.assertIn("Status", bills_text)
         self.assertIn("Sponsor", bills_text)
 
+    @skip('come back')
     def test_has_about_page(self):
         self.browser.get(self.live_server_url)
         navbar_text = self.browser.find_element_by_css_selector('.navbar').text

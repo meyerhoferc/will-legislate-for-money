@@ -5,7 +5,11 @@ import csv
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        Legislator.objects.all().delete()
+        legislators = Legislator.objects.all()
+        for legislator in legislators:
+            legislator.delete()
+            self.stdout.write(self.style.SUCCESS('Successfully deleted legislator %s %s' % legislator.first_name, legislator.last_name))
+
         legislator_service = LegislatorService()
         legislators = legislator_service.get_all_legislators()
         for legislator in legislators:

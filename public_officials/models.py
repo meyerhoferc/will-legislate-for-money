@@ -2,23 +2,26 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Legislator(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    state = models.CharField(max_length=30)
-    state_name = models.CharField(max_length=30)
-    cid = models.CharField(max_length=30)
-    pid = models.CharField(max_length=30)
-    chamber = models.CharField(max_length=25)
-    term_start = models.CharField(max_length=30)
-    term_end = models.CharField(max_length=30)
-    party = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=50, null=True)
+    last_name = models.CharField(max_length=50, null=True)
+    phone = models.CharField(max_length=50, null=True)
+    email = models.CharField(max_length=50, null=True)
+    state = models.CharField(max_length=30, null=True)
+    cid = models.CharField(max_length=30, null=True)
+    pid = models.CharField(max_length=30, null=True)
+    chamber = models.CharField(max_length=25, null=True)
+    party = models.CharField(max_length=30, null=True)
     twitter_id = models.CharField(max_length=15, null=True)
+    leadership_role = models.CharField(max_length=50, null=True)
+    govtrack_id = models.CharField(max_length=30, null=True)
+    cspan_id = models.CharField(max_length=30, null=True)
+    votesmart_id = models.CharField(max_length=30, null=True)
+    google_entity_id = models.CharField(max_length=30, null=True)
+    url = models.CharField(max_length=50, null=True)
+    in_office = models.NullBooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     users = models.ManyToManyField(User)
-
 
     @classmethod
     def get_senators_by_state(self):
