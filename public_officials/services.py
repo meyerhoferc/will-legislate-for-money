@@ -32,13 +32,18 @@ class LegislatorService:
         industries_json = industries.json()['response']['industries']['industry']
         return industries_json
 
-    def get_all_legislators(self):
-        url = "https://congress.api.sunlightfoundation.com/legislators"
-        payload = {
-            'per_page': 'all'
-        }
-        legislators_json = requests.get(url, params=payload)
-        legislators = json.loads(legislators_json.content)['results']
+    def get_all_senators(self, congress_number=115):
+        url = "https://api.propublica.org/congress/v1/%d/senate/members.json" % congress_number
+        headers = {'X-API-Key': self.propublica_key}
+        legislators_json = requests.get(url, headers=headers)
+        legislators = json.loads(legislators_json.content)['results'][0]['members']
+        return legislators
+
+    def get_all_representatives(self, congress_number=115):
+        url = "https://api.propublica.org/congress/v1/%d/house/members.json" % congress_number
+        headers = {'X-API-Key': self.propublica_key}
+        legislators_json = requests.get(url, headers=headers)
+        legislators = json.loads(legislators_json.content)['results'][0]['members']
         return legislators
 
     def get_recent_bills(self, pid):
