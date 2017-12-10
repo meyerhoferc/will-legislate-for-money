@@ -11,21 +11,44 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS('Successfully deleted legislator %s %s' % legislator.first_name, legislator.last_name))
 
         legislator_service = LegislatorService()
-        legislators = legislator_service.get_all_legislators()
-        for legislator in legislators:
+        senators = legislator_service.get_all_senators(115)
+        for senator in senators:
             Legislator.objects.create(
-            first_name=legislator["first_name"],
-            last_name=legislator["last_name"],
-            phone=legislator["phone"],
-            email=legislator["oc_email"],
-            state=legislator["state"],
-            state_name=legislator["state_name"],
-            cid=legislator["crp_id"],
-            pid=legislator["bioguide_id"],
-            chamber=legislator["chamber"],
-            term_start=legislator["term_start"],
-            term_end=legislator["term_end"],
-            party=legislator["party"],
-            twitter_id=legislator.get("twitter_id")
+            first_name=senator["first_name"],
+            last_name=senator["last_name"],
+            phone=senator["phone"],
+            email=senator["contact_form"],
+            state=senator["state"],
+            cid=senator["crp_id"],
+            pid=senator["id"],
+            chamber='senate',
+            party=senator["party"],
+            twitter_id=senator.get("twitter_id"),
+            leadership_role = senator["leadership_role"],
+            govtrack_id = senator["govtrack_id"],
+            cspan_id = senator["cspan_id"],
+            url = senator["url"],
+            in_office = senator["in_office"]
             )
-            self.stdout.write(self.style.SUCCESS('Successfully created legislator %s' % legislator["last_name"]))
+            self.stdout.write(self.style.SUCCESS('Successfully created senator %s' % senator["last_name"]))
+
+        representatives = legislator_service.get_all_representatives(115)
+        for representative in representatives:
+            Legislator.objects.create(
+            first_name=representative["first_name"],
+            last_name=representative["last_name"],
+            phone=representative["phone"],
+            email=representative["contact_form"],
+            state=representative["state"],
+            cid=representative["crp_id"],
+            pid=representative["id"],
+            chamber='house',
+            party=representative["party"],
+            twitter_id=representative.get("twitter_id"),
+            leadership_role = representative["leadership_role"],
+            govtrack_id = representative["govtrack_id"],
+            cspan_id = representative["cspan_id"],
+            url = representative["url"],
+            in_office = representative["in_office"]
+            )
+            self.stdout.write(self.style.SUCCESS('Successfully created representative %s' % representative["last_name"]))
